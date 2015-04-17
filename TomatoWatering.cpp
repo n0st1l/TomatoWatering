@@ -12,8 +12,12 @@ void setup()
 // The loop function is called in an endless loop
 void loop()
 {
-	Serial.print(("HelloWorld\n"));
-	Serial.end();
-	delay(1000);
+	Timer1.initialize();
+	Timer1.attachInterrupt(printHelloWorld);
+
 //Add your repeated code here
+}
+
+void printHelloWorld(){
+	Serial.print(("HelloWorld\n"));
 }

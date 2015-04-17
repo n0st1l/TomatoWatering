@@ -7,6 +7,7 @@
 #ifndef _TomatoWatering_H_
 #define _TomatoWatering_H_
 #include "Arduino.h"
+#include "TimerOne.h"
 //add your includes for the project TomatoWatering here
 
 
@@ -16,6 +17,7 @@ extern "C" {
 #endif
 void loop();
 void setup();
+void printHelloWorld();
 #ifdef __cplusplus
 } // extern "C"
 #endif
