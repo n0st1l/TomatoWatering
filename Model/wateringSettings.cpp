@@ -5,26 +5,22 @@
  *      Author: Administrator
  */
 
-#include "wateringSettings.h"
+#include "WateringSettings.h"
 
-wateringSettings::wateringSettings() {
+WateringSettings::WateringSettings() {
 	waterQuantity = 0;
-	wateringTime1 = Time();
-	wateringTime2 = Time();
+	wateringTime = new Time();
 }
 
-wateringSettings::~wateringSettings() {
+WateringSettings::~WateringSettings() {
 	// TODO Auto-generated destructor stub
 }
 
-void wateringSettings::setWaterQuantity(int waterQuantity) {
+void WateringSettings::setWaterQuantity(int waterQuantity) {
 	this->waterQuantity = waterQuantity;
 }
 
-void wateringSettings::setWateringTime1(Time wateringTime1) {
-	this->wateringTime1 = wateringTime1;
-}
-
-void wateringSettings::setWateringTime2(Time wateringTime2) {
-	this->wateringTime2 = wateringTime2;
+void WateringSettings::setWateringTime(Time wateringTime) {
+	this->wateringTime->setHour( wateringTime.getHour() );
+	this->wateringTime->setMinutes( wateringTime.getMinutes() );
 }
