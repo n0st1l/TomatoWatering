@@ -7,24 +7,23 @@
 #ifndef _TomatoWatering_H_
 #define _TomatoWatering_H_
 #include "Arduino.h"
-#include "TimerOne.h"
 //add your includes for the project TomatoWatering here
-
-
+#include "TimerOne.h"
+#include "Model/WateringSettings.h"
 //end of add your includes here
 #ifdef __cplusplus
 extern "C" {
 #endif
 void loop();
 void setup();
-void printHelloWorld();
 #ifdef __cplusplus
 } // extern "C"
 #endif
 
 //add your function definitions for the project TomatoWatering here
-
-
+void printHelloWorld();
+WateringSettings* waterSettings1;
+WateringSettings* waterSettings2;
 
 
 //Do not add code below this line
