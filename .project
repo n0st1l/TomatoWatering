@@ -27,9 +27,19 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Libraries/DHT22</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/DHT22</locationURI>
+		</link>
+		<link>
 			<name>Libraries/LiquidCrystal</name>
 			<type>2</type>
 			<locationURI>ArduinoLibPath/LiquidCrystal</locationURI>
+		</link>
+		<link>
+			<name>Libraries/Time</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/Time</locationURI>
 		</link>
 		<link>
 			<name>Libraries/TimerOne</name>
