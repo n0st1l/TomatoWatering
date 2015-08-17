@@ -10,6 +10,7 @@
 //add your includes for the project TomatoWatering here
 #include "TimerOne.h"
 #include "Model/WateringSettings.h"
+#include "Model/PotModel.h"
 //end of add your includes here
 #ifdef __cplusplus
 extern "C" {
@@ -22,8 +23,7 @@ void setup();
 
 //add your function definitions for the project TomatoWatering here
 void printHelloWorld();
-WateringSettings* waterSettings1;
-WateringSettings* waterSettings2;
+PotModel* tomatoPot;
 
 
 //Do not add code below this line
