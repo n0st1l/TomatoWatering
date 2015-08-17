@@ -8,11 +8,31 @@
 #include "PotModel.h"
 
 PotModel::PotModel() {
-	// TODO Auto-generated constructor stub
+	this->potNumber = 0;
+	this->potName = "undefined";
 
+	for(int i = 0 ; i < SIZE_WATERINGSETTINGSARRAY ; i++)
+	{
+		wateringSettingsArray[i] = new WateringSettings();
+	}
 }
 
 PotModel::~PotModel() {
 	// TODO Auto-generated destructor stub
 }
 
+void PotModel::setPotNumber(int potNumber) {
+	this->potNumber = potNumber;
+}
+
+void PotModel::setPotName(String potName) {
+	this->potName = potName;
+}
+
+WateringSettings* PotModel::getWateringSettings(int index) {
+	return wateringSettingsArray[index];
+}
+
+void PotModel::setWateringSettings(WateringSettings wateringSettings, int index) {
+	this->wateringSettingsArray[index]->setWateringSettings(wateringSettings);
+}
