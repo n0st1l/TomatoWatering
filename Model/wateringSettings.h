@@ -16,7 +16,10 @@
 class WateringSettings {
 public:
 	WateringSettings();
+	WateringSettings(int waterQuantity, Time wateringTime);
 	virtual ~WateringSettings();
+
+	void setWateringSettings(WateringSettings wateringSettings);
 
 	inline int getWaterQuantity() { return waterQuantity; }
 	void setWaterQuantity(int waterQuantity);
@@ -28,6 +31,8 @@ public:
 private:
 	int waterQuantity; //Water Quantity in [ml]
 	Time* wateringTime;
+
+
 };
 
 #endif /* MODEL_WATERINGSETTINGS_H_ */
