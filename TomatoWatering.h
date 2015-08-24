@@ -22,6 +22,7 @@ void setup();
 #endif
 
 //add your function definitions for the project TomatoWatering here
+void print_time();
 void printHelloWorld();
 PotModel* tomatoPot;
 
