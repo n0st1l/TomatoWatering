@@ -12,25 +12,25 @@ WateringSettings::WateringSettings() {
 	this->wateringTime = new Time();
 }
 
-WateringSettings::WateringSettings(int waterQuantity, Time wateringTime) {
+WateringSettings::WateringSettings(int waterQuantity, Time* wateringTime) {
 	this->waterQuantity = waterQuantity;
 	this->wateringTime = new Time();
-	this->wateringTime->setTime(wateringTime);
+	this->wateringTime->setValuesFrom(wateringTime);
 }
 
 WateringSettings::~WateringSettings() {
 	// TODO Auto-generated destructor stub
 }
 
-void WateringSettings::setWateringSettings(WateringSettings wateringSettings) {
-	this->waterQuantity = wateringSettings.getWaterQuantity();
-	this->wateringTime->setTime(*wateringSettings.getWateringTime());
+void WateringSettings::setValuesFrom(WateringSettings* wateringSettings) {
+	this->waterQuantity = wateringSettings->getWaterQuantity();
+	this->wateringTime->setValuesFrom(wateringSettings->getWateringTime());
 }
 
 void WateringSettings::setWaterQuantity(int waterQuantity) {
 	this->waterQuantity = waterQuantity;
 }
 
-void WateringSettings::setWateringTime(Time wateringTime) {
-	this->wateringTime->setTime(wateringTime);
+void WateringSettings::setWateringTime(Time* wateringTime) {
+	this->wateringTime->setValuesFrom(wateringTime);
 }

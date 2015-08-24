@@ -16,16 +16,16 @@
 class WateringSettings {
 public:
 	WateringSettings();
-	WateringSettings(int waterQuantity, Time wateringTime);
+	WateringSettings(int waterQuantity, Time* wateringTime);
 	virtual ~WateringSettings();
 
-	void setWateringSettings(WateringSettings wateringSettings);
+	void setValuesFrom(WateringSettings* wateringSettings);
 
 	inline int getWaterQuantity() { return waterQuantity; }
 	void setWaterQuantity(int waterQuantity);
 
 	inline Time* getWateringTime() { return wateringTime; }
-	void setWateringTime(Time wateringTime);
+	void setWateringTime(Time* wateringTime);
 
 
 private:
