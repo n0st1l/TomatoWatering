@@ -25,7 +25,6 @@ public:
 	void setPotName(String potName);
 
 	WateringSettings* getWateringSettings(int index);
-	void setWateringSettings(WateringSettings wateringSettings, int index);
 
 
 private:

@@ -32,7 +32,3 @@ void PotModel::setPotName(String potName) {
 WateringSettings* PotModel::getWateringSettings(int index) {
 	return wateringSettingsArray[index];
 }
-
-void PotModel::setWateringSettings(WateringSettings wateringSettings, int index) {
-	this->wateringSettingsArray[index]->setWateringSettings(wateringSettings);
-}
