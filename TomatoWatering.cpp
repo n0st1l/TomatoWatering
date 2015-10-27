@@ -1,7 +1,7 @@
 // Do not remove the include below
 #include "TomatoWatering.h"
 
-#include "hwPins.h"
+#include "Help/hwPins.h"
 #include "DHT.h"
 #include "LiquidCrystal.h"
 #include <stdio.h>
@@ -25,11 +25,11 @@ void setup()
 	// Add your initialization code here
 	Serial.begin(9600);
 	tomatoPot = new PotModel();
-	tomatoPot->setPotNumber(1);
+	tomatoPot->setPotIndex(1);
 	tomatoPot->setPotName("Tomato");
 	Time* tempTime = new Time(23, 59);
-	WateringSettings* tempWateringSettings = new WateringSettings(1000, tempTime);
-	tomatoPot->getWateringSettings(0)->setValuesFrom(tempWateringSettings);
+	//WateringSettings* tempWateringSettings = new WateringSettings(1000, tempTime);
+	//tomatoPot->getWateringSettings(0)->setValuesFrom(tempWateringSettings);
 
 	  Serial.println("DHTxx test!");
 
