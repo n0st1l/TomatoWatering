@@ -10,26 +10,40 @@
 
 #include <Time.h>
 
-#define NUMOFWATERINGTIME 5
-
 
 class WateringSettings {
 public:
 	WateringSettings();
-	WateringSettings(int waterQuantity, Time* wateringTime);
+	WateringSettings(int potIndex);
+	WateringSettings(int potIndex, int minWaterQuantity, int maxWaterQuantity, Time* wateringTime);
 	virtual ~WateringSettings();
 
 	void setValuesFrom(WateringSettings* wateringSettings);
 
-	inline int getWaterQuantity() { return waterQuantity; }
-	void setWaterQuantity(int waterQuantity);
+	inline int getPotIndex() { return potIndex; }
+
+	inline int getMinWaterQuantity() { return minWaterQuantity; }
+	void setMinWaterQuantity(int waterQuantity);
+
+	inline int getMaxWaterQuantity() { return minWaterQuantity; }
+	void setMaxWaterQuantity(int waterQuantity);
+
+	inline bool getShouldWatering() { return shouldWatering; }
+	void setShouldWatering(bool shouldWatering);
+
+	inline bool getWatered() { return watered; }
+	void setWatered(bool watered);
 
 	inline Time* getWateringTime() { return wateringTime; }
 	void setWateringTime(Time* wateringTime);
 
 
 private:
-	int waterQuantity; //Water Quantity in [ml]
+	int potIndex; //This wateringSetting appertains to the potIndex
+	int minWaterQuantity; //Minimum Water Quantity in [ml]
+	int maxWaterQuantity; //Maximum Water Quantity in [ml]
+	bool shouldWatering; //Defines if this wateringSetting should watered
+	bool watered; //Defines if this wateringSetting is already watered
 	Time* wateringTime;
 
 
