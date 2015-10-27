@@ -9,28 +9,23 @@
 #define MODEL_POTMODEL_H_
 
 #include "WString.h"
-#include "wateringsettings.h"
 
-#define SIZE_WATERINGSETTINGSARRAY	5
 
 class PotModel {
 public:
 	PotModel();
 	virtual ~PotModel();
 
-	inline int getPotNumber() { return potNumber; }
-	void setPotNumber(int potNumber);
+	inline int getPotIndex() { return potIndex; }
+	void setPotIndex(int potIndex);
 
 	inline String getPotName() { return potName; }
 	void setPotName(String potName);
 
-	WateringSettings* getWateringSettings(int index);
-
 
 private:
-	int potNumber;
+	int potIndex;
 	String potName;
-	WateringSettings* wateringSettingsArray[SIZE_WATERINGSETTINGSARRAY];
 };
 
 #endif /* MODEL_POTMODEL_H_ */
