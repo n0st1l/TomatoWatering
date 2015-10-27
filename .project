@@ -32,6 +32,16 @@
 			<locationURI>ArduinoPivateLibPath/DHT22</locationURI>
 		</link>
 		<link>
+			<name>Libraries/DS1302</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/DS1302</locationURI>
+		</link>
+		<link>
+			<name>Libraries/Date</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/Date</locationURI>
+		</link>
+		<link>
 			<name>Libraries/LiquidCrystal</name>
 			<type>2</type>
 			<locationURI>ArduinoLibPath/LiquidCrystal</locationURI>

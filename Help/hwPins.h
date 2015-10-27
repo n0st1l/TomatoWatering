@@ -5,8 +5,8 @@
  *      Author: Administrator
  */
 
-#ifndef HWPINS_H_
-#define HWPINS_H_
+#ifndef HELP_HWPINS_H_
+#define HELP_HWPINS_H_
 
 //LCD Pins
 #define LCD_RS		25 //LCD Pin RS
@@ -55,4 +55,4 @@
 #define SERIAL_SDA	20
 #define SERIAL_SDL	21
 
-#endif /* HWPINS_H_ */
+#endif /* HELP_HWPINS_H_ */

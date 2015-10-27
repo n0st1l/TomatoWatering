@@ -5,10 +5,10 @@
  *      Author: Administrator
  */
 
-#ifndef TYPES_H_
-#define TYPES_H_
+#ifndef HELP_TYPES_H_
+#define HELP_TYPES_H_
 
 #define ARRAY_END(x)	(x) - 1
 
 
-#endif /* TYPES_H_ */
+#endif /* HELP_TYPES_H_ */
