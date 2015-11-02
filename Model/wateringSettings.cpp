@@ -1,14 +1,15 @@
 /*
- * wateringSettings.cpp
+ * WateringSettings.cpp
  *
  *  Created on: 20.04.2015
  *      Author: Administrator
  */
 
-#include "wateringsettings.h"
+#include "Wateringsettings.h"
 
 WateringSettings::WateringSettings() {
-	this->potIndex = 0;
+	this->wateringSettingsIndex = -1;
+	this->potIndex = -1;
 	this->minWaterQuantity = 0;
 	this->maxWaterQuantity = 0;
 	this->shouldWatering = false;
@@ -16,7 +17,8 @@ WateringSettings::WateringSettings() {
 	this->wateringTime = new Time();
 }
 
-WateringSettings::WateringSettings(int potIndex) {
+WateringSettings::WateringSettings(int wateringSettingsIndex, int potIndex) {
+	this->wateringSettingsIndex = wateringSettingsIndex;
 	this->potIndex = potIndex;
 	this->minWaterQuantity = 0;
 	this->maxWaterQuantity = 0;
@@ -25,8 +27,9 @@ WateringSettings::WateringSettings(int potIndex) {
 	this->wateringTime = new Time();
 }
 
-WateringSettings::WateringSettings(int potIndex, int minWaterQuantity,
+WateringSettings::WateringSettings(int wateringSettingsIndex, int potIndex, int minWaterQuantity,
 		int maxWaterQuantity, Time* wateringTime) {
+	this->wateringSettingsIndex = wateringSettingsIndex;
 	this->potIndex = potIndex;
 	this->minWaterQuantity = minWaterQuantity;
 	this->maxWaterQuantity = maxWaterQuantity;
@@ -41,9 +44,17 @@ WateringSettings::~WateringSettings() {
 }
 
 void WateringSettings::setValuesFrom(WateringSettings* wateringSettings) {
+	this->wateringSettingsIndex = wateringSettings->getWateringSettingsIndex();
+	this->potIndex = wateringSettings->getPotIndex();
 	this->minWaterQuantity = wateringSettings->getMinWaterQuantity();
 	this->maxWaterQuantity = wateringSettings->getMaxWaterQuantity();
+	this->shouldWatering = wateringSettings->getShouldWatering();
+	this->watered = wateringSettings->getWatered();
 	this->wateringTime->setValuesFrom(wateringSettings->getWateringTime());
+}
+
+void WateringSettings::setPotIndex(int potIndex) {
+	this->potIndex = potIndex;
 }
 
 void WateringSettings::setMinWaterQuantity(int waterQuantity) {
@@ -65,3 +76,4 @@ void WateringSettings::setWatered(bool watered) {
 void WateringSettings::setWateringTime(Time* wateringTime) {
 	this->wateringTime->setValuesFrom(wateringTime);
 }
+
