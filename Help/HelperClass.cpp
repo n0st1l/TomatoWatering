@@ -7,12 +7,44 @@
 
 #include "HelperClass.h"
 
+
+HelperClass* HelperClass::helperClass = 0;
+
+HelperClass* HelperClass::Instance()
+{
+	if(helperClass == 0)
+	{
+		helperClass = new HelperClass();
+	}
+	return helperClass;
+}
+
 HelperClass::HelperClass() {
-	// TODO Auto-generated constructor stub
 
 }
 
 HelperClass::~HelperClass() {
-	// TODO Auto-generated destructor stub
+
+	if(helperClass != 0)
+	{
+		delete helperClass;
+	}
 }
+
+bool HelperClass::isIntInRange(int value, int min, int max) {
+
+	if( ((value) >= (min)) && ((value) <= (max)) )
+		return true;
+	else
+		return false;
+}
+
+bool HelperClass::isFloatInRange(float value, float min, float max) {
+
+	if( ((value) >= (min)) && ((value) <= (max)) )
+		return true;
+	else
+		return false;
+}
+
 

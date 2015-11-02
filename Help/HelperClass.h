@@ -11,10 +11,22 @@
 #include "hwPins.h"
 #include "types.h"
 
+#define ARRAY_END(x)	(x) - 1
+
 class HelperClass {
 public:
-	HelperClass();
+	static HelperClass *Instance();
 	virtual ~HelperClass();
+
+	bool isIntInRange(int value, int min, int max);
+	bool isFloatInRange(float value, float min, float max);
+
+
+private:
+	HelperClass();
+	static HelperClass* helperClass;
+
+
 };
 
 #endif /* HELP_HELPERCLASS_H_ */
