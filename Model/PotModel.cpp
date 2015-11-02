@@ -8,7 +8,7 @@
 #include "PotModel.h"
 
 PotModel::PotModel() {
-	this->potIndex = 0;
+	this->potIndex = -1;
 	this->potName = "undefined";
 }
 

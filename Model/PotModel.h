@@ -22,6 +22,12 @@ public:
 	inline String getPotName() { return potName; }
 	void setPotName(String potName);
 
+	/*Operators*/
+	inline bool operator == (const PotModel &otherPotModel) const
+	{
+		return this->potIndex == otherPotModel.potIndex;
+	}
+
 
 private:
 	int potIndex;
