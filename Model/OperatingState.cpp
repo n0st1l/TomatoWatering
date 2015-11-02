@@ -8,6 +8,17 @@
 #include "OperatingState.h"
 
 
+OperatingState* OperatingState::operatingState = 0;
+
+OperatingState* OperatingState::Instance()
+{
+	if(operatingState == 0)
+	{
+		operatingState = new OperatingState();
+	}
+	return operatingState;
+}
+
 OperatingState::OperatingState() {
 	this->actualTime = new Time();
 	this->actualDate = new Date();

@@ -14,7 +14,7 @@
 
 class OperatingState {
 public:
-	OperatingState();
+	static OperatingState *Instance();
 	virtual ~OperatingState();
 
 	inline Time* getActualTime() { return actualTime; }
@@ -31,6 +31,9 @@ public:
 
 
 private:
+	OperatingState();
+	static OperatingState* operatingState;
+
 	Time* actualTime;
 	Date* actualDate;
 	float actualHumidity;
