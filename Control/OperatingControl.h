@@ -8,23 +8,32 @@
 #ifndef CONTROL_OPERATINGCONTROL_H_
 #define CONTROL_OPERATINGCONTROL_H_
 
-#include "..\Help\HelperClass.h"
-#include <TimerOne.h>
+#include "../Help/HelperClass.h"
+#include "../Model/OperatingState.h"
 #include <DS1302.h>
 #include <DHT.h>
 
 
 class OperatingControl {
 public:
-	OperatingControl();
+	static OperatingControl *Instance();
 	virtual ~OperatingControl();
+
+	void onTimerTimeout();
 
 
 private:
+	OperatingControl();
+	static OperatingControl* operatingControl;
+
+	OperatingState* operatingState;
+
 	DS1302* realTimeClock;
 	DHT* dht22;
 
-	void onOneSecondTimerTimeout();
+	void setupRealTimeClock();
+
+
 };
 
 #endif /* CONTROL_OPERATINGCONTROL_H_ */
