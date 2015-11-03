@@ -8,10 +8,10 @@
 #ifndef CONTROL_OPERATINGCONTROL_H_
 #define CONTROL_OPERATINGCONTROL_H_
 
+
+#include "HardwareControl.h"
 #include "../Help/HelperClass.h"
 #include "../Model/OperatingState.h"
-#include <DS1302.h>
-#include <DHT.h>
 
 
 class OperatingControl {
@@ -26,12 +26,8 @@ private:
 	OperatingControl();
 	static OperatingControl* operatingControl;
 
+	HardwareControl* hardwareControl;
 	OperatingState* operatingState;
-
-	DS1302* realTimeClock;
-	DHT* dht22;
-
-	void setupRealTimeClock();
 
 
 };
