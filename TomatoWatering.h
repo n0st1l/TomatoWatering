@@ -31,7 +31,9 @@
 #include "Model/WateringSettings.h"
 
 /*Include Controls*/
+#include "Control/HardwareControl.h"
 #include "Control/OperatingControl.h"
+#include "Control/WateringControl.h"
 
 //end of add your includes here
 
