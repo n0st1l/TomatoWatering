@@ -10,7 +10,7 @@
 
 class WateringModeState {
 public:
-	WateringModeState();
+	static WateringModeState *Instance();
 	virtual ~WateringModeState();
 
 	inline bool getIsWatering() { return isWatering; }
@@ -27,6 +27,9 @@ public:
 
 
 private:
+	WateringModeState();
+	static WateringModeState* wateringModeState;
+
 	bool isWatering;
 	bool isAutomaticMode;
 	bool isManualMode;

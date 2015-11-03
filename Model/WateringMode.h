@@ -8,7 +8,7 @@
 #ifndef MODEL_WATERINGMODE_H_
 #define MODEL_WATERINGMODE_H_
 
-#include "..\Help\HelperClass.h"
+#include "../Help/HelperClass.h"
 #include "PotModel.h"
 #include "WateringSettings.h"
 #include "WateringModeState.h"
@@ -18,7 +18,7 @@
 
 class WateringMode {
 public:
-	WateringMode();
+	static WateringMode *Instance();
 	virtual ~WateringMode();
 
 	PotModel* getPot(int index);
@@ -37,6 +37,9 @@ public:
 
 
 private:
+	WateringMode();
+	static WateringMode* wateringMode;
+
 	PotModel* potArray[NUMBEROFPOTS];
 	WateringSettings* wateringSettingsArray[NUMBEROFWATERINGSETTINGS];
 	WateringModeState* wateringModeState;

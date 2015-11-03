@@ -7,6 +7,18 @@
 
 #include "WateringModeState.h"
 
+
+WateringModeState* WateringModeState::wateringModeState = 0;
+
+WateringModeState* WateringModeState::Instance()
+{
+	if(wateringModeState == 0)
+	{
+		wateringModeState = new WateringModeState();
+	}
+	return wateringModeState;
+}
+
 WateringModeState::WateringModeState() {
 	this->isWatering = false;
 	this->isAutomaticMode = false;
@@ -15,7 +27,10 @@ WateringModeState::WateringModeState() {
 }
 
 WateringModeState::~WateringModeState() {
-	// TODO Auto-generated destructor stub
+	if(wateringModeState != 0)
+	{
+		delete this->wateringModeState;
+	}
 }
 
 void WateringModeState::setIsWatering(bool isWatering) {

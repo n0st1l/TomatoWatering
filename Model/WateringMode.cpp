@@ -7,6 +7,18 @@
 
 #include "WateringMode.h"
 
+
+WateringMode* WateringMode::wateringMode = 0;
+
+WateringMode* WateringMode::Instance()
+{
+	if(wateringMode == 0)
+	{
+		wateringMode = new WateringMode();
+	}
+	return wateringMode;
+}
+
 WateringMode::WateringMode() {
 
 	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
@@ -17,7 +29,7 @@ WateringMode::WateringMode() {
 	{
 		wateringSettingsArray[i] = new WateringSettings();
 	}
-	wateringModeState = new WateringModeState();
+	wateringModeState = WateringModeState::Instance();
 }
 
 WateringMode::~WateringMode() {
@@ -31,6 +43,11 @@ WateringMode::~WateringMode() {
 		delete wateringSettingsArray[i];
 	}
 	delete wateringModeState;
+
+	if(wateringMode != 0)
+	{
+		delete wateringMode;
+	}
 }
 
 PotModel* WateringMode::getPot(int index) {
