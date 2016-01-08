@@ -13,6 +13,11 @@
 
 #define ARRAY_END(x)	(x) - 1
 
+#define HOURS_TO_SECONDS(x)			((x) * 60 * 60)
+#define MINUTES_TO_SECONDS(x)		((x) * 60)
+#define SECONDS_TO_MILLISECONDS(x)	((x) * 1000)
+#define SECONDS_TO_MICROSECONDS(x)	((x) * 1000 * 1000)
+
 class HelperClass {
 public:
 	static HelperClass *Instance();
