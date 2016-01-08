@@ -21,7 +21,9 @@ OperatingControl* operatingControl = OperatingControl::Instance();
 OperatingState* operatingState = OperatingState::Instance();
 /*Test HardwareControl*/
 HardwareControl* hardwareControl = HardwareControl::Instance();
-int count = 0;
+/*Test WateringControl*/
+WateringControl* wateringControl = WateringControl::Instance();
+unsigned long count = 0;
 
 
 
@@ -44,26 +46,59 @@ void loop()
 {
 	//Add your repeated code here
 
-	if(count%5 == 0)
+//	if(count%5 == 0)
+//	{
+//		wateringMode->getWateringModeState()->setIsManualMode(true);
+//	    wateringControl->startManualWatering(3);
+//	}
+//	if(count%6 == 0)
+//	{
+//		print();
+//	    wateringControl->startManualWatering(1);
+//	}
+//	if(count%7 == 0)
+//	{
+//		wateringControl->stopWatering();
+//	}
+
+	if(count%100 == 0)
 	{
+		//every one second
+	}
+	if(count%(10 * 100) == 0)
+	{
+		//every ten seconds
+		operatingControl->onTenSecondsTimerTimeout();
 		print();
 	}
-	operatingControl->onTimerTimeout();
+	if(count%(60 * 100) == 0)
+	{
+		//every minute
+		operatingControl->onOneMinuteTimerTimeout();
+	}
+
 	count++;
-	delay(1000);
+	delay(10);
 }
 
 void print()
 {
 	/* Get the current time and date from the chip */
-	lcd.clear();
+	lcd.setCursor(0, 0);
+	lcd.print("                    ");
+	lcd.setCursor(0, 0);
 	lcd.print(operatingState->getActualTime()->getTimeString("hh:mm"));
+	lcd.setCursor(0, 1);
+	lcd.print("                    ");
 	lcd.setCursor(0, 1);
 	lcd.print(operatingState->getActualDate()->getDateString());
 	lcd.setCursor(0, 2);
+	lcd.print("                    ");
+	lcd.setCursor(0, 2);
 	lcd.print(operatingState->getActualTemperature());
 	lcd.setCursor(0, 3);
-	Date d1(2014,10,29);
-	Date d2(2014,10,29);
-	lcd.print(d1 < d2);
+	lcd.print("                    ");
+	lcd.setCursor(0, 3);
+	Time *t1 = new Time(24, 00, 00);
+	lcd.print(operatingState->getActualTime()->secsTo(t1));
 }
