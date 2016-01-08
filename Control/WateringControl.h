@@ -23,6 +23,10 @@ public:
 	void checkIfShouldSetWateringFlag();
 	void checkIfShouldWatering();
 
+	void startAutoWatering(int wateringSettingsIndex);
+	void startManualWatering(int potIndex);
+	void stopWatering();
+
 
 private:
 	WateringControl();
@@ -32,6 +36,8 @@ private:
 
 	OperatingState* operatingState;
 	WateringMode* wateringMode;
+
+	void startWatering(int potIndex);
 
 
 };
