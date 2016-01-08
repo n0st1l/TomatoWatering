@@ -19,7 +19,8 @@ public:
 	static OperatingControl *Instance();
 	virtual ~OperatingControl();
 
-	void onTimerTimeout();
+	void onTenSecondsTimerTimeout();
+	void onOneMinuteTimerTimeout();
 
 
 private:

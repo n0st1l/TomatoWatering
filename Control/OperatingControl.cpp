@@ -34,10 +34,12 @@ OperatingControl::~OperatingControl() {
 	}
 }
 
-void OperatingControl::onTimerTimeout() {
+void OperatingControl::onTenSecondsTimerTimeout() {
 	operatingState->setActualTime(hardwareControl->getTime());
 	operatingState->setActualDate(hardwareControl->getDate());
+}
 
+void OperatingControl::onOneMinuteTimerTimeout() {
 	operatingState->setActualHumidty(hardwareControl->getHumidity());
 	operatingState->setActualTemperature(hardwareControl->getTemperature());
 }
