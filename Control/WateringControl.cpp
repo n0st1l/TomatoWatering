@@ -24,6 +24,10 @@ WateringControl::WateringControl() {
 
 	this->operatingState = OperatingState::Instance();
 	this->wateringMode = WateringMode::Instance();
+
+	this->oneSecondTimer = new ATimer(SECONDS_TO_MILLISECONDS((unsigned long) 1));
+	this->oneSecondTimer->restart();
+	this->wateringTimer = new ATimer();
 }
 
 WateringControl::~WateringControl() {
@@ -32,38 +36,28 @@ WateringControl::~WateringControl() {
 	delete this->operatingState;
 	delete this->wateringMode;
 
+	delete this->oneSecondTimer;
+	delete this->wateringTimer;
+
 	if(wateringControl != 0)
 	{
 		delete this->wateringControl;
 	}
 }
 
-void WateringControl::checkIfShouldSetWateringFlag() {
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+void WateringControl::update() {
+	if(this->oneSecondTimer->onRestart())
 	{
-		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
-
-		if( (actSettings->getWatered() == false) &&
-				(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) )
-		{
-			actSettings->setShouldWatering(true);
-		}
+		this->checkIfShouldSetWateringFlag();
+		this->checkIfShouldWatering();
 	}
-}
 
-void WateringControl::checkIfShouldWatering() {
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	if(this->wateringTimer->onExpired())
 	{
-		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
-
-		if( (actSettings->getWatered() == false) &&
-				(actSettings->getShouldWatering() == true) &&
-				(this->wateringMode->getWateringModeState()->getIsWatering() == false) )
-		{
-			this->startAutoWatering(i);
-			return;
-		}
+		this->stopWatering();
 	}
+
+	// TODO set all flags back to NOTWATERED after midnight
 }
 
 void WateringControl::startAutoWatering(int wateringSettingsIndex) {
@@ -78,7 +72,8 @@ void WateringControl::startAutoWatering(int wateringSettingsIndex) {
 
 	this->startWatering(this->wateringMode->getWateringSettings(wateringSettingsIndex)->getPotIndex());
 
-	//TODO start timer
+	this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(10)); // TODO Change time
+	this->wateringTimer->restart();
 }
 
 void WateringControl::startManualWatering(int potIndex) {
@@ -102,8 +97,9 @@ void WateringControl::stopWatering() {
 
 	this->wateringMode->getWateringSettings(this->wateringMode->getWateringModeState()->getActualWateringSettingsIndex())->setWatered(true);
 	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(-1);
-	//TODO stop timer
 	this->wateringMode->getWateringModeState()->setIsWatering(false);
+
+	this->wateringTimer->stop();
 }
 
 void WateringControl::startWatering(int potIndex) {
@@ -124,6 +120,33 @@ void WateringControl::startWatering(int potIndex) {
 	default:
 		break;
 	}
-	delay(500);
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypePump, eDigitalOutputStateEnabled);
+}
+
+void WateringControl::checkIfShouldSetWateringFlag() {
+	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	{
+		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
+
+		if( (actSettings->getWatered() == false) && (actSettings->isValid() == true) &&
+				(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) )
+		{
+			actSettings->setShouldWatering(true);
+		}
+	}
+}
+
+void WateringControl::checkIfShouldWatering() {
+	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	{
+		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
+
+		if( (actSettings->getWatered() == false) &&
+				(actSettings->getShouldWatering() == true) &&
+				(this->wateringMode->getWateringModeState()->getIsWatering() == false) )
+		{
+			this->startAutoWatering(i);
+			return;
+		}
+	}
 }

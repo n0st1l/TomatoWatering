@@ -13,6 +13,7 @@
 #include "../Help/HelperClass.h"
 #include "../Model/OperatingState.h"
 #include "../Model/WateringMode.h"
+#include <ATimer.h>
 
 
 class WateringControl {
@@ -20,8 +21,7 @@ public:
 	static WateringControl *Instance();
 	virtual ~WateringControl();
 
-	void checkIfShouldSetWateringFlag();
-	void checkIfShouldWatering();
+	void update();
 
 	void startAutoWatering(int wateringSettingsIndex);
 	void startManualWatering(int potIndex);
@@ -37,7 +37,13 @@ private:
 	OperatingState* operatingState;
 	WateringMode* wateringMode;
 
+	ATimer* oneSecondTimer;
+	ATimer* wateringTimer;
+
 	void startWatering(int potIndex);
+
+	void checkIfShouldSetWateringFlag();
+	void checkIfShouldWatering();
 
 
 };
