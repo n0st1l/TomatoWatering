@@ -27,6 +27,16 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Libraries/AButton</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/AButton</locationURI>
+		</link>
+		<link>
+			<name>Libraries/ATimer</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/ATimer</locationURI>
+		</link>
+		<link>
 			<name>Libraries/DHT22</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/DHT22</locationURI>
@@ -50,11 +60,6 @@
 			<name>Libraries/Time</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/Time</locationURI>
-		</link>
-		<link>
-			<name>Libraries/TimerOne</name>
-			<type>2</type>
-			<locationURI>ArduinoPivateLibPath/TimerOne</locationURI>
 		</link>
 		<link>
 			<name>arduino/core</name>
