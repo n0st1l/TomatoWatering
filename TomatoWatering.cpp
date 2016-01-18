@@ -23,7 +23,8 @@ OperatingState* operatingState = OperatingState::Instance();
 HardwareControl* hardwareControl = HardwareControl::Instance();
 /*Test WateringControl*/
 WateringControl* wateringControl = WateringControl::Instance();
-unsigned long count = 0;
+/*Test ATimer*/
+ATimer* oneSecondTimer = new ATimer(SECONDS_TO_MILLISECONDS(1));
 
 
 
@@ -32,6 +33,7 @@ void setup()
 {
 	// Add your initialization code here
 	Serial.begin(9600);
+	Serial.print("hello, world!\n");
 
 	// set up the LCD's number of columns and rows:
 	lcd.begin(16, 4);
@@ -39,6 +41,28 @@ void setup()
 	lcd.print("hello, world!");
 	pinMode(LCD_A, OUTPUT);
 	digitalWrite(LCD_A, HIGH);
+
+	oneSecondTimer->restart();
+
+	PotModel* tempPot = new PotModel();
+	tempPot->setPotIndex(1);
+	tempPot->setPotName("Tomaten");
+	wateringMode->addPot(tempPot);
+	tempPot = new PotModel();
+	tempPot->setPotIndex(2);
+	tempPot->setPotName("Karotten");
+	wateringMode->addPot(tempPot);
+
+	WateringSettings* tempSettings = new WateringSettings(1, 1, 10, 20, &Time(0, 10, 0));
+	wateringMode->addWateringSettings(tempSettings);
+	tempSettings = new WateringSettings(2, 1, 10, 20, &Time(0, 10, 0));
+	wateringMode->addWateringSettings(tempSettings);
+	tempSettings = new WateringSettings(3, 2, 10, 20, &Time(0, 10, 0));
+	wateringMode->addWateringSettings(tempSettings);
+	tempSettings = new WateringSettings(4, 2, 10, 20, &Time(0, 11, 0));
+	wateringMode->addWateringSettings(tempSettings);
+
+	wateringMode->getWateringModeState()->setIsAutomaticMode(true);
 }
 
 // The loop function is called in an endless loop
@@ -46,44 +70,19 @@ void loop()
 {
 	//Add your repeated code here
 
-//	if(count%5 == 0)
-//	{
-//		wateringMode->getWateringModeState()->setIsManualMode(true);
-//	    wateringControl->startManualWatering(3);
-//	}
-//	if(count%6 == 0)
-//	{
-//		print();
-//	    wateringControl->startManualWatering(1);
-//	}
-//	if(count%7 == 0)
-//	{
-//		wateringControl->stopWatering();
-//	}
+	operatingControl->update();
+	wateringControl->update();
 
-	if(count%100 == 0)
+	if(oneSecondTimer->onRestart())
 	{
-		//every one second
-	}
-	if(count%(10 * 100) == 0)
-	{
-		//every ten seconds
-		operatingControl->onTenSecondsTimerTimeout();
 		print();
 	}
-	if(count%(60 * 100) == 0)
-	{
-		//every minute
-		operatingControl->onOneMinuteTimerTimeout();
-	}
-
-	count++;
-	delay(10);
 }
 
 void print()
 {
-	/* Get the current time and date from the chip */
+	int actIndex = wateringMode->getWateringModeState()->getActualWateringSettingsIndex();
+
 	lcd.setCursor(0, 0);
 	lcd.print("                    ");
 	lcd.setCursor(0, 0);
@@ -91,14 +90,13 @@ void print()
 	lcd.setCursor(0, 1);
 	lcd.print("                    ");
 	lcd.setCursor(0, 1);
-	lcd.print(operatingState->getActualDate()->getDateString());
+	lcd.print(actIndex);
 	lcd.setCursor(0, 2);
 	lcd.print("                    ");
 	lcd.setCursor(0, 2);
-	lcd.print(operatingState->getActualTemperature());
+	lcd.print(wateringMode->getWateringSettings(actIndex)->getPotIndex());
 	lcd.setCursor(0, 3);
 	lcd.print("                    ");
 	lcd.setCursor(0, 3);
-	Time *t1 = new Time(24, 00, 00);
-	lcd.print(operatingState->getActualTime()->secsTo(t1));
+	lcd.print(wateringMode->getWateringModeState()->getIsWatering());
 }

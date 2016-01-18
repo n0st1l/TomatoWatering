@@ -11,7 +11,7 @@
 // NOTE add your includes for the project TomatoWatering here
 
 /*Include Libraries*/
-#include "TimerOne.h"
+#include "ATimer.h"
 #include "date.h"
 #include "DHT.h"
 #include "DS1302.h"
