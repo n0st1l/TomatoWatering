@@ -12,6 +12,7 @@
 #include "HardwareControl.h"
 #include "../Help/HelperClass.h"
 #include "../Model/OperatingState.h"
+#include <ATimer.h>
 
 
 class OperatingControl {
@@ -19,8 +20,7 @@ public:
 	static OperatingControl *Instance();
 	virtual ~OperatingControl();
 
-	void onTenSecondsTimerTimeout();
-	void onOneMinuteTimerTimeout();
+	void update();
 
 
 private:
@@ -29,6 +29,12 @@ private:
 
 	HardwareControl* hardwareControl;
 	OperatingState* operatingState;
+
+	ATimer* tenSecondTimer;
+	ATimer* oneMinuteTimer;
+
+	void onTenSecondsTimerTimeout();
+	void onOneMinuteTimerTimeout();
 
 
 };

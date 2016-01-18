@@ -22,15 +22,35 @@ OperatingControl* OperatingControl::Instance()
 OperatingControl::OperatingControl() {
 	hardwareControl = HardwareControl::Instance();
 	operatingState = OperatingState::Instance();
+
+	tenSecondTimer = new ATimer(SECONDS_TO_MILLISECONDS((unsigned long) 10));
+	oneMinuteTimer = new ATimer(MINUTES_TO_MILLISECONDS((unsigned long) 1));
+	tenSecondTimer->restart();
+	oneMinuteTimer->restart();
 }
 
 OperatingControl::~OperatingControl() {
 	delete this->hardwareControl;
 	delete this->operatingState;
 
+	delete this->tenSecondTimer;
+	delete this->oneMinuteTimer;
+
 	if(operatingControl != 0)
 	{
 		delete this->operatingControl;
+	}
+}
+
+void OperatingControl::update() {
+	if(tenSecondTimer->onRestart())
+	{
+		this->onTenSecondsTimerTimeout();
+	}
+
+	if(oneMinuteTimer->onRestart())
+	{
+		this->onOneMinuteTimerTimeout();
 	}
 }
 
