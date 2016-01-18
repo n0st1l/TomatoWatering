@@ -77,3 +77,13 @@ void WateringSettings::setWateringTime(Time* wateringTime) {
 	this->wateringTime->setValuesFrom(wateringTime);
 }
 
+bool WateringSettings::isValid() {
+	if((this->potIndex < 0) ||
+			(this->wateringSettingsIndex < 0) ||
+			(this->wateringTime->isValid() == false)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}

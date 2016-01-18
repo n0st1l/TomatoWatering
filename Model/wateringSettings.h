@@ -40,6 +40,8 @@ public:
 	inline Time* getWateringTime() { return wateringTime; }
 	void setWateringTime(Time* wateringTime);
 
+	bool isValid();
+
 	/*Operators*/
 	inline bool operator == (const WateringSettings &otherWateringSettings) const
 	{
