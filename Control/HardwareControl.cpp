@@ -33,6 +33,10 @@ HardwareControl::~HardwareControl() {
 	delete this->dht22;
 }
 
+void HardwareControl::update() {
+
+}
+
 Time* HardwareControl::getTime() {
 	return realTimeClock->time();
 }

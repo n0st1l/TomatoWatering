@@ -18,6 +18,8 @@ public:
 	static HardwareControl *Instance();
 	virtual ~HardwareControl();
 
+	void update();
+
 	Time* getTime();
 	Date* getDate();
 	float getHumidity();
