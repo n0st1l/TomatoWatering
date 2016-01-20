@@ -28,6 +28,8 @@ public:
 	bool isIntInRange(int value, int min, int max);
 	bool isFloatInRange(float value, float min, float max);
 
+	bool getGainAndOffset(float x1, float x2, float y1, float y2, float* gain, float* offset);
+
 
 private:
 	HelperClass();
