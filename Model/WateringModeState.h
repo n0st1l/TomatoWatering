@@ -8,6 +8,9 @@
 #ifndef MODEL_WATERINGMODESTATE_H_
 #define MODEL_WATERINGMODESTATE_H_
 
+#include "WateringSettings.h"
+
+
 class WateringModeState {
 public:
 	static WateringModeState *Instance();
@@ -22,8 +25,8 @@ public:
 	inline bool getIsManualMode() { return isManualMode; }
 	void setIsManualMode(bool isManualMode);
 
-	inline int getActualWateringSettingsIndex() { return actualWateringSettingsIndex; }
-	void setActualWateringSettingsIndex(int actualWateringSettingsIndex);
+	inline WateringSettings* getActualWateringSettings() { return actualWateringSettings; }
+	void setActualWateringSettings(WateringSettings* actualWateringSettings);
 
 
 private:
@@ -33,7 +36,7 @@ private:
 	bool isWatering;
 	bool isAutomaticMode;
 	bool isManualMode;
-	int actualWateringSettingsIndex;
+	WateringSettings* actualWateringSettings;
 
 
 };

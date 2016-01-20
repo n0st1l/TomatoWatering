@@ -23,7 +23,7 @@ WateringModeState::WateringModeState() {
 	this->isWatering = false;
 	this->isAutomaticMode = false;
 	this->isManualMode = false;
-	this->actualWateringSettingsIndex = -1;
+	this->actualWateringSettings = new WateringSettings();
 }
 
 WateringModeState::~WateringModeState() {
@@ -45,7 +45,7 @@ void WateringModeState::setIsManualMode(bool isManualMode) {
 	this->isManualMode = isManualMode;
 }
 
-void WateringModeState::setActualWateringSettingsIndex(
-		int actualWateringSettingsIndex) {
-	this->actualWateringSettingsIndex = actualWateringSettingsIndex;
+void WateringModeState::setActualWateringSettings(
+		WateringSettings* actualWateringSettings) {
+	this->actualWateringSettings = actualWateringSettings;
 }
