@@ -23,7 +23,7 @@ public:
 
 	void update();
 
-	void startAutoWatering(int wateringSettingsIndex);
+	void startAutoWatering(WateringSettings* wateringSettings);
 	void startManualWatering(int potIndex);
 	void stopWatering();
 
@@ -44,6 +44,8 @@ private:
 
 	void checkIfShouldSetWateringFlag();
 	void checkIfShouldWatering();
+
+	float getWaterQuantity(float actTemp, float minTemp, float maxTemp, float minQuantity, float maxQuantity);
 
 
 };

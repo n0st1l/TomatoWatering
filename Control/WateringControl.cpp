@@ -56,23 +56,25 @@ void WateringControl::update() {
 	{
 		this->stopWatering();
 	}
-
-	// TODO set all flags back to NOTWATERED after midnight
 }
 
-void WateringControl::startAutoWatering(int wateringSettingsIndex) {
-	if( (this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
+void WateringControl::startAutoWatering(WateringSettings* settings) {
+	if( (settings->isValid() == false) ||
+			(this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
 			(this->wateringMode->getWateringModeState()->getIsAutomaticMode() == false) )
 	{
-		//Is already started
+		//Invalid settings, is already started or not in automatic mode
 		return;
 	}
 	this->wateringMode->getWateringModeState()->setIsWatering(true);
-	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(wateringSettingsIndex);
+	this->wateringMode->getWateringModeState()->setActualWateringSettings(settings);
 
-	this->startWatering(this->wateringMode->getWateringSettings(wateringSettingsIndex)->getPotIndex());
+	this->startWatering(settings->getPotIndex());
 
-	this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(10)); // TODO Change time
+	float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), MIN_TEMP, MAX_TEMP, settings->getMinWaterQuantity(), settings->getMaxWaterQuantity());
+	float pumpWorkTime = waterQuantity / PUMP_OUTPUT;
+
+	this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime));
 	this->wateringTimer->restart();
 }
 
@@ -80,7 +82,7 @@ void WateringControl::startManualWatering(int potIndex) {
 	if( (this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
 			(this->wateringMode->getWateringModeState()->getIsManualMode() == false) )
 	{
-		//Is already started
+		//Is already started or not in manual mode
 		return;
 	}
 	this->wateringMode->getWateringModeState()->setIsWatering(true);
@@ -95,8 +97,10 @@ void WateringControl::stopWatering() {
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_3, eDigitalOutputStateDisabled);
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_4, eDigitalOutputStateDisabled);
 
-	this->wateringMode->getWateringSettings(this->wateringMode->getWateringModeState()->getActualWateringSettingsIndex())->setWatered(true);
-	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(-1);
+	if(this->wateringMode->getWateringModeState()->getActualWateringSettings()->isValid() == true) {
+		this->wateringMode->getWateringModeState()->getActualWateringSettings()->setShouldWatering(false);
+	}
+	this->wateringMode->getWateringModeState()->setActualWateringSettings(new WateringSettings());
 	this->wateringMode->getWateringModeState()->setIsWatering(false);
 
 	this->wateringTimer->stop();
@@ -129,7 +133,7 @@ void WateringControl::checkIfShouldSetWateringFlag() {
 		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
 
 		if(actSettings->isValid() == true) {
-			if( (actSettings->getWatered() == false) &&
+			if( (actSettings->getShouldWatering() == false) &&
 					(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) &&
 					(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -10))
 			{
@@ -144,12 +148,25 @@ void WateringControl::checkIfShouldWatering() {
 	{
 		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
 
-		if( (actSettings->getWatered() == false) &&
-				(actSettings->getShouldWatering() == true) &&
-				(this->wateringMode->getWateringModeState()->getIsWatering() == false) )
-		{
-			this->startAutoWatering(i);
-			return;
+		if(actSettings->isValid() == true) {
+			if( (actSettings->getShouldWatering() == true) &&
+					(this->wateringMode->getWateringModeState()->getIsWatering() == false) )
+			{
+				this->startAutoWatering(actSettings);
+				return;
+			}
 		}
 	}
+}
+
+float WateringControl::getWaterQuantity(float actTemp, float minTemp, float maxTemp, float minQuantity, float maxQuantity) {
+	float gain = 0;
+	float offset = 0;
+	float waterQuantity = 0;
+
+	HelperClass::Instance()->getGainAndOffset(minTemp, maxTemp, minQuantity, maxQuantity, &gain, & offset);
+	waterQuantity = gain * actTemp + offset;
+	waterQuantity = constrain(waterQuantity, minQuantity, maxQuantity);
+
+	return waterQuantity;
 }
