@@ -11,6 +11,10 @@
 #include <Time.h>
 
 
+#define MIN_TEMP	15 //°C
+#define MAX_TEMP	30 //°C
+
+
 class WateringSettings {
 public:
 	WateringSettings();
