@@ -10,7 +10,6 @@
 
 #include "../Help/HelperClass.h"
 #include "PotModel.h"
-#include "WateringSettings.h"
 #include "WateringModeState.h"
 
 #define NUMBEROFPOTS				4
