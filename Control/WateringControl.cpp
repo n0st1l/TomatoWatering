@@ -128,10 +128,13 @@ void WateringControl::checkIfShouldSetWateringFlag() {
 	{
 		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
 
-		if( (actSettings->getWatered() == false) && (actSettings->isValid() == true) &&
-				(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) )
-		{
-			actSettings->setShouldWatering(true);
+		if(actSettings->isValid() == true) {
+			if( (actSettings->getWatered() == false) &&
+					(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) &&
+					(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -10))
+			{
+				actSettings->setShouldWatering(true);
+			}
 		}
 	}
 }
