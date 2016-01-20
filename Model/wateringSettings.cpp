@@ -13,7 +13,6 @@ WateringSettings::WateringSettings() {
 	this->minWaterQuantity = 0;
 	this->maxWaterQuantity = 0;
 	this->shouldWatering = false;
-	this->watered = false;
 	this->wateringTime = new Time();
 }
 
@@ -23,7 +22,6 @@ WateringSettings::WateringSettings(int wateringSettingsIndex, int potIndex) {
 	this->minWaterQuantity = 0;
 	this->maxWaterQuantity = 0;
 	this->shouldWatering = false;
-	this->watered = false;
 	this->wateringTime = new Time();
 }
 
@@ -34,7 +32,6 @@ WateringSettings::WateringSettings(int wateringSettingsIndex, int potIndex, int 
 	this->minWaterQuantity = minWaterQuantity;
 	this->maxWaterQuantity = maxWaterQuantity;
 	this->shouldWatering = false;
-	this->watered = false;
 	this->wateringTime = new Time();
 	this->wateringTime->setValuesFrom(wateringTime);
 }
@@ -49,7 +46,6 @@ void WateringSettings::setValuesFrom(WateringSettings* wateringSettings) {
 	this->minWaterQuantity = wateringSettings->getMinWaterQuantity();
 	this->maxWaterQuantity = wateringSettings->getMaxWaterQuantity();
 	this->shouldWatering = wateringSettings->getShouldWatering();
-	this->watered = wateringSettings->getWatered();
 	this->wateringTime->setValuesFrom(wateringSettings->getWateringTime());
 }
 
@@ -67,10 +63,6 @@ void WateringSettings::setMaxWaterQuantity(int waterQuantity) {
 
 void WateringSettings::setShouldWatering(bool shouldWatering) {
 	this->shouldWatering = shouldWatering;
-}
-
-void WateringSettings::setWatered(bool watered) {
-	this->watered = watered;
 }
 
 void WateringSettings::setWateringTime(Time* wateringTime) {

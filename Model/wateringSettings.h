@@ -34,9 +34,6 @@ public:
 	inline bool getShouldWatering() { return shouldWatering; }
 	void setShouldWatering(bool shouldWatering);
 
-	inline bool getWatered() { return watered; }
-	void setWatered(bool watered);
-
 	inline Time* getWateringTime() { return wateringTime; }
 	void setWateringTime(Time* wateringTime);
 
@@ -55,7 +52,6 @@ private:
 	int minWaterQuantity; //Minimum Water Quantity in [ml]
 	int maxWaterQuantity; //Maximum Water Quantity in [ml]
 	bool shouldWatering; //Defines if this wateringSetting should watered
-	bool watered; //Defines if this wateringSetting is already watered
 	Time* wateringTime;
 
 
