@@ -53,13 +53,13 @@ void setup()
 	tempPot->setPotName("Karotten");
 	wateringMode->addPot(tempPot);
 
-	WateringSettings* tempSettings = new WateringSettings(1, 1, 10, 20, &Time(0, 10, 0));
+	WateringSettings* tempSettings = new WateringSettings(1, 1, 500, 1000, &Time(23, 31, 0));
 	wateringMode->addWateringSettings(tempSettings);
-	tempSettings = new WateringSettings(2, 1, 10, 20, &Time(0, 10, 0));
+	tempSettings = new WateringSettings(2, 1, 100, 200, &Time(23, 30, 0));
 	wateringMode->addWateringSettings(tempSettings);
-	tempSettings = new WateringSettings(3, 2, 10, 20, &Time(0, 10, 0));
+	tempSettings = new WateringSettings(3, 2, 100, 200, &Time(23, 31, 0));
 	wateringMode->addWateringSettings(tempSettings);
-	tempSettings = new WateringSettings(4, 2, 10, 20, &Time(0, 11, 0));
+	tempSettings = new WateringSettings(4, 2, 500, 1000, &Time(23, 30, 0));
 	wateringMode->addWateringSettings(tempSettings);
 
 	wateringMode->getWateringModeState()->setIsAutomaticMode(true);
@@ -81,22 +81,9 @@ void loop()
 
 void print()
 {
-	int actIndex = wateringMode->getWateringModeState()->getActualWateringSettingsIndex();
-
-	lcd.setCursor(0, 0);
-	lcd.print("                    ");
+	lcd.clear();
 	lcd.setCursor(0, 0);
 	lcd.print(operatingState->getActualTime()->getTimeString("hh:mm"));
-	lcd.setCursor(0, 1);
-	lcd.print("                    ");
-	lcd.setCursor(0, 1);
-	lcd.print(actIndex);
-	lcd.setCursor(0, 2);
-	lcd.print("                    ");
-	lcd.setCursor(0, 2);
-	lcd.print(wateringMode->getWateringSettings(actIndex)->getPotIndex());
-	lcd.setCursor(0, 3);
-	lcd.print("                    ");
-	lcd.setCursor(0, 3);
-	lcd.print(wateringMode->getWateringModeState()->getIsWatering());
+	lcd.setCursor(10, 0);
+	lcd.print(operatingState->getActualTemperature());
 }
