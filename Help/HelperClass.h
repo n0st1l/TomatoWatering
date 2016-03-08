@@ -8,6 +8,7 @@
 #ifndef HELP_HELPERCLASS_H_
 #define HELP_HELPERCLASS_H_
 
+#include "Log.h"
 #include "hwPins.h"
 #include "types.h"
 
