@@ -32,8 +32,9 @@ ATimer* oneSecondTimer = new ATimer(SECONDS_TO_MILLISECONDS(1));
 void setup()
 {
 	// Add your initialization code here
-	Serial.begin(9600);
-	Serial.print("hello, world!\n");
+//	Serial.begin(9600);
+//	Serial.print("hello, world!\n");
+	LOG_DAEMON_DEBUG(1, "Hello");
 
 	// set up the LCD's number of columns and rows:
 	lcd.begin(16, 4);

@@ -20,8 +20,6 @@
 
 /*Include Helpers*/
 #include "Help/HelperClass.h"
-#include "Help/hwPins.h"
-#include "Help/types.h"
 
 /*Include Models*/
 #include "Model/OperatingState.h"
