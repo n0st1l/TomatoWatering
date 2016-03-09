@@ -32,14 +32,9 @@ ATimer* oneSecondTimer = new ATimer(SECONDS_TO_MILLISECONDS(1));
 void setup()
 {
 	// Add your initialization code here
-//	Serial.begin(9600);
-//	Serial.print("hello, world!\n");
-	LOG_DAEMON_DEBUG(1, "Hello");
 
 	// set up the LCD's number of columns and rows:
 	lcd.begin(16, 4);
-	// Print a message to the LCD.
-	lcd.print("hello, world!");
 	pinMode(LCD_A, OUTPUT);
 	digitalWrite(LCD_A, HIGH);
 
@@ -56,7 +51,7 @@ void setup()
 
 	WateringSettings* tempSettings = new WateringSettings(1, 1, 500, 1000, &Time(23, 31, 0));
 	wateringMode->addWateringSettings(tempSettings);
-	tempSettings = new WateringSettings(2, 1, 100, 200, &Time(23, 30, 0));
+	tempSettings = new WateringSettings(2, 1, 100, 200, &Time(23, 28, 0));
 	wateringMode->addWateringSettings(tempSettings);
 	tempSettings = new WateringSettings(3, 2, 100, 200, &Time(23, 31, 0));
 	wateringMode->addWateringSettings(tempSettings);

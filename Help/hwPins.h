@@ -56,6 +56,6 @@
 #define SERIAL_SDL	21
 
 //Pump Data
-#define PUMP_OUTPUT 100 // [ml/s] //TODO Change this value
+#define PUMP_OUTPUT 10 // [ml/s] //TODO Change this value
 
 #endif /* HELP_HWPINS_H_ */
