@@ -32,7 +32,7 @@ public:
 	inline int getMinWaterQuantity() { return minWaterQuantity; }
 	void setMinWaterQuantity(int waterQuantity);
 
-	inline int getMaxWaterQuantity() { return minWaterQuantity; }
+	inline int getMaxWaterQuantity() { return maxWaterQuantity; }
 	void setMaxWaterQuantity(int waterQuantity);
 
 	inline bool getShouldWatering() { return shouldWatering; }
