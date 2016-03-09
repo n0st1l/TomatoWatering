@@ -55,14 +55,14 @@ void OperatingControl::update() {
 }
 
 void OperatingControl::onTenSecondsTimerTimeout() {
-	LOG_DAEMON_DEBUG(eOperatingControl, "onTenSecondsTimerTimeout()");
+	//LOG_DAEMON_DEBUG(eOperatingControl, "onTenSecondsTimerTimeout()");
 
 	operatingState->setActualTime(hardwareControl->getTime());
 	operatingState->setActualDate(hardwareControl->getDate());
 }
 
 void OperatingControl::onOneMinuteTimerTimeout() {
-	LOG_DAEMON_DEBUG(eOperatingControl, "onOneMinuteTimerTimeout()");
+	//LOG_DAEMON_DEBUG(eOperatingControl, "onOneMinuteTimerTimeout()");
 
 	operatingState->setActualHumidty(hardwareControl->getHumidity());
 	operatingState->setActualTemperature(hardwareControl->getTemperature());

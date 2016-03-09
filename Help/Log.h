@@ -28,9 +28,10 @@
 	/** Define available log Ids */
 	typedef enum {
 	    eTomatoWatering = 0x100,
-	    eHwControl = 0x200,
-	    eOperatingControl = 0x300,
-	    eWateringControl = 0x400
+		eHelperClass = 0x101,
+	    eHardwareControl = 0x201,
+	    eOperatingControl = 0x202,
+	    eWateringControl = 0x203
 	} eDaemonLogIdTypes_t;
 
 

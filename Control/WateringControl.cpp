@@ -59,11 +59,17 @@ void WateringControl::update() {
 }
 
 void WateringControl::startAutoWatering(WateringSettings* settings) {
+
+	String debugMsg = "startAutoWatering(WateringSettings* settings)";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
 	if( (settings->isValid() == false) ||
 			(this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
 			(this->wateringMode->getWateringModeState()->getIsAutomaticMode() == false) )
 	{
 		//Invalid settings, is already started or not in automatic mode
+		debugMsg = "Invalid settings, is already started or not in automatic mode";
+		LOG_DAEMON_WARNING(eWateringControl, debugMsg);
 		return;
 	}
 	this->wateringMode->getWateringModeState()->setIsWatering(true);
@@ -79,10 +85,16 @@ void WateringControl::startAutoWatering(WateringSettings* settings) {
 }
 
 void WateringControl::startManualWatering(int potIndex) {
+
+	String debugMsg = "startManualWatering(int " + String(potIndex) + ")";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
 	if( (this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
 			(this->wateringMode->getWateringModeState()->getIsManualMode() == false) )
 	{
 		//Is already started or not in manual mode
+		debugMsg = "Is already started or not in manual mode";
+		LOG_DAEMON_WARNING(eWateringControl, debugMsg);
 		return;
 	}
 	this->wateringMode->getWateringModeState()->setIsWatering(true);
@@ -91,6 +103,10 @@ void WateringControl::startManualWatering(int potIndex) {
 }
 
 void WateringControl::stopWatering() {
+
+	String debugMsg = "stopWatering()";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypePump, eDigitalOutputStateDisabled);
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_1, eDigitalOutputStateDisabled);
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_2, eDigitalOutputStateDisabled);
@@ -107,6 +123,10 @@ void WateringControl::stopWatering() {
 }
 
 void WateringControl::startWatering(int potIndex) {
+
+	String debugMsg = "startWatering(int " + String(potIndex) + ")";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
 	switch(potIndex)
 	{
 	case 1:
@@ -160,13 +180,24 @@ void WateringControl::checkIfShouldWatering() {
 }
 
 float WateringControl::getWaterQuantity(float actTemp, float minTemp, float maxTemp, float minQuantity, float maxQuantity) {
+
+	String debugMsg = "getWaterQuantity(float " + String(actTemp) +
+			", float " + String(minTemp) +
+			", float " + String(maxTemp) +
+			", float " + String(minQuantity) +
+			", float " + String(maxQuantity) + ")";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
 	float gain = 0;
 	float offset = 0;
 	float waterQuantity = 0;
 
-	HelperClass::Instance()->getGainAndOffset(minTemp, maxTemp, minQuantity, maxQuantity, &gain, & offset);
+	HelperClass::Instance()->getGainAndOffset(minTemp, maxTemp, minQuantity, maxQuantity, &gain, &offset);
 	waterQuantity = gain * actTemp + offset;
 	waterQuantity = constrain(waterQuantity, minQuantity, maxQuantity);
+
+	debugMsg = "waterQuantity " + String(waterQuantity);
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
 	return waterQuantity;
 }

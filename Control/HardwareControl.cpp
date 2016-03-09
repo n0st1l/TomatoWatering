@@ -56,6 +56,10 @@ float HardwareControl::getTemperature() {
 void HardwareControl::setDigitalOutput(
 		DigitalOutputType_t digitalOutputType,
 		DigitalOutputState_t digitalOutputState) {
+
+	String debugMsg = "setDigitalOutput(DigitalOutputType_t " + String(digitalOutputType) + ", DigitalOutputState_t " + String(digitalOutputState) + ")";
+	LOG_DAEMON_DEBUG(eHardwareControl, debugMsg);
+
 	switch(digitalOutputType)
 	{
 	case eDigitalOutputTypeValve_1:
