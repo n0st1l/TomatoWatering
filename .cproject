@@ -5,10 +5,10 @@
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="it.baeyens.arduino.core.toolChain.release.474309063" moduleId="org.eclipse.cdt.core.settings" name="Release">
 				<externalSettings/>
 				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
@@ -21,23 +21,15 @@
 								<option id="it.baeyens.arduino.compiler.cpp.sketch.option.incpath.1715469752" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.cpp.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/TimerOne}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LCDMenuLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Scheduler}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Scheduler/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Time}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DHT22}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DS1302}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DS1302RTC}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Date}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/StandardCplusplus}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/StandardCplusplus-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DHT}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/RunningAverage}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/AButton}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ATimer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ALowPassFilter}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.cpp.sketch.input.949661023" name="CPP source files" superClass="it.baeyens.arduino.compiler.cpp.sketch.input"/>
 							</tool>
@@ -45,23 +37,15 @@
 								<option id="it.baeyens.arduino.compiler.c.sketch.option.incpath.1043379809" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.c.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/TimerOne}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LCDMenuLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Scheduler}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Scheduler/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Time}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DHT22}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DS1302}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DS1302RTC}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Date}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/StandardCplusplus}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/StandardCplusplus-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DHT}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/RunningAverage}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/AButton}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ATimer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ALowPassFilter}&quot;"/>
 								</option>
 								<inputType id="it.baeyens.arduino.compiler.c.sketch.input.2113762215" name="C Source Files" superClass="it.baeyens.arduino.compiler.c.sketch.input"/>
 							</tool>
@@ -88,6 +72,10 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/TomatoWatering"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

@@ -32,6 +32,11 @@
 			<locationURI>ArduinoPivateLibPath/AButton</locationURI>
 		</link>
 		<link>
+			<name>Libraries/ALowPassFilter</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/ALowPassFilter</locationURI>
+		</link>
+		<link>
 			<name>Libraries/ATimer</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/ATimer</locationURI>
