@@ -73,7 +73,7 @@ void WateringControl::startAutoWatering(WateringSettings* settings) {
 		return;
 	}
 	this->wateringMode->getWateringModeState()->setIsWatering(true);
-	this->wateringMode->getWateringModeState()->setActualWateringSettings(settings);
+	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(settings->getWateringSettingsIndex());
 
 	this->startWatering(settings->getPotIndex());
 
@@ -113,10 +113,10 @@ void WateringControl::stopWatering() {
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_3, eDigitalOutputStateDisabled);
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_4, eDigitalOutputStateDisabled);
 
-	if(this->wateringMode->getWateringModeState()->getActualWateringSettings()->isValid() == true) {
-		this->wateringMode->getWateringModeState()->getActualWateringSettings()->setShouldWatering(false);
+	if(this->wateringMode->getWateringSettings(this->wateringMode->getWateringModeState()->getActualWateringSettingsIndex())->isValid() == true) {
+		this->wateringMode->getWateringSettings(this->wateringMode->getWateringModeState()->getActualWateringSettingsIndex())->setShouldWatering(false);
 	}
-	this->wateringMode->getWateringModeState()->setActualWateringSettings(new WateringSettings());
+	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(-1);
 	this->wateringMode->getWateringModeState()->setIsWatering(false);
 
 	this->wateringTimer->stop();
