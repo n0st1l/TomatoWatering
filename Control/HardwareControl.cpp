@@ -25,12 +25,18 @@ HardwareControl::HardwareControl() {
 	this->dht22 = new DHT(DHT22_DATA, DHT22);
 	this->dht22->begin();
 
+	this->humidityLowPass = new ALowPassFilter(0.5);
+	this->temperatureLowPass = new ALowPassFilter(0.5);
+
 	this->setupRelayModule();
 }
 
 HardwareControl::~HardwareControl() {
 	delete this->realTimeClock;
 	delete this->dht22;
+
+	delete this->humidityLowPass;
+	delete this->temperatureLowPass;
 }
 
 void HardwareControl::update() {
@@ -38,19 +44,21 @@ void HardwareControl::update() {
 }
 
 Time* HardwareControl::getTime() {
-	return realTimeClock->time();
+	return this->realTimeClock->time();
 }
 
 Date* HardwareControl::getDate() {
-	return realTimeClock->date();
+	return this->realTimeClock->date();
 }
 
 float HardwareControl::getHumidity() {
-	return dht22->readHumidity();
+	this->humidityLowPass->addNewData(this->dht22->readHumidity());
+	return this->humidityLowPass->getProcessedData();
 }
 
 float HardwareControl::getTemperature() {
-	return dht22->readTemperature();
+	this->temperatureLowPass->addNewData(this->dht22->readTemperature());
+	return this->temperatureLowPass->getProcessedData();
 }
 
 void HardwareControl::setDigitalOutput(

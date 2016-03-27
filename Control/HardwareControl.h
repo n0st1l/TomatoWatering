@@ -11,6 +11,7 @@
 #include "../Help/HelperClass.h"
 #include <DS1302.h>
 #include <DHT.h>
+#include <ALowPassFilter.h>
 
 
 class HardwareControl {
@@ -34,6 +35,9 @@ private:
 
 	DS1302* realTimeClock;
 	DHT* dht22;
+
+	ALowPassFilter* humidityLowPass;
+	ALowPassFilter* temperatureLowPass;
 
 	void setupRealTimeClock();
 	void setupRelayModule();
