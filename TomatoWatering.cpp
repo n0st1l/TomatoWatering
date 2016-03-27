@@ -1,7 +1,6 @@
 // Do not remove the include below
 #include "TomatoWatering.h"
 
-#include "Help/hwPins.h"
 #include "LiquidCrystal.h"
 #include <stdio.h>
 #include <string.h>
