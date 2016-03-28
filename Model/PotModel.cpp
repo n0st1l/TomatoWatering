@@ -12,6 +12,11 @@ PotModel::PotModel() {
 	this->potName = "undefined";
 }
 
+PotModel::PotModel(int potIndex, String potName) {
+	this->potIndex = potIndex;
+	this->potName = potName;
+}
+
 PotModel::~PotModel() {
 	// TODO Auto-generated destructor stub
 }

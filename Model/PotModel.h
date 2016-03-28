@@ -14,6 +14,7 @@
 class PotModel {
 public:
 	PotModel();
+	PotModel(int potIndex, String potName);
 	virtual ~PotModel();
 
 	inline int getPotIndex() { return potIndex; }
