@@ -33,6 +33,8 @@ private:
 	ATimer* tenSecondTimer;
 	ATimer* oneMinuteTimer;
 
+	bool firstStart;
+
 	void onTenSecondsTimerTimeout();
 	void onOneMinuteTimerTimeout();
 

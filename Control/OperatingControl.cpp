@@ -27,6 +27,8 @@ OperatingControl::OperatingControl() {
 	oneMinuteTimer = new ATimer(MINUTES_TO_MILLISECONDS((unsigned long) 1));
 	tenSecondTimer->restart();
 	oneMinuteTimer->restart();
+
+	firstStart = true;
 }
 
 OperatingControl::~OperatingControl() {
@@ -43,6 +45,14 @@ OperatingControl::~OperatingControl() {
 }
 
 void OperatingControl::update() {
+	if(this->firstStart == true)
+	{
+		LOG_DAEMON_DEBUG(eOperatingControl, "firstStart");
+		this->onTenSecondsTimerTimeout();
+		this->onOneMinuteTimerTimeout();
+		this->firstStart = false;
+	}
+
 	if(tenSecondTimer->onRestart())
 	{
 		this->onTenSecondsTimerTimeout();
