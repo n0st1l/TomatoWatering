@@ -9,9 +9,9 @@
 #define CONTROL_HARDWARECONTROL_H_
 
 #include "../Help/HelperClass.h"
-#include <DS1302.h>
-#include <DHT.h>
 #include <ALowPassFilter.h>
+#include <DHT.h>
+#include <DS1302.h>
 
 
 class HardwareControl {

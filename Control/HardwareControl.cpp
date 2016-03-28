@@ -65,8 +65,8 @@ void HardwareControl::setDigitalOutput(
 		DigitalOutputType_t digitalOutputType,
 		DigitalOutputState_t digitalOutputState) {
 
-	String debugMsg = "setDigitalOutput(DigitalOutputType_t " + String(digitalOutputType) + ", DigitalOutputState_t " + String(digitalOutputState) + ")";
-	LOG_DAEMON_DEBUG(eHardwareControl, debugMsg);
+	//	String debugMsg = "setDigitalOutput(DigitalOutputType_t " + String(digitalOutputType) + ", DigitalOutputState_t " + String(digitalOutputState) + ")";
+	//	LOG_DAEMON_DEBUG(eHardwareControl, debugMsg);
 
 	switch(digitalOutputType)
 	{
@@ -102,8 +102,8 @@ void HardwareControl::setupRealTimeClock() {
 	realTimeClock->halt(false);
 
 	/* Make a new time object to set the date and time */
-	Time* t = new Time(0, 8, 0);
-	Date* d = new Date(2015, 11, 27);
+	Time* t = new Time(9, 35, 0);
+	Date* d = new Date(2016, 3, 28);
 
 	/* Set the time and date on the chip */
 	realTimeClock->time(t);
