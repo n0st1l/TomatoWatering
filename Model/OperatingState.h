@@ -36,8 +36,8 @@ private:
 
 	Time* actualTime;
 	Date* actualDate;
-	float actualHumidity;
-	float actualTemperature;
+	float actualHumidity;		// [%]
+	float actualTemperature;	// [°C]
 
 
 };

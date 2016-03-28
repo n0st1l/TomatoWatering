@@ -22,8 +22,8 @@ OperatingState* OperatingState::Instance()
 OperatingState::OperatingState() {
 	this->actualTime = new Time();
 	this->actualDate = new Date();
-	this->actualHumidity = 0.0f;
-	this->actualTemperature = 0.0f;
+	this->actualHumidity = 40.0f;
+	this->actualTemperature = 20.0f;
 }
 
 OperatingState::~OperatingState() {
