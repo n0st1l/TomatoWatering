@@ -11,6 +11,7 @@
 // NOTE add your includes for the project TomatoWatering here
 
 /*Include Libraries*/
+#include "AButton.h"
 #include "ATimer.h"
 #include "date.h"
 #include "DHT.h"
@@ -27,6 +28,10 @@
 #include "Model/WateringMode.h"
 #include "Model/WateringModeState.h"
 #include "Model/WateringSettings.h"
+
+/*Include Screens*/
+#include "Screen/MainScreen.h"
+#include "Screen/WateringScreen.h"
 
 /*Include Controls*/
 #include "Control/HardwareControl.h"
@@ -45,7 +50,33 @@ void setup();
 #endif
 
 //add your function definitions for the project TomatoWatering here
-void print();
+
+/*IO*/
+LiquidCrystal* liquidCrystal;
+AButton* buttonTop;
+AButton* buttonBottom;
+AButton* buttonLeft;
+AButton* buttonRight;
+
+/*Timer*/
+ATimer* lcdTimer;
+
+/*Models*/
+WateringMode* wateringMode;
+OperatingState* operatingState;
+
+/*Screens*/
+MainScreen* mainScreen;
+WateringScreen* wateringScreen;
+
+/*Controls*/
+HardwareControl* hardwareControl;
+OperatingControl* operatingControl;
+WateringControl* wateringControl;
+
+/*Functions*/
+void createPots();
+void createWateringSettings();
 
 
 //Do not add code below this line
