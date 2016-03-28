@@ -29,6 +29,9 @@ public:
 	inline float getActualTemperature() { return actualTemperature; }
 	void setActualTemperature(float p_actualTemperature);
 
+	inline float getTotalWaterQuantity() { return totalWaterQuantity; }
+	void setTotalWaterQuantity(float p_totalWaterQuantity);
+
 
 private:
 	OperatingState();
@@ -38,6 +41,7 @@ private:
 	Date* actualDate;
 	float actualHumidity;		// [%]
 	float actualTemperature;	// [°C]
+	float totalWaterQuantity;	// [l]
 
 
 };

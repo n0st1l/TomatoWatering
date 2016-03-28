@@ -24,6 +24,7 @@ OperatingState::OperatingState() {
 	this->actualDate = new Date();
 	this->actualHumidity = 40.0f;
 	this->actualTemperature = 20.0f;
+	this->totalWaterQuantity = 0.0f;
 }
 
 OperatingState::~OperatingState() {
@@ -44,4 +45,8 @@ void OperatingState::setActualHumidty(float p_actualHumidity) {
 
 void OperatingState::setActualTemperature(float p_actualTemperature) {
 	this->actualTemperature = p_actualTemperature;
+}
+
+void OperatingState::setTotalWaterQuantity(float p_totalWaterQuantity) {
+	this->totalWaterQuantity = p_totalWaterQuantity;
 }
