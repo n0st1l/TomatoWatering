@@ -19,7 +19,7 @@ SerialLogger* SerialLogger::Instance()
 }
 
 SerialLogger::SerialLogger() {
-	Serial.begin(9600);
+	Serial.begin(57600);
 
 }
 
