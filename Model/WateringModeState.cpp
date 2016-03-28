@@ -22,7 +22,6 @@ WateringModeState* WateringModeState::Instance()
 WateringModeState::WateringModeState() {
 	this->isWatering = false;
 	this->isAutomaticMode = false;
-	this->isManualMode = false;
 	this->actualWateringSettingsIndex = -1;
 }
 
@@ -39,10 +38,6 @@ void WateringModeState::setIsWatering(bool isWatering) {
 
 void WateringModeState::setIsAutomaticMode(bool isAutomaticMode) {
 	this->isAutomaticMode = isAutomaticMode;
-}
-
-void WateringModeState::setIsManualMode(bool isManualMode) {
-	this->isManualMode = isManualMode;
 }
 
 void WateringModeState::setActualWateringSettingsIndex(

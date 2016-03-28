@@ -20,9 +20,6 @@ public:
 	inline bool getIsAutomaticMode() { return isAutomaticMode; }
 	void setIsAutomaticMode(bool isAutomaticMode);
 
-	inline bool getIsManualMode() { return isManualMode; }
-	void setIsManualMode(bool isManualMode);
-
 	inline int getActualWateringSettingsIndex() { return actualWateringSettingsIndex; }
 	void setActualWateringSettingsIndex(int actualWateringSettingsIndex);
 
@@ -33,7 +30,6 @@ private:
 
 	bool isWatering;
 	bool isAutomaticMode;
-	bool isManualMode;
 	int actualWateringSettingsIndex;
 
 
