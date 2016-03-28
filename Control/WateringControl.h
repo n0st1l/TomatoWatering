@@ -13,6 +13,7 @@
 #include "../Help/HelperClass.h"
 #include "../Model/OperatingState.h"
 #include "../Model/WateringMode.h"
+#include "../Screen/WateringScreen.h"
 #include <ATimer.h>
 
 
@@ -20,6 +21,8 @@ class WateringControl {
 public:
 	static WateringControl *Instance();
 	virtual ~WateringControl();
+
+	void setWateringScreen(WateringScreen* wateringScreen);
 
 	void update();
 
@@ -37,6 +40,8 @@ private:
 	OperatingState* operatingState;
 	WateringMode* wateringMode;
 
+	WateringScreen* wateringScreen;
+
 	ATimer* oneSecondTimer;
 	ATimer* wateringTimer;
 
@@ -46,6 +51,8 @@ private:
 	void checkIfShouldWatering();
 
 	float getWaterQuantity(float actTemp, float minTemp, float maxTemp, float minQuantity, float maxQuantity);
+
+	void updateDisplayProgress();
 
 
 };

@@ -25,24 +25,35 @@ WateringControl::WateringControl() {
 	this->operatingState = OperatingState::Instance();
 	this->wateringMode = WateringMode::Instance();
 
+	this->wateringScreen = NULL;
+
 	this->oneSecondTimer = new ATimer(SECONDS_TO_MILLISECONDS((unsigned long) 1));
 	this->oneSecondTimer->restart();
 	this->wateringTimer = new ATimer();
 }
 
 WateringControl::~WateringControl() {
-	delete this->hardwareControl;
+	this->hardwareControl = NULL;
 
-	delete this->operatingState;
-	delete this->wateringMode;
+	this->operatingState = NULL;
+	this->wateringMode = NULL;
+
+	this->wateringScreen = NULL;
 
 	delete this->oneSecondTimer;
+	this->oneSecondTimer = NULL;
 	delete this->wateringTimer;
+	this->wateringTimer = NULL;
 
 	if(wateringControl != 0)
 	{
 		delete this->wateringControl;
+		this->wateringControl = NULL;
 	}
+}
+
+void WateringControl::setWateringScreen(WateringScreen* wateringScreen) {
+	this->wateringScreen = wateringScreen;
 }
 
 void WateringControl::update() {
@@ -50,6 +61,11 @@ void WateringControl::update() {
 	{
 		this->checkIfShouldSetWateringFlag();
 		this->checkIfShouldWatering();
+
+		if(this->wateringTimer->isActive())
+		{
+			this->updateDisplayProgress();
+		}
 	}
 
 	if(this->wateringTimer->onExpired())
@@ -75,13 +91,23 @@ void WateringControl::startAutoWatering(WateringSettings* settings) {
 	this->wateringMode->getWateringModeState()->setIsWatering(true);
 	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(settings->getWateringSettingsIndex());
 
+	debugMsg = "settings->getWateringSettingsIndex() = " + String(settings->getWateringSettingsIndex());
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 	this->startWatering(settings->getPotIndex());
 
 	float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), MIN_TEMP, MAX_TEMP, settings->getMinWaterQuantity(), settings->getMaxWaterQuantity());
+	this->operatingState->setTotalWaterQuantity(this->operatingState->getTotalWaterQuantity() + (waterQuantity / 1000));
 	float pumpWorkTime = waterQuantity / PUMP_OUTPUT;
 
 	this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime));
 	this->wateringTimer->restart();
+
+	/*Update the display*/
+	if(this->wateringScreen != NULL)
+	{
+		this->wateringScreen->updateStatus("WATERING " + this->wateringMode->getPot(settings->getPotIndex())->getPotName());
+		this->wateringScreen->updateQuantity("QUANTITY " + String((int)waterQuantity) + " ML");
+	}
 }
 
 void WateringControl::startManualWatering(int potIndex) {
@@ -100,6 +126,14 @@ void WateringControl::startManualWatering(int potIndex) {
 	this->wateringMode->getWateringModeState()->setIsWatering(true);
 
 	this->startWatering(potIndex);
+
+	/*Update the display*/
+	if(this->wateringScreen != NULL)
+	{
+		this->wateringScreen->updateStatus("WATERING " + this->wateringMode->getPot(potIndex)->getPotName());
+		this->wateringScreen->updateQuantity("");
+		this->wateringScreen->updateProgress("");
+	}
 }
 
 void WateringControl::stopWatering() {
@@ -120,6 +154,14 @@ void WateringControl::stopWatering() {
 	this->wateringMode->getWateringModeState()->setIsWatering(false);
 
 	this->wateringTimer->stop();
+
+	/*Update the display*/
+	if(this->wateringScreen != NULL)
+	{
+		this->wateringScreen->updateStatus("READY");
+		this->wateringScreen->updateQuantity("TOTAL " + String(this->operatingState->getTotalWaterQuantity()) + " L");
+		this->wateringScreen->updateProgress("");
+	}
 }
 
 void WateringControl::startWatering(int potIndex) {
@@ -127,7 +169,7 @@ void WateringControl::startWatering(int potIndex) {
 	String debugMsg = "startWatering(int " + String(potIndex) + ")";
 	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
-	switch(potIndex)
+	switch(potIndex + 1)
 	{
 	case 1:
 		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_1, eDigitalOutputStateEnabled);
@@ -181,12 +223,12 @@ void WateringControl::checkIfShouldWatering() {
 
 float WateringControl::getWaterQuantity(float actTemp, float minTemp, float maxTemp, float minQuantity, float maxQuantity) {
 
-	String debugMsg = "getWaterQuantity(float " + String(actTemp) +
-			", float " + String(minTemp) +
-			", float " + String(maxTemp) +
-			", float " + String(minQuantity) +
-			", float " + String(maxQuantity) + ")";
-	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+	//	String debugMsg = "getWaterQuantity(float " + String(actTemp) +
+	//			", float " + String(minTemp) +
+	//			", float " + String(maxTemp) +
+	//			", float " + String(minQuantity) +
+	//			", float " + String(maxQuantity) + ")";
+	//	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
 	float gain = 0;
 	float offset = 0;
@@ -196,8 +238,25 @@ float WateringControl::getWaterQuantity(float actTemp, float minTemp, float maxT
 	waterQuantity = gain * actTemp + offset;
 	waterQuantity = constrain(waterQuantity, minQuantity, maxQuantity);
 
-	debugMsg = "waterQuantity " + String(waterQuantity);
-	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+	//	debugMsg = "waterQuantity " + String(waterQuantity);
+	//	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
 	return waterQuantity;
+}
+
+void WateringControl::updateDisplayProgress() {
+	if(this->wateringScreen != NULL)
+	{
+		String progress = "";
+		int percent = this->wateringTimer->getPercentValue();
+		for(int i = 0 ; i < 20 ; i++)
+		{
+			if(percent > 5)
+			{
+				progress = progress + "=";
+				percent -= 5;
+			}
+		}
+		this->wateringScreen->updateProgress(progress);
+	}
 }
