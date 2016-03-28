@@ -90,7 +90,7 @@ void WateringControl::startManualWatering(int potIndex) {
 	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
 	if( (this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
-			(this->wateringMode->getWateringModeState()->getIsManualMode() == false) )
+			(this->wateringMode->getWateringModeState()->getIsAutomaticMode() == true) )
 	{
 		//Is already started or not in manual mode
 		debugMsg = "Is already started or not in manual mode";
