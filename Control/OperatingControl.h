@@ -12,6 +12,7 @@
 #include "HardwareControl.h"
 #include "../Help/HelperClass.h"
 #include "../Model/OperatingState.h"
+#include "../Screen/MainScreen.h"
 #include <ATimer.h>
 
 
@@ -19,6 +20,8 @@ class OperatingControl {
 public:
 	static OperatingControl *Instance();
 	virtual ~OperatingControl();
+
+	void setMainScreen(MainScreen* mainScreen);
 
 	void update();
 
@@ -29,13 +32,14 @@ private:
 
 	HardwareControl* hardwareControl;
 	OperatingState* operatingState;
+	MainScreen* mainScreen;
 
-	ATimer* tenSecondTimer;
+	ATimer* twoSecondTimer;
 	ATimer* oneMinuteTimer;
 
 	bool firstStart;
 
-	void onTenSecondsTimerTimeout();
+	void onTwoSecondsTimerTimeout();
 	void onOneMinuteTimerTimeout();
 
 
