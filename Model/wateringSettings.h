@@ -12,7 +12,7 @@
 
 
 #define MIN_TEMP	15 //°C
-#define MAX_TEMP	30 //°C
+#define MAX_TEMP	25 //°C
 
 
 class WateringSettings {
@@ -25,6 +25,7 @@ public:
 	void setValuesFrom(WateringSettings* wateringSettings);
 
 	inline int getWateringSettingsIndex() { return wateringSettingsIndex; }
+	void setWateringSettingsIndex(int wateringSettingsIndex);
 
 	inline int getPotIndex() { return potIndex; }
 	void setPotIndex(int potIndex);

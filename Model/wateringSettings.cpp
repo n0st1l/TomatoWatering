@@ -38,6 +38,8 @@ WateringSettings::WateringSettings(int wateringSettingsIndex, int potIndex, int 
 
 WateringSettings::~WateringSettings() {
 	// TODO Auto-generated destructor stub
+	delete this->wateringTime;
+	this->wateringTime = 0;
 }
 
 void WateringSettings::setValuesFrom(WateringSettings* wateringSettings) {
@@ -47,6 +49,10 @@ void WateringSettings::setValuesFrom(WateringSettings* wateringSettings) {
 	this->maxWaterQuantity = wateringSettings->getMaxWaterQuantity();
 	this->shouldWatering = wateringSettings->getShouldWatering();
 	this->wateringTime->setValuesFrom(wateringSettings->getWateringTime());
+}
+
+void WateringSettings::setWateringSettingsIndex(int wateringSettingsIndex) {
+	this->wateringSettingsIndex = wateringSettingsIndex;
 }
 
 void WateringSettings::setPotIndex(int potIndex) {
