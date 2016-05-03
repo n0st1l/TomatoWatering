@@ -26,10 +26,10 @@
 #define DHT22_DATA	23 //TempModul Data Pin
 
 //Button Pins
-#define BUTTON_TOP		47
-#define BUTTON_BOTTOM	46
-#define BUTTON_LEFT		44
-#define BUTTON_RIGHT	45
+#define BUTTON_TOP		45
+#define BUTTON_BOTTOM	44
+#define BUTTON_LEFT		46
+#define BUTTON_RIGHT	47
 #define BUTTON_RESERVE1	49
 #define BUTTON_RESERVE2	48
 
@@ -56,6 +56,6 @@
 #define SERIAL_SDL	21
 
 //Pump Data
-#define PUMP_OUTPUT 10 // [ml/s] //TODO Change this value
+#define PUMP_OUTPUT 20000 // [ml/s]
 
 #endif /* HELP_HWPINS_H_ */
