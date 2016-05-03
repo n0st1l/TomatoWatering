@@ -97,7 +97,7 @@ void WateringControl::startAutoWatering(WateringSettings* settings) {
 
 	float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), MIN_TEMP, MAX_TEMP, settings->getMinWaterQuantity(), settings->getMaxWaterQuantity());
 	this->operatingState->setTotalWaterQuantity(this->operatingState->getTotalWaterQuantity() + (waterQuantity / 1000));
-	float pumpWorkTime = waterQuantity / PUMP_OUTPUT;
+	float pumpWorkTime = waterQuantity / (PUMP_OUTPUT * wateringMode->getPot(settings->getPotIndex())->getCorrectionFactor());
 
 	this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime));
 	this->wateringTimer->restart();
@@ -194,12 +194,15 @@ void WateringControl::checkIfShouldSetWateringFlag() {
 	{
 		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
 
-		if(actSettings->isValid() == true) {
-			if( (actSettings->getShouldWatering() == false) &&
-					(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) &&
-					(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -10))
-			{
-				actSettings->setShouldWatering(true);
+		if(actSettings != 0)
+		{
+			if(actSettings->isValid() == true) {
+				if( (actSettings->getShouldWatering() == false) &&
+						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) &&
+						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -10))
+				{
+					actSettings->setShouldWatering(true);
+				}
 			}
 		}
 	}
@@ -210,12 +213,15 @@ void WateringControl::checkIfShouldWatering() {
 	{
 		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
 
-		if(actSettings->isValid() == true) {
-			if( (actSettings->getShouldWatering() == true) &&
-					(this->wateringMode->getWateringModeState()->getIsWatering() == false) )
-			{
-				this->startAutoWatering(actSettings);
-				return;
+		if(actSettings != 0)
+		{
+			if(actSettings->isValid() == true) {
+				if( (actSettings->getShouldWatering() == true) &&
+						(this->wateringMode->getWateringModeState()->getIsWatering() == false) )
+				{
+					this->startAutoWatering(actSettings);
+					return;
+				}
 			}
 		}
 	}
