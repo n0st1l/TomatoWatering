@@ -14,14 +14,19 @@
 class PotModel {
 public:
 	PotModel();
-	PotModel(int potIndex, String potName);
+	PotModel(int potIndex, String potName, float correctionFactor);
 	virtual ~PotModel();
+
+	void setValuesFrom(PotModel* potModel);
 
 	inline int getPotIndex() { return potIndex; }
 	void setPotIndex(int potIndex);
 
 	inline String getPotName() { return potName; }
 	void setPotName(String potName);
+
+	inline float getCorrectionFactor() { return correctionFactor; }
+	void setCorrectionFactor(float correctionFactor);
 
 	/*Operators*/
 	inline bool operator == (const PotModel &otherPotModel) const
@@ -33,6 +38,7 @@ public:
 private:
 	int potIndex;
 	String potName;
+	float correctionFactor;
 };
 
 #endif /* MODEL_POTMODEL_H_ */

@@ -10,15 +10,23 @@
 PotModel::PotModel() {
 	this->potIndex = -1;
 	this->potName = "undefined";
+	this->correctionFactor = 1;
 }
 
-PotModel::PotModel(int potIndex, String potName) {
+PotModel::PotModel(int potIndex, String potName, float correctionFactor) {
 	this->potIndex = potIndex;
 	this->potName = potName;
+	this->correctionFactor = correctionFactor;
 }
 
 PotModel::~PotModel() {
 	// TODO Auto-generated destructor stub
+}
+
+void PotModel::setValuesFrom(PotModel* potModel) {
+	this->potIndex = potModel->getPotIndex();
+	this->potName = potModel->getPotName();
+	this->correctionFactor = potModel->getCorrectionFactor();
 }
 
 void PotModel::setPotIndex(int potIndex) {
@@ -27,4 +35,8 @@ void PotModel::setPotIndex(int potIndex) {
 
 void PotModel::setPotName(String potName) {
 	this->potName = potName;
+}
+
+void PotModel::setCorrectionFactor(float correctionFactor) {
+	this->correctionFactor = correctionFactor;
 }
