@@ -51,6 +51,8 @@ void setup()
 	/*Functions*/
 	createPots();
 	createWateringSettings();
+
+
 }
 
 // The loop function is called in an endless loop
@@ -79,47 +81,84 @@ void loop()
 
 void createPots()
 {
-	wateringMode->addPot(new PotModel(0, "CHERRY"));
-	wateringMode->addPot(new PotModel(1, "TOMATOES"));
-	wateringMode->addPot(new PotModel(2, "CARROTS"));
-	wateringMode->addPot(new PotModel(3, "SALAD"));
+	PotModel tempPot;
+
+	/* Create first pot
+	 * 53.333 [ml/s] */
+	tempPot.setPotIndex(0);
+	tempPot.setPotName("PEPPERS");
+	tempPot.setCorrectionFactor(53.333 / PUMP_OUTPUT);
+
+	wateringMode->addPot(&tempPot);
+
+	/* Create second pot
+	 * 51.282 [ml/s] */
+	tempPot.setPotIndex(1);
+	tempPot.setPotName("CHERRY");
+	tempPot.setCorrectionFactor(51.282 / PUMP_OUTPUT);
+
+	wateringMode->addPot(&tempPot);
+
+	/* Create third pot
+	 * 55.556 [ml/s] */
+	tempPot.setPotIndex(2);
+	tempPot.setPotName("TOMATOES");
+	tempPot.setCorrectionFactor(55.556 / PUMP_OUTPUT);
+
+	wateringMode->addPot(&tempPot);
+
+	/* Create fourth pot
+	 * 45.977 [ml/s] */
+	tempPot.setPotIndex(3);
+	tempPot.setPotName("DIVERSE");
+	tempPot.setCorrectionFactor(45.977 / PUMP_OUTPUT);
+
+	wateringMode->addPot(&tempPot);
 }
 
 void createWateringSettings()
 {
-	wateringMode->addWateringSettings(new WateringSettings(0, 0, 100, 1000, new Time(6, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(1, 0, 200, 1100, new Time(7, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(2, 0, 300, 1200, new Time(8, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(3, 0, 400, 1300, new Time(9, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(4, 0, 500, 1400, new Time(10, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(5, 0, 600, 1500, new Time(11, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(6, 0, 700, 1600, new Time(12, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(7, 0, 800, 1700, new Time(13, 00, 0)));
+	Time tempTime;
+	WateringSettings tempSettings;
 
-	wateringMode->addWateringSettings(new WateringSettings(8, 1, 100, 1000, new Time(14, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(9, 1, 200, 1100, new Time(15, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(10, 1, 300, 1200, new Time(16, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(11, 1, 400, 1300, new Time(17, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(12, 1, 500, 1400, new Time(18, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(13, 1, 600, 1500, new Time(19, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(14, 1, 700, 1600, new Time(20, 00, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(15, 1, 800, 1700, new Time(21, 00, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(0, 0, 100, 1000, new Time(21, 0, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(1, 0, 200, 1100, new Time(21, 4, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(2, 0, 300, 1200, new Time(21, 8, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(3, 0, 400, 1300, new Time(21, 12, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(4, 0, 500, 1400, new Time(21, 16, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(5, 0, 600, 1500, new Time(21, 20, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(6, 0, 700, 1600, new Time(21, 24, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(7, 0, 800, 1700, new Time(21, 28, 0)));
+	//
+	//	wateringMode->addWateringSettings(new WateringSettings(8, 1, 100, 1000, new Time(21, 2, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(9, 1, 200, 1100, new Time(21, 6, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(10, 1, 300, 1200, new Time(21, 10, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(11, 1, 400, 1300, new Time(21, 14, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(12, 1, 500, 1400, new Time(21, 18, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(13, 1, 600, 1500, new Time(21, 22, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(14, 1, 700, 1600, new Time(21, 26, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(15, 1, 800, 1700, new Time(21, 30, 0)));
+	//
+	//	wateringMode->addWateringSettings(new WateringSettings(16, 2, 100, 1000, new Time(21, 0, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(17, 2, 200, 1100, new Time(21, 4, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(18, 2, 300, 1200, new Time(21, 8, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(19, 2, 400, 1300, new Time(21, 12, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(20, 2, 500, 1400, new Time(21, 16, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(21, 2, 600, 1500, new Time(21, 20, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(22, 2, 700, 1600, new Time(21, 24, 0)));
+	//	wateringMode->addWateringSettings(new WateringSettings(23, 2, 800, 1700, new Time(21, 28, 0)));
 
-	wateringMode->addWateringSettings(new WateringSettings(16, 2, 100, 1000, new Time(6, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(17, 2, 200, 1100, new Time(7, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(18, 2, 300, 1200, new Time(8, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(19, 2, 400, 1300, new Time(9, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(20, 2, 500, 1400, new Time(10, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(21, 2, 600, 1500, new Time(11, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(22, 2, 700, 1600, new Time(12, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(23, 2, 800, 1700, new Time(13, 30, 0)));
+	/* Create wateringSettings for fourth pot */
+	tempTime.setTime(8, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setPotIndex(3);
+	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMinWaterQuantity(500);
+	tempSettings.setMaxWaterQuantity(1000);
+	wateringMode->addWateringSettings(&tempSettings);
 
-	wateringMode->addWateringSettings(new WateringSettings(24, 3, 100, 1000, new Time(14, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(25, 3, 200, 1100, new Time(15, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(26, 3, 300, 1200, new Time(16, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(27, 3, 400, 1300, new Time(17, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(28, 3, 500, 1400, new Time(18, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(29, 3, 600, 1500, new Time(19, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(30, 3, 700, 1600, new Time(20, 30, 0)));
-	wateringMode->addWateringSettings(new WateringSettings(31, 3, 800, 1700, new Time(21, 30, 0)));
+	tempTime.setTime(22, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
 }
