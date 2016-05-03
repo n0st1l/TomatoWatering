@@ -37,16 +37,20 @@ WateringMode::~WateringMode() {
 	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
 	{
 		delete potArray[i];
+		potArray[i] = 0;
 	}
 	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
 	{
 		delete wateringSettingsArray[i];
+		wateringSettingsArray[i] = 0;
 	}
 	delete wateringModeState;
+	wateringModeState = 0;
 
 	if(wateringMode != 0)
 	{
 		delete wateringMode;
+		wateringMode = 0;
 	}
 }
 
@@ -58,7 +62,7 @@ PotModel* WateringMode::getPot(int index) {
 	}
 	else
 	{
-		return new PotModel();
+		return 0;
 	}
 }
 
@@ -70,7 +74,7 @@ WateringSettings* WateringMode::getWateringSettings(int index) {
 	}
 	else
 	{
-		return new WateringSettings();
+		return 0;
 	}
 }
 
@@ -78,7 +82,7 @@ bool WateringMode::addPot(PotModel* newPot) {
 
 	if( potAlreadyExists(newPot) == false )
 	{
-		potArray[newPot->getPotIndex()] = newPot;
+		potArray[newPot->getPotIndex()]->setValuesFrom(newPot);
 		return true;
 	}
 
@@ -89,8 +93,7 @@ bool WateringMode::removePot(int potIndexToRemove) {
 
 	if(HelperClass::Instance()->isIntInRange(potIndexToRemove, 0, ARRAY_END(NUMBEROFPOTS) ) == true)
 	{
-		delete potArray[potIndexToRemove];
-		potArray[potIndexToRemove] = new PotModel();
+		potArray[potIndexToRemove]->setPotIndex(-1);
 
 		for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
 		{
@@ -110,7 +113,7 @@ bool WateringMode::addWateringSettings(WateringSettings* newWateringSettings) {
 
 	if( wateringSettingsAlreadyExists(newWateringSettings) == false )
 	{
-		wateringSettingsArray[newWateringSettings->getWateringSettingsIndex()] = newWateringSettings;
+		wateringSettingsArray[newWateringSettings->getWateringSettingsIndex()]->setValuesFrom(newWateringSettings);
 		return true;
 	}
 
@@ -121,8 +124,8 @@ bool WateringMode::removeWateringSettings(int wateringSettingsIndexToRemove) {
 
 	if(HelperClass::Instance()->isIntInRange(wateringSettingsIndexToRemove, 0, ARRAY_END(NUMBEROFWATERINGSETTINGS) ) == true)
 	{
-		delete wateringSettingsArray[wateringSettingsIndexToRemove];
-		wateringSettingsArray[wateringSettingsIndexToRemove] = new WateringSettings();
+		wateringSettingsArray[wateringSettingsIndexToRemove]->setWateringSettingsIndex(-1);
+		wateringSettingsArray[wateringSettingsIndexToRemove]->setPotIndex(-1);
 
 		return true;
 	}
