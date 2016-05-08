@@ -77,7 +77,8 @@ void OperatingControl::update() {
 }
 
 void OperatingControl::onTwoSecondsTimerTimeout() {
-	//LOG_DAEMON_DEBUG(eOperatingControl, "onTenSecondsTimerTimeout()");
+	LOG_DAEMON_DEBUG(eOperatingControl, "onTwoSecondsTimerTimeout()");
+
 	if(this->operatingState != NULL && this->hardwareControl != NULL)
 	{
 		operatingState->setActualTime(hardwareControl->getTime());
@@ -91,7 +92,8 @@ void OperatingControl::onTwoSecondsTimerTimeout() {
 }
 
 void OperatingControl::onOneMinuteTimerTimeout() {
-	//LOG_DAEMON_DEBUG(eOperatingControl, "onOneMinuteTimerTimeout()");
+	LOG_DAEMON_DEBUG(eOperatingControl, "onOneMinuteTimerTimeout()");
+
 	if(this->operatingState != NULL && this->hardwareControl != NULL)
 	{
 		operatingState->setActualHumidty(hardwareControl->getHumidity());

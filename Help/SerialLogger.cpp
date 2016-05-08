@@ -7,6 +7,7 @@
 
 #include "SerialLogger.h"
 
+#define LOGGER_ENABLE	false
 SerialLogger* SerialLogger::serialLogger = 0;
 
 SerialLogger* SerialLogger::Instance()
@@ -19,7 +20,9 @@ SerialLogger* SerialLogger::Instance()
 }
 
 SerialLogger::SerialLogger() {
-	Serial.begin(57600);
+	if(LOGGER_ENABLE == true) {
+		Serial.begin(57600);
+	}
 
 }
 
@@ -27,21 +30,25 @@ SerialLogger::~SerialLogger() {
 
 	if(serialLogger != 0)
 	{
-		Serial.end();
+		if(LOGGER_ENABLE == true) {
+			Serial.end();
+		}
 		delete serialLogger;
 	}
 }
 
 void SerialLogger::Log(int p_Source, int p_Level, int p_LogId, String p_Data, int p_UserId)
 {
-	String output = String(millis()) +
-			"_Level:" +
-			String(p_Level) +
-			"_LogId:" +
-			String(p_LogId) +
-			"_" +
-			p_Data;
+	if(LOGGER_ENABLE == true) {
+		String output = String(millis()) +
+				"_Level:" +
+				String(p_Level) +
+				"_LogId:" +
+				String(p_LogId) +
+				"_" +
+				p_Data;
 
-	Serial.println(output);
+		Serial.println(output);
+	}
 }
 

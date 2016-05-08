@@ -1,8 +1,6 @@
 // Do not remove the include below
 #include "TomatoWatering.h"
 
-#include "AButton.h"
-
 #include <stdio.h>
 #include <string.h>
 
@@ -16,36 +14,19 @@ void setup()
 {
 	// Add your initialization code here
 
-	/*IO*/
-	liquidCrystal = new LiquidCrystal(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
-	liquidCrystal->begin(20, 4);
-	liquidCrystal->noAutoscroll();
-	liquidCrystal->noBlink();
-	liquidCrystal->noCursor();
-	pinMode(LCD_A, OUTPUT);
-	digitalWrite(LCD_A, HIGH);
-
-	buttonTop = new AButton(BUTTON_TOP);
-	buttonBottom = new AButton(BUTTON_BOTTOM);
-	buttonLeft = new AButton(BUTTON_LEFT);
-	buttonRight = new AButton(BUTTON_RIGHT);
-
-	/*Timer*/
-	lcdTimer = new ATimer(SECONDS_TO_MILLISECONDS((unsigned long) 20));
-
 	/*Models*/
 	wateringMode = WateringMode::Instance();
 	operatingState = OperatingState::Instance();
 
-	/*Screens*/
-	mainScreen = new MainScreen(liquidCrystal);
-	wateringScreen = new WateringScreen (liquidCrystal);
-
 	/*Controls*/
 	hardwareControl = HardwareControl::Instance();
 	operatingControl = OperatingControl::Instance();
-	operatingControl->setMainScreen(mainScreen);
 	wateringControl = WateringControl::Instance();
+
+	/*Screens*/
+	mainScreen = new MainScreen(hardwareControl->getLiquidCrystal());
+	operatingControl->setMainScreen(mainScreen);
+	wateringScreen = new WateringScreen (hardwareControl->getLiquidCrystal());
 	wateringControl->setWateringScreen(wateringScreen);
 
 	/*Functions*/
@@ -62,21 +43,9 @@ void loop()
 
 	operatingControl->update();
 	wateringControl->update();
+	hardwareControl->update();
 
-	if(buttonTop->onPressed() ||
-			buttonBottom->onPressed() ||
-			buttonLeft->onPressed() ||
-			buttonRight->onPressed())
-	{
-		digitalWrite(LCD_A, HIGH);
-		liquidCrystal->display();
-		lcdTimer->restart();
-	}
-	if(lcdTimer->onExpired())
-	{
-		liquidCrystal->noDisplay();
-		digitalWrite(LCD_A, LOW);
-	}
+
 }
 
 void createPots()
@@ -154,10 +123,10 @@ void createWateringSettings()
 	tempSettings.setPotIndex(3);
 	tempSettings.setWateringTime(&tempTime);
 	tempSettings.setMinWaterQuantity(500);
-	tempSettings.setMaxWaterQuantity(1000);
+	tempSettings.setMaxWaterQuantity(2000);
 	wateringMode->addWateringSettings(&tempSettings);
 
-	tempTime.setTime(22, 0, 0);
+	tempTime.setTime(21, 0, 0);
 	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
 	tempSettings.setWateringTime(&tempTime);
 	wateringMode->addWateringSettings(&tempSettings);

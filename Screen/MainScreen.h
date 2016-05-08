@@ -24,6 +24,8 @@ public:
 
 private:
 	LiquidCrystal* lcd;
+
+
 };
 
 #endif /* MAINSCREEN_H_ */

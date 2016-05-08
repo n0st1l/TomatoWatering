@@ -229,12 +229,12 @@ void WateringControl::checkIfShouldWatering() {
 
 float WateringControl::getWaterQuantity(float actTemp, float minTemp, float maxTemp, float minQuantity, float maxQuantity) {
 
-	//	String debugMsg = "getWaterQuantity(float " + String(actTemp) +
-	//			", float " + String(minTemp) +
-	//			", float " + String(maxTemp) +
-	//			", float " + String(minQuantity) +
-	//			", float " + String(maxQuantity) + ")";
-	//	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+	String debugMsg = "getWaterQuantity(float " + String(actTemp) +
+			", float " + String(minTemp) +
+			", float " + String(maxTemp) +
+			", float " + String(minQuantity) +
+			", float " + String(maxQuantity) + ")";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
 	float gain = 0;
 	float offset = 0;
@@ -244,8 +244,8 @@ float WateringControl::getWaterQuantity(float actTemp, float minTemp, float maxT
 	waterQuantity = gain * actTemp + offset;
 	waterQuantity = constrain(waterQuantity, minQuantity, maxQuantity);
 
-	//	debugMsg = "waterQuantity " + String(waterQuantity);
-	//	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+	debugMsg = "waterQuantity " + String(waterQuantity);
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
 	return waterQuantity;
 }

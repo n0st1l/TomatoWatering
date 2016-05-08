@@ -25,8 +25,19 @@ HardwareControl::HardwareControl() {
 	this->dht22 = new DHT(DHT22_DATA, DHT22);
 	this->dht22->begin();
 
+	this->liquidCrystal = new LiquidCrystal(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+	this->liquidCrystal->begin(20, 4);
+	this->setupLiquidCrystal();
+
+	this->buttonTop = new AButton(BUTTON_TOP);
+	this->buttonBottom = new AButton(BUTTON_BOTTOM);
+	this->buttonLeft = new AButton(BUTTON_LEFT);
+	this->buttonRight = new AButton(BUTTON_RIGHT);
+
 	this->humidityLowPass = new ALowPassFilter(0.5);
 	this->temperatureLowPass = new ALowPassFilter(0.5);
+
+	this->lcdTimer = new ATimer(SECONDS_TO_MILLISECONDS((unsigned long) 20));
 
 	this->setupRelayModule();
 }
@@ -35,12 +46,34 @@ HardwareControl::~HardwareControl() {
 	delete this->realTimeClock;
 	delete this->dht22;
 
+	delete this->liquidCrystal;
+
+	delete this->buttonTop;
+	delete this->buttonBottom;
+	delete this->buttonLeft;
+	delete this->buttonRight;
+
 	delete this->humidityLowPass;
 	delete this->temperatureLowPass;
+
+	delete this->lcdTimer;
 }
 
 void HardwareControl::update() {
-
+	if(buttonTop->onPressed() ||
+			buttonBottom->onPressed() ||
+			buttonLeft->onPressed() ||
+			buttonRight->onPressed())
+	{
+		digitalWrite(LCD_A, HIGH);
+		liquidCrystal->display();
+		lcdTimer->restart();
+	}
+	if(lcdTimer->onExpired())
+	{
+		liquidCrystal->noDisplay();
+		digitalWrite(LCD_A, LOW);
+	}
 }
 
 Time* HardwareControl::getTime() {
@@ -65,8 +98,8 @@ void HardwareControl::setDigitalOutput(
 		DigitalOutputType_t digitalOutputType,
 		DigitalOutputState_t digitalOutputState) {
 
-	//	String debugMsg = "setDigitalOutput(DigitalOutputType_t " + String(digitalOutputType) + ", DigitalOutputState_t " + String(digitalOutputState) + ")";
-	//	LOG_DAEMON_DEBUG(eHardwareControl, debugMsg);
+	String debugMsg = "setDigitalOutput(DigitalOutputType_t " + String(digitalOutputType) + ", DigitalOutputState_t " + String(digitalOutputState) + ")";
+	LOG_DAEMON_DEBUG(eHardwareControl, debugMsg);
 
 	switch(digitalOutputType)
 	{
@@ -108,6 +141,15 @@ void HardwareControl::setupRealTimeClock() {
 	/* Set the time and date on the chip */
 	realTimeClock->time(t);
 	realTimeClock->date(d);
+}
+
+void HardwareControl::setupLiquidCrystal() {
+	this->liquidCrystal->noAutoscroll();
+	this->liquidCrystal->noBlink();
+	this->liquidCrystal->noCursor();
+	/*Set backlight*/
+	pinMode(LCD_A, OUTPUT);
+	digitalWrite(LCD_A, HIGH);
 }
 
 void HardwareControl::setupRelayModule() {
