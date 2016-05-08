@@ -79,10 +79,16 @@ WateringSettings* WateringMode::getWateringSettings(int index) {
 }
 
 bool WateringMode::addPot(PotModel* newPot) {
+	LOG_DAEMON_WARNING(eWateringMode, "addPot(PotModel* newPot)");
 
 	if( potAlreadyExists(newPot) == false )
 	{
 		potArray[newPot->getPotIndex()]->setValuesFrom(newPot);
+
+		String debugMsg = "potIndex " + String(newPot->getPotIndex()) +
+				", potName " + newPot->getPotName() +
+				", correctionFactor " + String(newPot->getCorrectionFactor(), 6);
+		LOG_DAEMON_DEBUG(eWateringMode, debugMsg);
 		return true;
 	}
 
@@ -110,10 +116,19 @@ bool WateringMode::removePot(int potIndexToRemove) {
 }
 
 bool WateringMode::addWateringSettings(WateringSettings* newWateringSettings) {
+	LOG_DAEMON_WARNING(eWateringMode, "addWateringSettings(WateringSettings* newWateringSettings)");
 
 	if( wateringSettingsAlreadyExists(newWateringSettings) == false )
 	{
 		wateringSettingsArray[newWateringSettings->getWateringSettingsIndex()]->setValuesFrom(newWateringSettings);
+
+		String debugMsg = "wateringSettingsIndex " + String(newWateringSettings->getWateringSettingsIndex()) +
+				", potIndex " + String(newWateringSettings->getPotIndex()) +
+				", minWaterQuantity " + String(newWateringSettings->getMinWaterQuantity()) +
+				", maxWaterQuantity " + String(newWateringSettings->getMaxWaterQuantity()) +
+				", shouldWatering " + String(newWateringSettings->getShouldWatering()) +
+				", wateringTime " + String(newWateringSettings->getWateringTime()->getTimeString("hh:mm"));
+		LOG_DAEMON_DEBUG(eWateringMode, debugMsg);
 		return true;
 	}
 
@@ -134,41 +149,50 @@ bool WateringMode::removeWateringSettings(int wateringSettingsIndexToRemove) {
 }
 
 int WateringMode::getFreeWateringSettingsIndex() {
+	LOG_DAEMON_WARNING(eWateringMode, "getFreeWateringSettingsIndex()");
 
 	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
 	{
 		if(wateringSettingsArray[i]->getWateringSettingsIndex() == -1)
 		{
+			LOG_DAEMON_WARNING(eWateringMode, "return " + String(i));
 			return i;
 		}
 	}
 
+	LOG_DAEMON_WARNING(eWateringMode, "return " + String(NUMBEROFWATERINGSETTINGS));
 	return NUMBEROFWATERINGSETTINGS;
 }
 
 bool WateringMode::potAlreadyExists(PotModel* potToCheck) {
+	LOG_DAEMON_WARNING(eWateringMode, "potAlreadyExists(PotModel* potToCheck)");
 
 	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
 	{
 		if( (*potArray[i]) == (*potToCheck) )
 		{
+			LOG_DAEMON_WARNING(eWateringMode, "return true");
 			return true;
 		}
 	}
 
+	LOG_DAEMON_WARNING(eWateringMode, "return false");
 	return false;
 }
 
 bool WateringMode::wateringSettingsAlreadyExists(
 		WateringSettings* wateringSettingsToCheck) {
+	LOG_DAEMON_WARNING(eWateringMode, "wateringSettingsAlreadyExists(WateringSettings* wateringSettingsToCheck)");
 
 	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
 	{
 		if( (*wateringSettingsArray[i]) == (*wateringSettingsToCheck) )
 		{
+			LOG_DAEMON_WARNING(eWateringMode, "return true");
 			return true;
 		}
 	}
 
+	LOG_DAEMON_WARNING(eWateringMode, "return false");
 	return false;
 }
