@@ -31,7 +31,12 @@
 		eHelperClass = 0x101,
 	    eHardwareControl = 0x201,
 	    eOperatingControl = 0x202,
-	    eWateringControl = 0x203
+	    eWateringControl = 0x203,
+		eOperatingState = 0x300,
+		ePotModel = 0x301,
+		eWateringMode = 0x302,
+		eWateringModeState = 0x303,
+		eWateringSettings = 0x304
 	} eDaemonLogIdTypes_t;
 
 
