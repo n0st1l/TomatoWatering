@@ -118,7 +118,7 @@ void createWateringSettings()
 	//	wateringMode->addWateringSettings(new WateringSettings(23, 2, 800, 1700, new Time(21, 28, 0)));
 
 	/* Create wateringSettings for fourth pot */
-	tempTime.setTime(8, 0, 0);
+	tempTime.setTime(6, 45, 0);
 	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
 	tempSettings.setPotIndex(3);
 	tempSettings.setWateringTime(&tempTime);
