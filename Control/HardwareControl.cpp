@@ -59,7 +59,7 @@ HardwareControl::~HardwareControl() {
 	delete this->lcdTimer;
 }
 
-void HardwareControl::update() {
+void HardwareControl::cycleTask() {
 	if(buttonTop->onPressed() ||
 			buttonBottom->onPressed() ||
 			buttonLeft->onPressed() ||

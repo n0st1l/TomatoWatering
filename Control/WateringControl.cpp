@@ -56,7 +56,7 @@ void WateringControl::setWateringScreen(WateringScreen* wateringScreen) {
 	this->wateringScreen = wateringScreen;
 }
 
-void WateringControl::update() {
+void WateringControl::cycleTask() {
 	if(this->oneSecondTimer->onRestart())
 	{
 		this->checkIfShouldSetWateringFlag();

@@ -22,7 +22,7 @@ public:
 	static HardwareControl *Instance();
 	virtual ~HardwareControl();
 
-	void update();
+	void cycleTask();
 
 	Time* getTime();
 	Date* getDate();

@@ -24,7 +24,7 @@ public:
 
 	void setWateringScreen(WateringScreen* wateringScreen);
 
-	void update();
+	void cycleTask();
 
 	void startAutoWatering(WateringSettings* wateringSettings);
 	void startManualWatering(int potIndex);

@@ -56,7 +56,7 @@ void OperatingControl::setMainScreen(MainScreen* mainScreen) {
 	this->mainScreen = mainScreen;
 }
 
-void OperatingControl::update() {
+void OperatingControl::cycleTask() {
 	if(this->firstStart == true)
 	{
 		LOG_DAEMON_DEBUG(eOperatingControl, "firstStart");

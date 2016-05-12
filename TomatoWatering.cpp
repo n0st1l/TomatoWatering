@@ -41,9 +41,9 @@ void loop()
 {
 	//Add your repeated code here
 
-	operatingControl->update();
-	wateringControl->update();
-	hardwareControl->update();
+	operatingControl->cycleTask();
+	wateringControl->cycleTask();
+	hardwareControl->cycleTask();
 
 
 }
@@ -126,8 +126,14 @@ void createWateringSettings()
 	tempSettings.setMaxWaterQuantity(2000);
 	wateringMode->addWateringSettings(&tempSettings);
 
+	tempTime.setTime(13, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
 	tempTime.setTime(21, 0, 0);
 	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
 	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMaxWaterQuantity(3000);
 	wateringMode->addWateringSettings(&tempSettings);
 }

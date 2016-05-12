@@ -23,7 +23,7 @@ public:
 
 	void setMainScreen(MainScreen* mainScreen);
 
-	void update();
+	void cycleTask();
 
 
 private:
