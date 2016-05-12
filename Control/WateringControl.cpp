@@ -30,6 +30,7 @@ WateringControl::WateringControl() {
 	this->oneSecondTimer = new ATimer(SECONDS_TO_MILLISECONDS((unsigned long) 1));
 	this->oneSecondTimer->restart();
 	this->wateringTimer = new ATimer();
+	this->waitTimer = new ATimer();
 }
 
 WateringControl::~WateringControl() {
@@ -44,6 +45,8 @@ WateringControl::~WateringControl() {
 	this->oneSecondTimer = NULL;
 	delete this->wateringTimer;
 	this->wateringTimer = NULL;
+	delete this->waitTimer;
+	this->waitTimer = NULL;
 
 	if(wateringControl != 0)
 	{
@@ -189,6 +192,49 @@ void WateringControl::startWatering(int potIndex) {
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypePump, eDigitalOutputStateEnabled);
 }
 
+void WateringControl::setValve(int potIndex,
+		DigitalOutputState_t digitalOutputState) {
+
+	String debugMsg = "setValve(int " + String(potIndex) + "DigitalOutputState_t " + String(digitalOutputState) + ")";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
+	switch(potIndex + 1)
+	{
+	case 1:
+		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_1, digitalOutputState);
+		break;
+	case 2:
+		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_2, digitalOutputState);
+		break;
+	case 3:
+		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_3, digitalOutputState);
+		break;
+	case 4:
+		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_4, digitalOutputState);
+		break;
+	default:
+		break;
+	}
+}
+
+void WateringControl::disableAllValves() {
+	String debugMsg = "disableAllValves()";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
+	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
+	{
+		this->setValve(i, eDigitalOutputStateDisabled);
+	}
+}
+
+void WateringControl::setPump(DigitalOutputState_t digitalOutputState) {
+
+	String debugMsg = "setPump(DigitalOutputState_t " + String(digitalOutputState) + ")";
+	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
+
+	this->hardwareControl->setDigitalOutput(eDigitalOutputTypePump, digitalOutputState);
+}
+
 void WateringControl::checkIfShouldSetWateringFlag() {
 	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
 	{
@@ -224,6 +270,67 @@ void WateringControl::checkIfShouldWatering() {
 				}
 			}
 		}
+	}
+}
+
+void WateringControl::processWateringControlState() {
+	switch(this->wateringMode->getWateringModeState()->getActualWateringControlState())
+	{
+	case eWateringControlStateIdle:
+
+		break;
+	case eWateringControlStateCheckIfShouldStartWatering:
+
+		break;
+	case eWateringControlStateStartWatering:
+
+		break;
+	case eWateringControlStateEnableValve:
+		this->setValve(this->wateringMode->getWateringModeState()->getActualPotIndex(), eDigitalOutputStateEnabled);
+
+		this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(1));
+		this->waitTimer->restart();
+
+		this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateWaitAfterEnableValve);
+		break;
+	case eWateringControlStateWaitAfterEnableValve:
+		if(this->waitTimer->onExpired())
+		{
+			this->waitTimer->stop();
+
+			this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateEnablePump);
+		}
+		break;
+	case eWateringControlStateEnablePump:
+		this->setPump(eDigitalOutputStateEnabled);
+
+		this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateCheckIfShouldStopWatering);
+		break;
+	case eWateringControlStateCheckIfShouldStopWatering:
+
+		break;
+	case eWateringControlStateDisablePump:
+		this->setPump(eDigitalOutputStateDisabled);
+
+		this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(1));
+		this->waitTimer->restart();
+
+		this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateWaitAfterDisablePump);
+		break;
+	case eWateringControlStateWaitAfterDisablePump:
+		if(this->waitTimer->onExpired())
+		{
+			this->waitTimer->stop();
+
+			this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateDisableValves);
+		}
+		break;
+	case eWateringControlStateDisableValves:
+		this->disableAllValves();
+		break;
+	default:
+
+		break;
 	}
 }
 

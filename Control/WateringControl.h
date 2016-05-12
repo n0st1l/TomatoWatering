@@ -44,11 +44,17 @@ private:
 
 	ATimer* oneSecondTimer;
 	ATimer* wateringTimer;
+	ATimer* waitTimer;
 
 	void startWatering(int potIndex);
+	void setValve(int potIndex, DigitalOutputState_t digitalOutputState);
+	void disableAllValves();
+	void setPump(DigitalOutputState_t digitalOutputState);
 
 	void checkIfShouldSetWateringFlag();
 	void checkIfShouldWatering();
+
+	void processWateringControlState();
 
 	float getWaterQuantity(float actTemp, float minTemp, float maxTemp, float minQuantity, float maxQuantity);
 
