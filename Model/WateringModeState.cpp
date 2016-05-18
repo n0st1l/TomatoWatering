@@ -22,8 +22,7 @@ WateringModeState* WateringModeState::Instance()
 WateringModeState::WateringModeState() {
 	this->isWatering = false;
 	this->isAutomaticMode = true;
-	this->actualWateringSettingsIndex = -1;
-	this->actualPotIndex = -1;
+	this->actualWateringSettings = NULL;
 	this->actualWateringControlState = eWateringControlStateIdle;
 }
 
@@ -43,13 +42,9 @@ void WateringModeState::setIsAutomaticMode(bool isAutomaticMode) {
 	this->isAutomaticMode = isAutomaticMode;
 }
 
-void WateringModeState::setActualWateringSettingsIndex(
-		int actualWateringSettingsIndex) {
-	this->actualWateringSettingsIndex = actualWateringSettingsIndex;
-}
-
-void WateringModeState::setActualPotIndex(int actualPotIndex) {
-	this->actualPotIndex = actualPotIndex;
+void WateringModeState::setActualWateringSettings(
+		WateringSettings* actualWateringSettings) {
+	this->actualWateringSettings = actualWateringSettings;
 }
 
 void WateringModeState::setActualWateringControlState(
