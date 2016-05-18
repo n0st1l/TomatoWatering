@@ -8,6 +8,9 @@
 #include "WateringControl.h"
 
 
+#define PUMP_WAIT_TIME	1	//Unit: [s]
+
+
 WateringControl* WateringControl::wateringControl = 0;
 
 WateringControl* WateringControl::Instance()
@@ -62,134 +65,14 @@ void WateringControl::setWateringScreen(WateringScreen* wateringScreen) {
 void WateringControl::cycleTask() {
 	if(this->oneSecondTimer->onRestart())
 	{
-		this->checkIfShouldSetWateringFlag();
-		this->checkIfShouldWatering();
-
 		if(this->wateringTimer->isActive())
 		{
 			this->updateDisplayProgress();
 		}
 	}
 
-	if(this->wateringTimer->onExpired())
-	{
-		this->stopWatering();
-	}
-}
-
-void WateringControl::startAutoWatering(WateringSettings* settings) {
-
-	String debugMsg = "startAutoWatering(WateringSettings* settings)";
-	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
-
-	if( (settings->isValid() == false) ||
-			(this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
-			(this->wateringMode->getWateringModeState()->getIsAutomaticMode() == false) )
-	{
-		//Invalid settings, is already started or not in automatic mode
-		debugMsg = "Invalid settings, is already started or not in automatic mode";
-		LOG_DAEMON_WARNING(eWateringControl, debugMsg);
-		return;
-	}
-	this->wateringMode->getWateringModeState()->setIsWatering(true);
-	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(settings->getWateringSettingsIndex());
-
-	debugMsg = "settings->getWateringSettingsIndex() = " + String(settings->getWateringSettingsIndex());
-	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
-	this->startWatering(settings->getPotIndex());
-
-	float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), MIN_TEMP, MAX_TEMP, settings->getMinWaterQuantity(), settings->getMaxWaterQuantity());
-	this->operatingState->setTotalWaterQuantity(this->operatingState->getTotalWaterQuantity() + (waterQuantity / 1000));
-	float pumpWorkTime = waterQuantity / (PUMP_OUTPUT * wateringMode->getPot(settings->getPotIndex())->getCorrectionFactor());
-
-	this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime));
-	this->wateringTimer->restart();
-
-	/*Update the display*/
-	if(this->wateringScreen != NULL)
-	{
-		this->wateringScreen->updateStatus("WATERING " + this->wateringMode->getPot(settings->getPotIndex())->getPotName());
-		this->wateringScreen->updateQuantity("QUANTITY " + String((int)waterQuantity) + " ML");
-	}
-}
-
-void WateringControl::startManualWatering(int potIndex) {
-
-	String debugMsg = "startManualWatering(int " + String(potIndex) + ")";
-	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
-
-	if( (this->wateringMode->getWateringModeState()->getIsWatering() == true) ||
-			(this->wateringMode->getWateringModeState()->getIsAutomaticMode() == true) )
-	{
-		//Is already started or not in manual mode
-		debugMsg = "Is already started or not in manual mode";
-		LOG_DAEMON_WARNING(eWateringControl, debugMsg);
-		return;
-	}
-	this->wateringMode->getWateringModeState()->setIsWatering(true);
-
-	this->startWatering(potIndex);
-
-	/*Update the display*/
-	if(this->wateringScreen != NULL)
-	{
-		this->wateringScreen->updateStatus("WATERING " + this->wateringMode->getPot(potIndex)->getPotName());
-		this->wateringScreen->updateQuantity("");
-		this->wateringScreen->updateProgress("");
-	}
-}
-
-void WateringControl::stopWatering() {
-
-	String debugMsg = "stopWatering()";
-	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
-
-	this->hardwareControl->setDigitalOutput(eDigitalOutputTypePump, eDigitalOutputStateDisabled);
-	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_1, eDigitalOutputStateDisabled);
-	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_2, eDigitalOutputStateDisabled);
-	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_3, eDigitalOutputStateDisabled);
-	this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_4, eDigitalOutputStateDisabled);
-
-	if(this->wateringMode->getWateringSettings(this->wateringMode->getWateringModeState()->getActualWateringSettingsIndex())->isValid() == true) {
-		this->wateringMode->getWateringSettings(this->wateringMode->getWateringModeState()->getActualWateringSettingsIndex())->setShouldWatering(false);
-	}
-	this->wateringMode->getWateringModeState()->setActualWateringSettingsIndex(-1);
-	this->wateringMode->getWateringModeState()->setIsWatering(false);
-
-	this->wateringTimer->stop();
-
-	/*Update the display*/
-	if(this->wateringScreen != NULL)
-	{
-		this->wateringScreen->updateStatus("READY");
-		this->wateringScreen->updateQuantity("TOTAL " + String(this->operatingState->getTotalWaterQuantity()) + " L");
-		this->wateringScreen->updateProgress("");
-	}
-}
-
-void WateringControl::startWatering(int potIndex) {
-
-	String debugMsg = "startWatering(int " + String(potIndex) + ")";
-	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
-
-	switch(potIndex + 1)
-	{
-	case 1:
-		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_1, eDigitalOutputStateEnabled);
-		break;
-	case 2:
-		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_2, eDigitalOutputStateEnabled);
-		break;
-	case 3:
-		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_3, eDigitalOutputStateEnabled);
-		break;
-	case 4:
-		this->hardwareControl->setDigitalOutput(eDigitalOutputTypeValve_4, eDigitalOutputStateEnabled);
-		break;
-	default:
-		break;
-	}
-	this->hardwareControl->setDigitalOutput(eDigitalOutputTypePump, eDigitalOutputStateEnabled);
+	// State Machine
+	this->processWateringControlState();
 }
 
 void WateringControl::setValve(int potIndex,
@@ -235,98 +118,155 @@ void WateringControl::setPump(DigitalOutputState_t digitalOutputState) {
 	this->hardwareControl->setDigitalOutput(eDigitalOutputTypePump, digitalOutputState);
 }
 
-void WateringControl::checkIfShouldSetWateringFlag() {
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
-	{
-		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
-
-		if(actSettings != 0)
-		{
-			if(actSettings->isValid() == true) {
-				if( (actSettings->getShouldWatering() == false) &&
-						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) &&
-						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -10))
-				{
-					actSettings->setShouldWatering(true);
-				}
-			}
-		}
-	}
-}
-
-void WateringControl::checkIfShouldWatering() {
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
-	{
-		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
-
-		if(actSettings != 0)
-		{
-			if(actSettings->isValid() == true) {
-				if( (actSettings->getShouldWatering() == true) &&
-						(this->wateringMode->getWateringModeState()->getIsWatering() == false) )
-				{
-					this->startAutoWatering(actSettings);
-					return;
-				}
-			}
-		}
-	}
-}
-
 void WateringControl::processWateringControlState() {
-	switch(this->wateringMode->getWateringModeState()->getActualWateringControlState())
+	WateringModeState* modeState = wateringMode->getWateringModeState();
+	WateringSettings* actWateringSettings = modeState->getActualWateringSettings();
+	bool actWateringSettingsIsValid = false;
+
+	// Check if actual watering settings is valid
+	if(actWateringSettings != NULL)
+	{
+		if(actWateringSettings->isValid() == true)
+		{
+			actWateringSettingsIsValid = true;
+		}
+	}
+
+	switch(modeState->getActualWateringControlState())
 	{
 	case eWateringControlStateIdle:
+		/*Update the display*/
+		if(this->wateringScreen != NULL)
+		{
+			this->wateringScreen->updateStatus("IDLE");
+			this->wateringScreen->updateQuantity("TOTAL " + String(this->operatingState->getTotalWaterQuantity()) + " L");
+			this->wateringScreen->updateProgress("");
+		}
 
+		modeState->setActualWateringControlState(eWateringControlStateCheckIfShouldStartWatering);
 		break;
 	case eWateringControlStateCheckIfShouldStartWatering:
+		if(modeState->getIsWatering() == true)
+		{
+			if(actWateringSettingsIsValid == true)
+			{
+				modeState->setActualWateringControlState(eWateringControlStateStartWatering);
+			}
+			else
+			{
+				// TODO Implement this
+			}
+		}
 
 		break;
 	case eWateringControlStateStartWatering:
+		/*Update the display*/
+		if( (this->wateringScreen != NULL) && (actWateringSettingsIsValid == true))
+		{
+			this->wateringScreen->updateStatus("WATERING " + this->wateringMode->getPot(actWateringSettings->getPotIndex())->getPotName());
+		}
 
+		modeState->setActualWateringControlState(eWateringControlStateStartTimer);
+		break;
+	case eWateringControlStateStartTimer:
+		if(actWateringSettingsIsValid == true)
+		{
+			float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), MIN_TEMP, MAX_TEMP, modeState->getActualWateringSettings()->getMinWaterQuantity(), modeState->getActualWateringSettings()->getMaxWaterQuantity());
+
+			//Save new totalWaterQuantity
+			this->operatingState->setTotalWaterQuantity(this->operatingState->getTotalWaterQuantity() + (waterQuantity / 1000));
+			this->wateringMode->getPot(actWateringSettings->getPotIndex())->setTotalWaterQuantity(this->wateringMode->getPot(actWateringSettings->getPotIndex())->getTotalWaterQuantity() + (waterQuantity / 1000));
+
+			float pumpWorkTime = waterQuantity / (PUMP_OUTPUT * wateringMode->getPot(modeState->getActualWateringSettings()->getPotIndex())->getCorrectionFactor());
+			this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime + PUMP_WAIT_TIME));
+			this->wateringTimer->restart();
+
+			/*Update the display*/
+			if(this->wateringScreen != NULL)
+			{
+				this->wateringScreen->updateQuantity("QUANTITY " + String((int)waterQuantity) + " ML");
+			}
+
+			modeState->setActualWateringControlState(eWateringControlStateEnableValve);
+		}
+		else
+		{
+			modeState->setActualWateringControlState(eWateringControlStateStopWatering);
+		}
 		break;
 	case eWateringControlStateEnableValve:
-		this->setValve(this->wateringMode->getWateringModeState()->getActualPotIndex(), eDigitalOutputStateEnabled);
+		if(actWateringSettingsIsValid == true)
+		{
+			this->setValve(actWateringSettings->getPotIndex(), eDigitalOutputStateEnabled);
 
-		this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(1));
-		this->waitTimer->restart();
+			this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(PUMP_WAIT_TIME));
+			this->waitTimer->restart();
 
-		this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateWaitAfterEnableValve);
+			modeState->setActualWateringControlState(eWateringControlStateWaitAfterEnableValve);
+		}
+		else
+		{
+			modeState->setActualWateringControlState(eWateringControlStateStopWatering);
+		}
 		break;
 	case eWateringControlStateWaitAfterEnableValve:
 		if(this->waitTimer->onExpired())
 		{
 			this->waitTimer->stop();
 
-			this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateEnablePump);
+			modeState->setActualWateringControlState(eWateringControlStateEnablePump);
 		}
 		break;
 	case eWateringControlStateEnablePump:
 		this->setPump(eDigitalOutputStateEnabled);
 
-		this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateCheckIfShouldStopWatering);
+		modeState->setActualWateringControlState(eWateringControlStateCheckIfShouldStopWatering);
 		break;
 	case eWateringControlStateCheckIfShouldStopWatering:
+		if( (modeState->getIsWatering() == false) ||
+				(this->wateringTimer->onExpired()) )
+		{
+			modeState->setActualWateringControlState(eWateringControlStateStopWatering);
+		}
+		break;
+	case eWateringControlStateStopWatering:
+		this->wateringTimer->stop();
 
+		modeState->setActualWateringControlState(eWateringControlStateDisablePump);
 		break;
 	case eWateringControlStateDisablePump:
 		this->setPump(eDigitalOutputStateDisabled);
 
-		this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(1));
+		this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(PUMP_WAIT_TIME));
 		this->waitTimer->restart();
 
-		this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateWaitAfterDisablePump);
+		modeState->setActualWateringControlState(eWateringControlStateWaitAfterDisablePump);
 		break;
 	case eWateringControlStateWaitAfterDisablePump:
 		if(this->waitTimer->onExpired())
 		{
 			this->waitTimer->stop();
 
-			this->wateringMode->getWateringModeState()->setActualWateringControlState(eWateringControlStateDisableValves);
+			modeState->setActualWateringControlState(eWateringControlStateDisableValves);
 		}
 		break;
 	case eWateringControlStateDisableValves:
 		this->disableAllValves();
+
+		modeState->setActualWateringControlState(eWateringControlStatePostProcessing);
+		break;
+	case eWateringControlStatePostProcessing:
+		if(actWateringSettingsIsValid == true)
+		{
+			modeState->getActualWateringSettings()->setShouldWatering(false);
+		}
+
+		modeState->setActualWateringControlState(eWateringControlStateResetModel);
+		break;
+	case eWateringControlStateResetModel:
+		modeState->setIsWatering(false);
+		modeState->setActualWateringSettings(NULL);
+		modeState->setActualWateringControlState(eWateringControlStateIdle);
 		break;
 	default:
 

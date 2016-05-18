@@ -26,9 +26,9 @@ public:
 
 	void cycleTask();
 
-	void startAutoWatering(WateringSettings* wateringSettings);
-	void startManualWatering(int potIndex);
-	void stopWatering();
+//	void startAutoWatering(WateringSettings* wateringSettings);
+//	void startManualWatering(int potIndex);
+//	void stopWatering();
 
 
 private:
@@ -46,13 +46,10 @@ private:
 	ATimer* wateringTimer;
 	ATimer* waitTimer;
 
-	void startWatering(int potIndex);
+//	void startWatering(int potIndex);
 	void setValve(int potIndex, DigitalOutputState_t digitalOutputState);
 	void disableAllValves();
 	void setPump(DigitalOutputState_t digitalOutputState);
-
-	void checkIfShouldSetWateringFlag();
-	void checkIfShouldWatering();
 
 	void processWateringControlState();
 
