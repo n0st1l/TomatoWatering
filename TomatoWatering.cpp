@@ -22,6 +22,8 @@ void setup()
 	hardwareControl = HardwareControl::Instance();
 	operatingControl = OperatingControl::Instance();
 	wateringControl = WateringControl::Instance();
+	autoModeControl = AutoModeControl::Instance();
+	manualModeControl = ManualModeControl::Instance();
 
 	/*Screens*/
 	mainScreen = new MainScreen(hardwareControl->getLiquidCrystal());
@@ -43,6 +45,8 @@ void loop()
 
 	operatingControl->cycleTask();
 	wateringControl->cycleTask();
+	autoModeControl->cycleTask();
+	manualModeControl->cycleTask();
 	hardwareControl->cycleTask();
 
 
@@ -116,6 +120,14 @@ void createWateringSettings()
 	//	wateringMode->addWateringSettings(new WateringSettings(21, 2, 600, 1500, new Time(21, 20, 0)));
 	//	wateringMode->addWateringSettings(new WateringSettings(22, 2, 700, 1600, new Time(21, 24, 0)));
 	//	wateringMode->addWateringSettings(new WateringSettings(23, 2, 800, 1700, new Time(21, 28, 0)));
+
+	/* Create wateringSettings for manual mode */
+
+	/* Create wateringSettings for first pot */
+
+	/* Create wateringSettings for second pot */
+
+	/* Create wateringSettings for third pot */
 
 	/* Create wateringSettings for fourth pot */
 	tempTime.setTime(6, 45, 0);

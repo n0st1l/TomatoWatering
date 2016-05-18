@@ -21,6 +21,8 @@
 #include "Control/HardwareControl.h"
 #include "Control/OperatingControl.h"
 #include "Control/WateringControl.h"
+#include "Control/AutoModeControl.h"
+#include "Control/ManualModeControl.h"
 
 /*Include Screens*/
 #include "Screen/MainScreen.h"
@@ -47,6 +49,8 @@ OperatingState* operatingState;
 HardwareControl* hardwareControl;
 OperatingControl* operatingControl;
 WateringControl* wateringControl;
+AutoModeControl* autoModeControl;
+ManualModeControl* manualModeControl;
 
 /*Screens*/
 MainScreen* mainScreen;
