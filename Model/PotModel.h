@@ -25,6 +25,9 @@ public:
 	inline String getPotName() { return potName; }
 	void setPotName(String potName);
 
+	inline float getTotalWaterQuantity() { return totalWaterQuantity; }
+	void setTotalWaterQuantity(float totalWaterQuantity);
+
 	inline float getCorrectionFactor() { return correctionFactor; }
 	void setCorrectionFactor(float correctionFactor);
 
@@ -38,6 +41,7 @@ public:
 private:
 	int potIndex;
 	String potName;
+	float totalWaterQuantity;	// [l]
 	float correctionFactor;
 };
 
