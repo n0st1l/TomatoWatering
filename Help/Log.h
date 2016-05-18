@@ -32,6 +32,8 @@
 	    eHardwareControl = 0x201,
 	    eOperatingControl = 0x202,
 	    eWateringControl = 0x203,
+		eAutoModeControl = 0x204,
+		eManualModeControl = 0x205,
 		eOperatingState = 0x300,
 		ePotModel = 0x301,
 		eWateringMode = 0x302,

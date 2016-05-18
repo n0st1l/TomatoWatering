@@ -8,6 +8,7 @@
 #ifndef HELP_TYPES_H_
 #define HELP_TYPES_H_
 
+
 typedef enum DigitalOutputType
 {
 	eDigitalOutputTypeUndefined	= 0,
