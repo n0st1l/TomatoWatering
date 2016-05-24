@@ -94,40 +94,117 @@ void createWateringSettings()
 	Time tempTime;
 	WateringSettings tempSettings;
 
-	//	wateringMode->addWateringSettings(new WateringSettings(0, 0, 100, 1000, new Time(21, 0, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(1, 0, 200, 1100, new Time(21, 4, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(2, 0, 300, 1200, new Time(21, 8, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(3, 0, 400, 1300, new Time(21, 12, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(4, 0, 500, 1400, new Time(21, 16, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(5, 0, 600, 1500, new Time(21, 20, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(6, 0, 700, 1600, new Time(21, 24, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(7, 0, 800, 1700, new Time(21, 28, 0)));
-	//
-	//	wateringMode->addWateringSettings(new WateringSettings(8, 1, 100, 1000, new Time(21, 2, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(9, 1, 200, 1100, new Time(21, 6, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(10, 1, 300, 1200, new Time(21, 10, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(11, 1, 400, 1300, new Time(21, 14, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(12, 1, 500, 1400, new Time(21, 18, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(13, 1, 600, 1500, new Time(21, 22, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(14, 1, 700, 1600, new Time(21, 26, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(15, 1, 800, 1700, new Time(21, 30, 0)));
-	//
-	//	wateringMode->addWateringSettings(new WateringSettings(16, 2, 100, 1000, new Time(21, 0, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(17, 2, 200, 1100, new Time(21, 4, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(18, 2, 300, 1200, new Time(21, 8, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(19, 2, 400, 1300, new Time(21, 12, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(20, 2, 500, 1400, new Time(21, 16, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(21, 2, 600, 1500, new Time(21, 20, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(22, 2, 700, 1600, new Time(21, 24, 0)));
-	//	wateringMode->addWateringSettings(new WateringSettings(23, 2, 800, 1700, new Time(21, 28, 0)));
-
 	/* Create wateringSettings for manual mode */
 
 	/* Create wateringSettings for first pot */
+	tempTime.setTime(6, 30, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setPotIndex(0);
+	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMinWaterQuantity(200);
+	tempSettings.setMaxWaterQuantity(500); // TODO Change this in summer
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(19, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(13, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMaxWaterQuantity(1000);
+	wateringMode->addWateringSettings(&tempSettings);
 
 	/* Create wateringSettings for second pot */
+	tempTime.setTime(7, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setPotIndex(1);
+	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMinWaterQuantity(100);
+	tempSettings.setMaxWaterQuantity(500);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(9, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(11, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(13, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMaxWaterQuantity(500); // TODO Change this in summer
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(15, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(17, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(19, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(21, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
 
 	/* Create wateringSettings for third pot */
+	tempTime.setTime(7, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setPotIndex(2);
+	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMinWaterQuantity(100);
+	tempSettings.setMaxWaterQuantity(500);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(9, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(11, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(13, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	tempSettings.setMaxWaterQuantity(500); // TODO Change this in summer
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(15, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(17, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(19, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
+
+	tempTime.setTime(21, 0, 0);
+	tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
+	tempSettings.setWateringTime(&tempTime);
+	wateringMode->addWateringSettings(&tempSettings);
 
 	/* Create wateringSettings for fourth pot */
 	tempTime.setTime(6, 45, 0);
