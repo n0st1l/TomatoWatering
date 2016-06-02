@@ -25,10 +25,21 @@ OperatingState::OperatingState() {
 	this->actualHumidity = 40.0f;
 	this->actualTemperature = 20.0f;
 	this->totalWaterQuantity = 0.0f;
+	this->dailyWaterQuantity = 0.0f;
 }
 
 OperatingState::~OperatingState() {
-	// TODO Auto-generated destructor stub
+	delete this->actualTime;
+	this->actualTime = NULL;
+
+	delete this->actualDate;
+	this->actualDate = NULL;
+
+	if(operatingState != 0)
+	{
+		delete this->operatingState;
+		this->operatingState = NULL;
+	}
 }
 
 void OperatingState::setActualTime(Time* p_actualTime) {
@@ -49,4 +60,16 @@ void OperatingState::setActualTemperature(float p_actualTemperature) {
 
 void OperatingState::setTotalWaterQuantity(float p_totalWaterQuantity) {
 	this->totalWaterQuantity = p_totalWaterQuantity;
+}
+
+void OperatingState::addToTotalWaterQuantity(float p_waterQuantity) {
+	this->totalWaterQuantity = this->totalWaterQuantity + p_waterQuantity;
+}
+
+void OperatingState::setDailyWaterQuantity(float p_dailyWaterQuantity) {
+	this->dailyWaterQuantity = p_dailyWaterQuantity;
+}
+
+void OperatingState::addToDailyWaterQuantity(float p_waterQuantity) {
+	this->dailyWaterQuantity = this->dailyWaterQuantity + p_waterQuantity;
 }

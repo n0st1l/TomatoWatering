@@ -31,6 +31,11 @@ public:
 
 	inline float getTotalWaterQuantity() { return totalWaterQuantity; }
 	void setTotalWaterQuantity(float p_totalWaterQuantity);
+	void addToTotalWaterQuantity(float p_waterQuantity);
+
+	inline float getDailyWaterQuantity() { return dailyWaterQuantity; }
+	void setDailyWaterQuantity(float p_dailyWaterQuantity);
+	void addToDailyWaterQuantity(float p_waterQuantity);
 
 
 private:
@@ -42,6 +47,7 @@ private:
 	float actualHumidity;		// [%]
 	float actualTemperature;	// [°C]
 	float totalWaterQuantity;	// [l]
+	float dailyWaterQuantity;	// [l]
 
 
 };
