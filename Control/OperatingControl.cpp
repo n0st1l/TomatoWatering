@@ -79,6 +79,8 @@ void OperatingControl::cycleTask() {
 void OperatingControl::onTwoSecondsTimerTimeout() {
 	LOG_DAEMON_DEBUG(eOperatingControl, "onTwoSecondsTimerTimeout()");
 
+	this->checkIfShouldResetDailyWaterQuantity();
+
 	if(this->operatingState != NULL && this->hardwareControl != NULL)
 	{
 		operatingState->setActualTime(hardwareControl->getTime());
@@ -102,6 +104,19 @@ void OperatingControl::onOneMinuteTimerTimeout() {
 		if(this->mainScreen != NULL)
 		{
 			mainScreen->updateTemperature(String(operatingState->getActualTemperature()));
+		}
+	}
+}
+
+void OperatingControl::checkIfShouldResetDailyWaterQuantity() {
+	LOG_DAEMON_DEBUG(eOperatingControl, "checkIfShouldResetDailyWaterQuantity()");
+
+	if(this->operatingState != NULL)
+	{
+		if((this->operatingState->getActualTime()->getHour() == 0) &&
+				(this->operatingState->getActualTime()->getMinutes() == 0))
+		{
+			this->operatingState->setDailyWaterQuantity(0);
 		}
 	}
 }

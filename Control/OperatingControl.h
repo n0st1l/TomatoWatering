@@ -42,6 +42,8 @@ private:
 	void onTwoSecondsTimerTimeout();
 	void onOneMinuteTimerTimeout();
 
+	void checkIfShouldResetDailyWaterQuantity();
+
 
 };
 
