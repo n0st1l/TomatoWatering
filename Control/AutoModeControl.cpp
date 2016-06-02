@@ -83,7 +83,7 @@ void AutoModeControl::checkIfShouldSetWateringFlag() {
 			if(actSettings->isValid() == true) {
 				if( (actSettings->getShouldWatering() == false) &&
 						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) &&
-						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -10))
+						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -4))
 				{
 					actSettings->setShouldWatering(true);
 				}
