@@ -139,8 +139,8 @@ void WateringControl::processWateringControlState() {
 		if(this->wateringScreen != NULL)
 		{
 			this->wateringScreen->updateStatus("IDLE");
-			this->wateringScreen->updateQuantity("TOTAL " + String(this->operatingState->getTotalWaterQuantity()) + " L");
-			this->wateringScreen->updateProgress("");
+			this->wateringScreen->updateTotalQuantity("TOTAL " + String(this->operatingState->getTotalWaterQuantity()) + " L");
+			this->wateringScreen->updateDailyQuantity("DAILY " + String(this->operatingState->getDailyWaterQuantity()) + " L");
 		}
 
 		modeState->setActualWateringControlState(eWateringControlStateCheckIfShouldStartWatering);
@@ -187,7 +187,7 @@ void WateringControl::processWateringControlState() {
 			/*Update the display*/
 			if(this->wateringScreen != NULL)
 			{
-				this->wateringScreen->updateQuantity("QUANTITY " + String((int)waterQuantity) + " ML");
+				this->wateringScreen->updateTotalQuantity("QUANTITY " + String((int)waterQuantity) + " ML");
 			}
 
 			modeState->setActualWateringControlState(eWateringControlStateEnableValve);

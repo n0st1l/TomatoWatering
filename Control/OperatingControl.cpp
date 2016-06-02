@@ -103,6 +103,7 @@ void OperatingControl::onOneMinuteTimerTimeout() {
 
 		if(this->mainScreen != NULL)
 		{
+			mainScreen->updateHumidity(String(operatingState->getActualHumidity()));
 			mainScreen->updateTemperature(String(operatingState->getActualTemperature()));
 		}
 	}
