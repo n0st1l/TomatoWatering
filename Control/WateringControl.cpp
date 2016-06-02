@@ -174,8 +174,11 @@ void WateringControl::processWateringControlState() {
 			float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), MIN_TEMP, MAX_TEMP, modeState->getActualWateringSettings()->getMinWaterQuantity(), modeState->getActualWateringSettings()->getMaxWaterQuantity());
 
 			//Save new totalWaterQuantity
-			this->operatingState->setTotalWaterQuantity(this->operatingState->getTotalWaterQuantity() + (waterQuantity / 1000));
-			this->wateringMode->getPot(actWateringSettings->getPotIndex())->setTotalWaterQuantity(this->wateringMode->getPot(actWateringSettings->getPotIndex())->getTotalWaterQuantity() + (waterQuantity / 1000));
+			this->operatingState->addToTotalWaterQuantity((waterQuantity / 1000));
+			//Save new dailyWaterQuantity
+			this->operatingState->addToDailyWaterQuantity((waterQuantity / 1000));
+			//Save new totalWaterQuantity for the pot
+			this->wateringMode->getPot(actWateringSettings->getPotIndex())->addToTotalWaterQuantity((waterQuantity / 1000));
 
 			float pumpWorkTime = waterQuantity / (PUMP_OUTPUT * wateringMode->getPot(modeState->getActualWateringSettings()->getPotIndex())->getCorrectionFactor());
 			this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime + PUMP_WAIT_TIME));
