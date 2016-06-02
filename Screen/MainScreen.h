@@ -20,6 +20,7 @@ public:
 
 	void updateTime(String time);
 	void updateTemperature(String temperature);
+	void updateHumidity(String humidity);
 
 
 private:

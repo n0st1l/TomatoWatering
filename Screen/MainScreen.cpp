@@ -22,6 +22,11 @@ void MainScreen::updateTime(String time) {
 }
 
 void MainScreen::updateTemperature(String temperature) {
-	lcd->setCursor(15,0);
+	lcd->setCursor(7,0);
 	lcd->print(temperature);
+}
+
+void MainScreen::updateHumidity(String humidity) {
+	lcd->setCursor(15,0);
+	lcd->print(humidity);
 }
