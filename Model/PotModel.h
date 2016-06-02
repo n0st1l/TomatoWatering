@@ -27,6 +27,7 @@ public:
 
 	inline float getTotalWaterQuantity() { return totalWaterQuantity; }
 	void setTotalWaterQuantity(float totalWaterQuantity);
+	void addToTotalWaterQuantity(float waterQuantity);
 
 	inline float getCorrectionFactor() { return correctionFactor; }
 	void setCorrectionFactor(float correctionFactor);

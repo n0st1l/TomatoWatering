@@ -44,6 +44,10 @@ void PotModel::setTotalWaterQuantity(float totalWaterQuantity) {
 	this->totalWaterQuantity = totalWaterQuantity;
 }
 
+void PotModel::addToTotalWaterQuantity(float waterQuantity) {
+	this->totalWaterQuantity = this->totalWaterQuantity + waterQuantity;
+}
+
 void PotModel::setCorrectionFactor(float correctionFactor) {
 	this->correctionFactor = correctionFactor;
 }
