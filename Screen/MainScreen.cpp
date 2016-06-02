@@ -22,7 +22,7 @@ void MainScreen::updateTime(String time) {
 }
 
 void MainScreen::updateTemperature(String temperature) {
-	lcd->setCursor(7,0);
+	lcd->setCursor(8,0);
 	lcd->print(temperature);
 }
 
