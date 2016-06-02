@@ -23,10 +23,17 @@ void WateringScreen::updateStatus(String status) {
 	lcd->print(status);
 }
 
-void WateringScreen::updateQuantity(String quantity) {
+void WateringScreen::updateTotalQuantity(String quantity) {
 	lcd->setCursor(0,2);
 	lcd->print("                    ");
 	lcd->setCursor(0,2);
+	lcd->print(quantity);
+}
+
+void WateringScreen::updateDailyQuantity(String quantity) {
+	lcd->setCursor(0,3);
+	lcd->print("                    ");
+	lcd->setCursor(0,3);
 	lcd->print(quantity);
 }
 

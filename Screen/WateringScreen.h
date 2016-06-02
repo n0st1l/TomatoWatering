@@ -19,7 +19,8 @@ public:
 	virtual ~WateringScreen();
 
 	void updateStatus(String status);
-	void updateQuantity(String quantity);
+	void updateTotalQuantity(String quantity);
+	void updateDailyQuantity(String quantity);
 	void updateProgress(String progress);
 
 
