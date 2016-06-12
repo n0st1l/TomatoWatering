@@ -73,6 +73,9 @@ bool AutoModeControl::startWatering(WateringSettings* wateringSettings) {
 	return false;
 }
 
+/*!
+ * Sets the watering flag if it's not already set, the time is equal to the actual time and it's not raining
+ */
 void AutoModeControl::checkIfShouldSetWateringFlag() {
 	for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 	{
@@ -83,7 +86,8 @@ void AutoModeControl::checkIfShouldSetWateringFlag() {
 			if(actSettings->isValid() == true) {
 				if( (actSettings->getShouldWatering() == false) &&
 						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) < 0) &&
-						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -4))
+						(this->operatingState->getActualTime()->secsTo(actSettings->getWateringTime()) > -4) &&
+						(this->operatingState->getActualHumidity() < Rain_Threshold) )
 				{
 					actSettings->setShouldWatering(true);
 				}
