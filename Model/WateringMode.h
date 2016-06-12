@@ -13,8 +13,8 @@
 #include "WateringSettings.h"
 #include "WateringModeState.h"
 
-#define NUMBEROFPOTS				4
-#define NUMBEROFWATERINGSETTINGS	32
+const int NumberOfPots = 4;
+const int NumberOfWateringSettings = 32;
 
 class WateringMode {
 public:
@@ -40,8 +40,8 @@ private:
 	WateringMode();
 	static WateringMode* wateringMode;
 
-	PotModel* potArray[NUMBEROFPOTS];
-	WateringSettings* wateringSettingsArray[NUMBEROFWATERINGSETTINGS];
+	PotModel* potArray[NumberOfPots];
+	WateringSettings* wateringSettingsArray[NumberOfWateringSettings];
 	WateringModeState* wateringModeState;
 
 	bool potAlreadyExists(PotModel* potToCheck);

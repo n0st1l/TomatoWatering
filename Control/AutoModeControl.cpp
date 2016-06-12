@@ -74,7 +74,7 @@ bool AutoModeControl::startWatering(WateringSettings* wateringSettings) {
 }
 
 void AutoModeControl::checkIfShouldSetWateringFlag() {
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 	{
 		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
 
@@ -93,7 +93,7 @@ void AutoModeControl::checkIfShouldSetWateringFlag() {
 }
 
 void AutoModeControl::checkIfShouldWatering() {
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 	{
 		WateringSettings* actSettings = this->wateringMode->getWateringSettings(i);
 

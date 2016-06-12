@@ -11,8 +11,8 @@
 #include <Time.h>
 
 
-#define MIN_TEMP	15 //°C
-#define MAX_TEMP	25 //°C
+const int Min_Temp = 15; //°C
+const int Max_Temp = 25; //°C
 
 
 class WateringSettings {

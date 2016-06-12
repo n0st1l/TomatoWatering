@@ -46,6 +46,8 @@ private:
 	ATimer* wateringTimer;
 	ATimer* waitTimer;
 
+	static const int Pump_Wait_Time = 1;	//Unit: [s]
+
 //	void startWatering(int potIndex);
 	void setValve(int potIndex, DigitalOutputState_t digitalOutputState);
 	void disableAllValves();

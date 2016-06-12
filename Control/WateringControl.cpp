@@ -8,9 +8,6 @@
 #include "WateringControl.h"
 
 
-#define PUMP_WAIT_TIME	1	//Unit: [s]
-
-
 WateringControl* WateringControl::wateringControl = 0;
 
 WateringControl* WateringControl::Instance()
@@ -104,7 +101,7 @@ void WateringControl::disableAllValves() {
 	String debugMsg = "disableAllValves()";
 	LOG_DAEMON_DEBUG(eWateringControl, debugMsg);
 
-	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
+	for(int i = 0 ; i < NumberOfPots ; i++)
 	{
 		this->setValve(i, eDigitalOutputStateDisabled);
 	}
@@ -171,7 +168,7 @@ void WateringControl::processWateringControlState() {
 	case eWateringControlStateStartTimer:
 		if(actWateringSettingsIsValid == true)
 		{
-			float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), MIN_TEMP, MAX_TEMP, modeState->getActualWateringSettings()->getMinWaterQuantity(), modeState->getActualWateringSettings()->getMaxWaterQuantity());
+			float waterQuantity = this->getWaterQuantity(operatingState->getActualTemperature(), Min_Temp, Max_Temp, modeState->getActualWateringSettings()->getMinWaterQuantity(), modeState->getActualWateringSettings()->getMaxWaterQuantity());
 
 			//Save new totalWaterQuantity
 			this->operatingState->addToTotalWaterQuantity((waterQuantity / 1000));
@@ -181,7 +178,7 @@ void WateringControl::processWateringControlState() {
 			this->wateringMode->getPot(actWateringSettings->getPotIndex())->addToTotalWaterQuantity((waterQuantity / 1000));
 
 			float pumpWorkTime = waterQuantity / (PUMP_OUTPUT * wateringMode->getPot(modeState->getActualWateringSettings()->getPotIndex())->getCorrectionFactor());
-			this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime + PUMP_WAIT_TIME));
+			this->wateringTimer->setTimeout(SECONDS_TO_MILLISECONDS(pumpWorkTime + Pump_Wait_Time));
 			this->wateringTimer->restart();
 
 			/*Update the display*/
@@ -202,7 +199,7 @@ void WateringControl::processWateringControlState() {
 		{
 			this->setValve(actWateringSettings->getPotIndex(), eDigitalOutputStateEnabled);
 
-			this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(PUMP_WAIT_TIME));
+			this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(Pump_Wait_Time));
 			this->waitTimer->restart();
 
 			modeState->setActualWateringControlState(eWateringControlStateWaitAfterEnableValve);
@@ -240,7 +237,7 @@ void WateringControl::processWateringControlState() {
 	case eWateringControlStateDisablePump:
 		this->setPump(eDigitalOutputStateDisabled);
 
-		this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(PUMP_WAIT_TIME));
+		this->waitTimer->setTimeout(SECONDS_TO_MILLISECONDS(Pump_Wait_Time));
 		this->waitTimer->restart();
 
 		modeState->setActualWateringControlState(eWateringControlStateWaitAfterDisablePump);

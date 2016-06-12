@@ -21,11 +21,11 @@ WateringMode* WateringMode::Instance()
 
 WateringMode::WateringMode() {
 
-	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
+	for(int i = 0 ; i < NumberOfPots ; i++)
 	{
 		potArray[i] = new PotModel();
 	}
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 	{
 		wateringSettingsArray[i] = new WateringSettings();
 	}
@@ -34,12 +34,12 @@ WateringMode::WateringMode() {
 
 WateringMode::~WateringMode() {
 
-	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
+	for(int i = 0 ; i < NumberOfPots ; i++)
 	{
 		delete potArray[i];
 		potArray[i] = 0;
 	}
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 	{
 		delete wateringSettingsArray[i];
 		wateringSettingsArray[i] = 0;
@@ -56,7 +56,7 @@ WateringMode::~WateringMode() {
 
 PotModel* WateringMode::getPot(int index) {
 
-	if(HelperClass::Instance()->isIntInRange(index, 0, ARRAY_END(NUMBEROFPOTS) ) == true)
+	if(HelperClass::Instance()->isIntInRange(index, 0, ARRAY_END(NumberOfPots) ) == true)
 	{
 		return potArray[index];
 	}
@@ -68,7 +68,7 @@ PotModel* WateringMode::getPot(int index) {
 
 WateringSettings* WateringMode::getWateringSettings(int index) {
 
-	if(HelperClass::Instance()->isIntInRange(index, 0, ARRAY_END(NUMBEROFWATERINGSETTINGS) ) == true)
+	if(HelperClass::Instance()->isIntInRange(index, 0, ARRAY_END(NumberOfWateringSettings) ) == true)
 	{
 		return wateringSettingsArray[index];
 	}
@@ -97,11 +97,11 @@ bool WateringMode::addPot(PotModel* newPot) {
 
 bool WateringMode::removePot(int potIndexToRemove) {
 
-	if(HelperClass::Instance()->isIntInRange(potIndexToRemove, 0, ARRAY_END(NUMBEROFPOTS) ) == true)
+	if(HelperClass::Instance()->isIntInRange(potIndexToRemove, 0, ARRAY_END(NumberOfPots) ) == true)
 	{
 		potArray[potIndexToRemove]->setPotIndex(-1);
 
-		for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+		for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 		{
 			if(wateringSettingsArray[i]->getPotIndex() == potIndexToRemove)
 			{
@@ -137,7 +137,7 @@ bool WateringMode::addWateringSettings(WateringSettings* newWateringSettings) {
 
 bool WateringMode::removeWateringSettings(int wateringSettingsIndexToRemove) {
 
-	if(HelperClass::Instance()->isIntInRange(wateringSettingsIndexToRemove, 0, ARRAY_END(NUMBEROFWATERINGSETTINGS) ) == true)
+	if(HelperClass::Instance()->isIntInRange(wateringSettingsIndexToRemove, 0, ARRAY_END(NumberOfWateringSettings) ) == true)
 	{
 		wateringSettingsArray[wateringSettingsIndexToRemove]->setWateringSettingsIndex(-1);
 		wateringSettingsArray[wateringSettingsIndexToRemove]->setPotIndex(-1);
@@ -151,7 +151,7 @@ bool WateringMode::removeWateringSettings(int wateringSettingsIndexToRemove) {
 int WateringMode::getFreeWateringSettingsIndex() {
 	LOG_DAEMON_WARNING(eWateringMode, "getFreeWateringSettingsIndex()");
 
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 	{
 		if(wateringSettingsArray[i]->getWateringSettingsIndex() == -1)
 		{
@@ -160,14 +160,14 @@ int WateringMode::getFreeWateringSettingsIndex() {
 		}
 	}
 
-	LOG_DAEMON_WARNING(eWateringMode, "return " + String(NUMBEROFWATERINGSETTINGS));
-	return NUMBEROFWATERINGSETTINGS;
+	LOG_DAEMON_WARNING(eWateringMode, "return " + String(NumberOfWateringSettings));
+	return NumberOfWateringSettings;
 }
 
 bool WateringMode::potAlreadyExists(PotModel* potToCheck) {
 	LOG_DAEMON_WARNING(eWateringMode, "potAlreadyExists(PotModel* potToCheck)");
 
-	for(int i = 0 ; i < NUMBEROFPOTS ; i++)
+	for(int i = 0 ; i < NumberOfPots ; i++)
 	{
 		if( (*potArray[i]) == (*potToCheck) )
 		{
@@ -184,7 +184,7 @@ bool WateringMode::wateringSettingsAlreadyExists(
 		WateringSettings* wateringSettingsToCheck) {
 	LOG_DAEMON_WARNING(eWateringMode, "wateringSettingsAlreadyExists(WateringSettings* wateringSettingsToCheck)");
 
-	for(int i = 0 ; i < NUMBEROFWATERINGSETTINGS ; i++)
+	for(int i = 0 ; i < NumberOfWateringSettings ; i++)
 	{
 		if( (*wateringSettingsArray[i]) == (*wateringSettingsToCheck) )
 		{
