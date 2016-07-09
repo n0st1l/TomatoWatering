@@ -67,7 +67,7 @@ void createPots()
 	/* Create second pot
 	 * 51.282 [ml/s] */
 	tempPot.setPotIndex(1);
-	tempPot.setPotName("CHERRY");
+	tempPot.setPotName("TOMATOES");
 	tempPot.setCorrectionFactor(51.282 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
@@ -75,7 +75,7 @@ void createPots()
 	/* Create third pot
 	 * 55.556 [ml/s] */
 	tempPot.setPotIndex(2);
-	tempPot.setPotName("TOMATOES");
+	tempPot.setPotName("CHERRY");
 	tempPot.setCorrectionFactor(55.556 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
