@@ -37,6 +37,11 @@
 			<locationURI>ArduinoPivateLibPath/ALowPassFilter</locationURI>
 		</link>
 		<link>
+			<name>Libraries/AMonth</name>
+			<type>2</type>
+			<locationURI>ArduinoPivateLibPath/AMonth</locationURI>
+		</link>
+		<link>
 			<name>Libraries/ATimer</name>
 			<type>2</type>
 			<locationURI>ArduinoPivateLibPath/ATimer</locationURI>
