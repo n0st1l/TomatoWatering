@@ -14,7 +14,7 @@
 #include "WateringModeState.h"
 
 const int NumberOfPots = 4;
-const int NumberOfWateringSettings = 32;
+const int NumberOfWateringSettings = 64;
 
 class WateringMode {
 public:
