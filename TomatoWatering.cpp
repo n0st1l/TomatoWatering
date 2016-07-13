@@ -141,7 +141,7 @@ void createWateringSettings()
 	/* Create wateringSettings for fourth pot */
 	tempSettings.setPotIndex(3);
 	tempSettings.setMinWaterQuantity(500);
-	tempSettings.setMaxWaterQuantity(3000); // TODO Change this in summer
+	tempSettings.setMaxWaterQuantity(1500); // TODO Change this in summer
 
 	//Watering forth pot every five hour from 5:45 to 20:45
 	for(int i = 5 ; i <= 20 ; i += 5)

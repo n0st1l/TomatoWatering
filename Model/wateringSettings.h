@@ -12,7 +12,7 @@
 
 
 const int Min_Temp			=	15;	//°C
-const int Max_Temp			=	25;	//°C
+const int Max_Temp			=	30;	//°C
 const int Rain_Threshold	=	80;	//%
 
 
