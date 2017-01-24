@@ -16,58 +16,88 @@
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 				<configuration artifactName="${ProjName}" buildProperties="" description="" id="it.baeyens.arduino.core.toolChain.release.474309063" name="Release" parent="org.eclipse.cdt.build.core.emptycfg">
 					<folderInfo id="it.baeyens.arduino.core.toolChain.release.474309063.62525850" name="/" resourcePath="">
-						<toolChain id="it.baeyens.arduino.core.toolChain.release.1450223865" name="Arduino Toolchain" superClass="it.baeyens.arduino.core.toolChain.release">
-							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="it.baeyens.arduino.targetplatform.821475347" name="Arduino Target" osList="all" superClass="it.baeyens.arduino.targetplatform"/>
-							<builder buildPath="${workspace_loc:/TomatoWatering}/Release" id="it.baeyens.arduino.sketch.builder.175422858" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Arduino sketch builder" superClass="it.baeyens.arduino.sketch.builder">
-								<outputEntries>
-									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="Release"/>
-								</outputEntries>
-							</builder>
-							<tool id="it.baeyens.arduino.tool.sketch.compiler.cpp.993990567" name="Arduino C++ Compiler" superClass="it.baeyens.arduino.tool.sketch.compiler.cpp">
-								<option id="it.baeyens.arduino.compiler.cpp.sketch.option.incpath.1715469752" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.cpp.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/AButton}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ALowPassFilter}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ATimer}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DHT22}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DS1302}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Date}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Time}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/AMonth}&quot;"/>
+						<toolChain id="io.sloeber.core.toolChain.release.1875197823" name="Arduino Toolchain (Sloeber edition)" superClass="io.sloeber.core.toolChain.release">
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="io.sloeber.targetplatform.449130527" name="Arduino Target" osList="all" superClass="io.sloeber.targetplatform"/>
+							<builder buildPath="${workspace_loc:/TomatoWatering}/Release" id="io.sloeber.sketch.builder.1851977901" keepEnvironmentInBuildfile="false" name="Arduino sketch builder" superClass="io.sloeber.sketch.builder"/>
+							<tool id="io.sloeber.tool.sketch.compiler.cpp.1590720521" name="Arduino C++ Compiler" superClass="io.sloeber.tool.sketch.compiler.cpp">
+								<option id="io.sloeber.compiler.cpp.sketch.option.incpath.1706497697" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries}&quot;"/>
 								</option>
-								<inputType id="it.baeyens.arduino.compiler.cpp.sketch.input.949661023" name="CPP source files" superClass="it.baeyens.arduino.compiler.cpp.sketch.input"/>
+								<inputType id="io.sloeber.compiler.cpp.sketch.input.677022406" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
-							<tool id="it.baeyens.arduino.tool.compiler.c.1689800149" name="Arduino C Compiler" superClass="it.baeyens.arduino.tool.compiler.c">
-								<option id="it.baeyens.arduino.compiler.c.sketch.option.incpath.1043379809" name="Include Paths (-I)" superClass="it.baeyens.arduino.compiler.c.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/arduino/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/AButton}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ALowPassFilter}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/ATimer}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DHT22}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/DS1302}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Date}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/LiquidCrystal/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/Time}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/Libraries/AMonth}&quot;"/>
+							<tool id="io.sloeber.tool.compiler.c.1263931026" name="Arduino C Compiler" superClass="io.sloeber.tool.compiler.c">
+								<option id="io.sloeber.compiler.c.sketch.option.incpath.1334662374" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries}&quot;"/>
 								</option>
-								<inputType id="it.baeyens.arduino.compiler.c.sketch.input.2113762215" name="C Source Files" superClass="it.baeyens.arduino.compiler.c.sketch.input"/>
+								<inputType id="io.sloeber.compiler.c.sketch.input.1869895825" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
-							<tool id="it.baeyens.arduino.tool.sketch.compiler.s.2048745396" name="Arduino Assembler" superClass="it.baeyens.arduino.tool.sketch.compiler.s"/>
-							<tool id="it.baeyens.arduino.tool.ar.551076514" name="Arduino archiver" superClass="it.baeyens.arduino.tool.ar"/>
-							<tool id="it.baeyens.arduino.tool.combine.472470586" name="Arduino combiner" superClass="it.baeyens.arduino.tool.combine"/>
-							<tool id="it.baeyens.arduino.tool.objcopy.eep.847555019" name="Arduino tool Create eeprom" superClass="it.baeyens.arduino.tool.objcopy.eep"/>
-							<tool id="it.baeyens.arduino.tool.objcopy.flash.1064059027" name="Arduino tool Create hex" superClass="it.baeyens.arduino.tool.objcopy.flash"/>
-							<tool id="it.baeyens.arduino.tool.size.143063994" name="Arduino tool Print Size" superClass="it.baeyens.arduino.tool.size"/>
+							<tool id="io.sloeber.tool.sketch.compiler.s.133035820" name="Arduino Assembler" superClass="io.sloeber.tool.sketch.compiler.s">
+								<option id="io.sloeber.compiler.asm.sketch.option.incpath.1045324220" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries}&quot;"/>
+								</option>
+								<inputType id="io.sloeber.compiler.S.sketch.input.1035175041" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
+							</tool>
+							<tool id="io.sloeber.tool.ar.1359813306" name="Arduino archiver" superClass="io.sloeber.tool.ar"/>
+							<tool id="io.sloeber.tool.combine.268752282" name="Arduino combiner" superClass="io.sloeber.tool.combine"/>
+							<tool id="io.sloeber.tool.objcopy.eep.360116054" name="Arduino tool Create eeprom" superClass="io.sloeber.tool.objcopy.eep"/>
+							<tool id="io.sloeber.tool.size.623416046" name="Arduino tool Print Size" superClass="io.sloeber.tool.size"/>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="it.baeyens.arduino.core.toolChain.release.474309063.509116374" name="/" resourcePath="My Library">
+						<toolChain id="io.sloeber.core.toolChain.release.482021189" name="Arduino Toolchain (Sloeber edition)" superClass="io.sloeber.core.toolChain.release" unusedChildren="">
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="io.sloeber.targetplatform" name="Arduino Target" osList="all" superClass="io.sloeber.targetplatform"/>
+							<tool id="io.sloeber.tool.sketch.compiler.cpp.347462816" name="Arduino C++ Compiler" superClass="io.sloeber.tool.sketch.compiler.cpp.1590720521">
+								<option id="io.sloeber.compiler.cpp.sketch.option.incpath.1830459606" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\workspace\Arduino\libraries&quot;"/>
+								</option>
+								<inputType id="io.sloeber.compiler.cpp.sketch.input.633469099" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
+							</tool>
+							<tool id="io.sloeber.tool.compiler.c.1378705380" name="Arduino C Compiler" superClass="io.sloeber.tool.compiler.c.1263931026">
+								<option id="io.sloeber.compiler.c.sketch.option.incpath.796979257" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\workspace\Arduino\libraries&quot;"/>
+								</option>
+								<inputType id="io.sloeber.compiler.c.sketch.input.40306833" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
+							</tool>
+							<tool id="io.sloeber.tool.sketch.compiler.s.1681466097" name="Arduino Assembler" superClass="io.sloeber.tool.sketch.compiler.s.133035820">
+								<option id="io.sloeber.compiler.asm.sketch.option.incpath.2061619553" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\workspace\Arduino\libraries&quot;"/>
+								</option>
+								<inputType id="io.sloeber.compiler.S.sketch.input.652621952" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
+							</tool>
+							<tool id="io.sloeber.tool.ar.519073249" name="Arduino archiver" superClass="io.sloeber.tool.ar.1359813306"/>
+							<tool id="io.sloeber.tool.combine.792799375" name="Arduino combiner" superClass="io.sloeber.tool.combine.268752282"/>
+							<tool id="io.sloeber.tool.objcopy.eep.1895491405" name="Arduino tool Create eeprom" superClass="io.sloeber.tool.objcopy.eep.360116054"/>
+							<tool id="io.sloeber.tool.size.2004909373" name="Arduino tool Print Size" superClass="io.sloeber.tool.size.623416046"/>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Model|Control|Screen|Libraries/*/?xamples|Libraries/*/?xtras" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+						<entry excluding="My Library|Help|Model|Control|Screen|Libraries/*/?xamples|Libraries/*/?xtras" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Control"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Help"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Model"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Screen"/>
 					</sourceEntries>
@@ -89,4 +119,5 @@
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

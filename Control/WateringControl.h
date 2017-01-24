@@ -14,7 +14,7 @@
 #include "../Model/OperatingState.h"
 #include "../Model/WateringMode.h"
 #include "../Screen/WateringScreen.h"
-#include <ATimer.h>
+#include "../libraries/ATimer/ATimer.h"
 
 
 class WateringControl {

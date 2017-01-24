@@ -8,8 +8,8 @@
 #ifndef MODEL_OPERATINGSTATE_H_
 #define MODEL_OPERATINGSTATE_H_
 
-#include <Time.h>
-#include <Date.h>
+#include <../libraries/Time/Time.h>
+#include <../libraries/Date/Date.h>
 
 
 class OperatingState {

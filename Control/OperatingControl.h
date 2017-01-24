@@ -13,7 +13,7 @@
 #include "../Help/HelperClass.h"
 #include "../Model/OperatingState.h"
 #include "../Screen/MainScreen.h"
-#include <ATimer.h>
+#include "../libraries/ATimer/ATimer.h"
 
 
 class OperatingControl {

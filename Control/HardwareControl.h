@@ -9,12 +9,12 @@
 #define CONTROL_HARDWARECONTROL_H_
 
 #include "../Help/HelperClass.h"
-#include <DHT.h>
-#include <DS1302.h>
+#include <../libraries/DHT22/DHT.h>
+#include <../libraries/DS1302/DS1302.h>
 #include <LiquidCrystal.h>
-#include <AButton.h>
-#include <ALowPassFilter.h>
-#include <ATimer.h>
+#include <../libraries/AButton/AButton.h>
+#include <../libraries/ALowPassFilter/ALowPassFilter.h>
+#include <../libraries/ATimer/ATimer.h>
 
 
 class HardwareControl {

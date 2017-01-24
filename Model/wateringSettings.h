@@ -8,7 +8,7 @@
 #ifndef MODEL_WATERINGSETTINGS_H_
 #define MODEL_WATERINGSETTINGS_H_
 
-#include <Time.h>
+#include "../libraries/Time/Time.h"
 
 
 const int Min_Temp			=	15;	//°C

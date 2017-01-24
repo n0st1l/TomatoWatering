@@ -12,7 +12,7 @@
 #include "../Help/HelperClass.h"
 #include "../Model/OperatingState.h"
 #include "../Model/WateringMode.h"
-#include <ATimer.h>
+#include "../libraries/ATimer/ATimer.h"
 
 
 class AutoModeControl {
