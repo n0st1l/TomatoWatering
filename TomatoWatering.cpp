@@ -99,7 +99,7 @@ void createWateringSettings()
 	/* Create wateringSettings for first pot */
 	tempSettings.setPotIndex(0);
 	tempSettings.setMinWaterQuantity(200);
-	tempSettings.setMaxWaterQuantity(1500); // TODO Change this in summer
+	tempSettings.setMaxWaterQuantity(1000); // TODO Change this in summer
 
 	//Watering forth pot every five hour from 5:15 to 20:15
 	for(int i = 5 ; i <= 20 ; i += 5)
@@ -113,7 +113,7 @@ void createWateringSettings()
 	/* Create wateringSettings for second pot */
 	tempSettings.setPotIndex(1);
 	tempSettings.setMinWaterQuantity(200);
-	tempSettings.setMaxWaterQuantity(1000); // TODO Change this in summer
+	tempSettings.setMaxWaterQuantity(600); // TODO Change this in summer
 
 	//Watering second pot every hour from 7 to 20
 	for(int i = 7 ; i <= 20 ; i++)
@@ -127,7 +127,7 @@ void createWateringSettings()
 	/* Create wateringSettings for third pot */
 	tempSettings.setPotIndex(2);
 	tempSettings.setMinWaterQuantity(200);
-	tempSettings.setMaxWaterQuantity(1000); // TODO Change this in summer
+	tempSettings.setMaxWaterQuantity(600); // TODO Change this in summer
 
 	//Watering third pot every hour from 7:30 to 20:30
 	for(int i = 7 ; i <= 20 ; i++)
@@ -140,8 +140,8 @@ void createWateringSettings()
 
 	/* Create wateringSettings for fourth pot */
 	tempSettings.setPotIndex(3);
-	tempSettings.setMinWaterQuantity(200);
-	tempSettings.setMaxWaterQuantity(800); // TODO Change this in summer
+	tempSettings.setMinWaterQuantity(100);
+	tempSettings.setMaxWaterQuantity(400); // TODO Change this in summer
 
 	//Watering fourth pot every five hour from 5:45 to 20:45
 	for(int i = 5 ; i <= 20 ; i += 5)
