@@ -135,8 +135,8 @@ void HardwareControl::setupRealTimeClock() {
 	realTimeClock->halt(false);
 
 	/* Make a new time object to set the date and time */
-	Time t (21, 07, 0);
-	Date d (2017, 5, 29);
+	Time t (21, 24, 0);
+	Date d (2018, 6, 7);
 
 	/* Set the time and date on the chip */
 	realTimeClock->time(t);
