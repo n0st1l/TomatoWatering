@@ -59,7 +59,7 @@ void createPots()
 	/* Create first pot
 	 * 53.333 [ml/s] */
 	tempPot.setPotIndex(0);
-	tempPot.setPotName("PEPPERS");
+	tempPot.setPotName("DIVERSES");
 	tempPot.setCorrectionFactor(53.333 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
@@ -67,7 +67,7 @@ void createPots()
 	/* Create second pot
 	 * 51.282 [ml/s] */
 	tempPot.setPotIndex(1);
-	tempPot.setPotName("TOMATOES");
+	tempPot.setPotName("CHERRY");
 	tempPot.setCorrectionFactor(51.282 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
@@ -83,7 +83,7 @@ void createPots()
 	/* Create fourth pot
 	 * 45.977 [ml/s] */
 	tempPot.setPotIndex(3);
-	tempPot.setPotName("STRAWBERRY");
+	tempPot.setPotName("ERDBEEREN");
 	tempPot.setCorrectionFactor(45.977 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
@@ -98,10 +98,10 @@ void createWateringSettings()
 
 	/* Create wateringSettings for first pot */
 	tempSettings.setPotIndex(0);
-	tempSettings.setMinWaterQuantity(200);
-	tempSettings.setMaxWaterQuantity(1000); // TODO Change this in summer
+	tempSettings.setMinWaterQuantity(500);
+	tempSettings.setMaxWaterQuantity(2500); // TODO Change this in summer
 
-	//Watering forth pot every five hour from 5:15 to 20:15
+	//Watering first pot every five hour from 5:15 to 20:15
 	for(int i = 5 ; i <= 20 ; i += 5)
 	{
 		tempTime.setTime(i, 15, 0);
