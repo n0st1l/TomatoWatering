@@ -20,8 +20,8 @@ OperatingState* OperatingState::Instance()
 }
 
 OperatingState::OperatingState() {
-	this->actualTime = new Time();
-	this->actualDate = new Date();
+	this->actualTime = new ATime();
+	this->actualDate = new ADate();
 	this->actualHumidity = 40.0f;
 	this->actualTemperature = 20.0f;
 	this->totalWaterQuantity = 0.0f;
@@ -42,11 +42,11 @@ OperatingState::~OperatingState() {
 	}
 }
 
-void OperatingState::setActualTime(Time* p_actualTime) {
+void OperatingState::setActualTime(ATime* p_actualTime) {
 	this->actualTime->setValuesFrom(p_actualTime);
 }
 
-void OperatingState::setActualDate(Date* p_actualDate) {
+void OperatingState::setActualDate(ADate* p_actualDate) {
 	this->actualDate->setValuesFrom(p_actualDate);
 }
 

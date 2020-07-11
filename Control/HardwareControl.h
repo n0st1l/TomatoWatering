@@ -24,8 +24,8 @@ public:
 
 	void cycleTask();
 
-	Time* getTime();
-	Date* getDate();
+	ATime* getTime();
+	ADate* getDate();
 	float getHumidity();
 	float getTemperature();
 	inline LiquidCrystal* getLiquidCrystal() { return liquidCrystal; }

@@ -8,8 +8,8 @@
 #ifndef MODEL_OPERATINGSTATE_H_
 #define MODEL_OPERATINGSTATE_H_
 
-#include <../libraries/Time/Time.h>
-#include <../libraries/Date/Date.h>
+#include <../libraries/ATime/ATime.h>
+#include <../libraries/ADate/ADate.h>
 
 
 class OperatingState {
@@ -17,11 +17,11 @@ public:
 	static OperatingState *Instance();
 	virtual ~OperatingState();
 
-	inline Time* getActualTime() { return actualTime; }
-	void setActualTime(Time* p_actualTime);
+	inline ATime* getActualTime() { return actualTime; }
+	void setActualTime(ATime* p_actualTime);
 
-	inline Date* getActualDate() { return actualDate; }
-	void setActualDate(Date* p_actualDate);
+	inline ADate* getActualDate() { return actualDate; }
+	void setActualDate(ADate* p_actualDate);
 
 	inline float getActualHumidity() { return actualHumidity; }
 	void setActualHumidty(float p_actualHumidity);
@@ -42,8 +42,8 @@ private:
 	OperatingState();
 	static OperatingState* operatingState;
 
-	Time* actualTime;
-	Date* actualDate;
+	ATime* actualTime;
+	ADate* actualDate;
 	float actualHumidity;		// [%]
 	float actualTemperature;	// [°C]
 	float totalWaterQuantity;	// [l]

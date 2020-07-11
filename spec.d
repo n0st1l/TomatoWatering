@@ -1,2 +1,2 @@
-spec.o:  \
- C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.cdt.managedbuilder.core/spec.C
+spec.o: \
+ C:/workspace/.metadata/.plugins/org.eclipse.cdt.managedbuilder.core/spec.c

@@ -91,7 +91,7 @@ void createPots()
 
 void createWateringSettings()
 {
-	Time tempTime;
+	ATime tempTime;
 	WateringSettings tempSettings;
 
 	/* Create wateringSettings for manual mode */

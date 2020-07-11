@@ -8,7 +8,7 @@
 #ifndef MODEL_WATERINGSETTINGS_H_
 #define MODEL_WATERINGSETTINGS_H_
 
-#include "../libraries/Time/Time.h"
+#include "../libraries/ATime/ATime.h"
 
 
 const int Min_Temp			=	15;	//°C
@@ -20,7 +20,7 @@ class WateringSettings {
 public:
 	WateringSettings();
 	WateringSettings(int wateringSettingsIndex, int potIndex);
-	WateringSettings(int wateringSettingsIndex, int potIndex, int minWaterQuantity, int maxWaterQuantity, Time* wateringTime);
+	WateringSettings(int wateringSettingsIndex, int potIndex, int minWaterQuantity, int maxWaterQuantity, ATime* wateringTime);
 	virtual ~WateringSettings();
 
 	void setValuesFrom(WateringSettings* wateringSettings);
@@ -40,8 +40,8 @@ public:
 	inline bool getShouldWatering() { return shouldWatering; }
 	void setShouldWatering(bool shouldWatering);
 
-	inline Time* getWateringTime() { return wateringTime; }
-	void setWateringTime(Time* wateringTime);
+	inline ATime* getWateringTime() { return wateringTime; }
+	void setWateringTime(ATime* wateringTime);
 
 	bool isValid();
 
@@ -58,7 +58,7 @@ private:
 	int minWaterQuantity; //Minimum Water Quantity in [ml]
 	int maxWaterQuantity; //Maximum Water Quantity in [ml]
 	bool shouldWatering; //Defines if this wateringSetting should watered
-	Time* wateringTime;
+	ATime* wateringTime;
 
 
 };

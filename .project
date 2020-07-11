@@ -57,9 +57,49 @@
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.17/variants/mega</locationURI>
 		</link>
 		<link>
+			<name>libraries/DS1307RTC</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/DS1307RTC/1.4.1</locationURI>
+		</link>
+		<link>
+			<name>libraries/EtherCard</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/EtherCard/1.1.0</locationURI>
+		</link>
+		<link>
+			<name>libraries/Ethernet</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Ethernet/2.0.0</locationURI>
+		</link>
+		<link>
 			<name>libraries/LiquidCrystal</name>
 			<type>2</type>
-			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/LiquidCrystal/1.0.4</locationURI>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/LiquidCrystal/1.0.7</locationURI>
+		</link>
+		<link>
+			<name>libraries/SPI</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.17/libraries/SPI</locationURI>
+		</link>
+		<link>
+			<name>libraries/SoftwareSerial</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.17/libraries/SoftwareSerial</locationURI>
+		</link>
+		<link>
+			<name>libraries/Time</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Time/1.6.0</locationURI>
+		</link>
+		<link>
+			<name>libraries/TinyGPS</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/TinyGPS/13.0.0</locationURI>
+		</link>
+		<link>
+			<name>libraries/WiFi</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/WiFi/1.2.7</locationURI>
 		</link>
 		<link>
 			<name>libraries/Wire</name>
@@ -70,15 +110,15 @@
 	<variableList>
 		<variable>
 			<name>ArduinoHardwareLibPath</name>
-			<value>file:/C:/arduino/hardware/arduino/avr/libraries</value>
+			<value>file:/C:/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.17/libraries</value>
 		</variable>
 		<variable>
 			<name>ArduinoPinPath</name>
-			<value>file:/C:/arduino/hardware/arduino/avr/variants</value>
+			<value>file:/C:/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.6.17/variants</value>
 		</variable>
 		<variable>
 			<name>ArduinoPlatformPath</name>
-			<value>file:/C:/arduino/hardware/arduino/avr</value>
+			<value>file:/C:/Sloeber/arduinoPlugin/packages/arduino/hardware/avr</value>
 		</variable>
 	</variableList>
 </projectDescription>
