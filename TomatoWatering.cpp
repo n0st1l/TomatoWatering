@@ -59,7 +59,7 @@ void createPots()
 	/* Create first pot
 	 * 53.333 [ml/s] */
 	tempPot.setPotIndex(0);
-	tempPot.setPotName("DIVERSES");
+	tempPot.setPotName("HOCHBEET");
 	tempPot.setCorrectionFactor(53.333 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
@@ -67,7 +67,7 @@ void createPots()
 	/* Create second pot
 	 * 51.282 [ml/s] */
 	tempPot.setPotIndex(1);
-	tempPot.setPotName("CHERRY");
+	tempPot.setPotName("TOMATEN");
 	tempPot.setCorrectionFactor(51.282 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
@@ -75,7 +75,7 @@ void createPots()
 	/* Create third pot
 	 * 55.556 [ml/s] */
 	tempPot.setPotIndex(2);
-	tempPot.setPotName("CHERRY");
+	tempPot.setPotName("TERRASSE SÜD");
 	tempPot.setCorrectionFactor(55.556 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
@@ -83,7 +83,7 @@ void createPots()
 	/* Create fourth pot
 	 * 45.977 [ml/s] */
 	tempPot.setPotIndex(3);
-	tempPot.setPotName("ERDBEEREN");
+	tempPot.setPotName("TERRASSE NORD");
 	tempPot.setCorrectionFactor(45.977 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
