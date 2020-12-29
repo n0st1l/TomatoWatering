@@ -35,6 +35,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/SPI/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/TinyGPS/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/AButton}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ADate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ALowPassFilter}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/AMonth}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ATime}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ATimer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/DHT22}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/DS1302}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/RunningAverage}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/RunningMedian}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.677022406" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -54,6 +64,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/SPI/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/TinyGPS/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/AButton}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ADate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ALowPassFilter}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/AMonth}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ATime}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ATimer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/DHT22}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/DS1302}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/RunningAverage}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/RunningMedian}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1869895825" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -73,6 +93,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/SPI/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/TinyGPS/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/AButton}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ADate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ALowPassFilter}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/AMonth}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ATime}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/ATimer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/DHT22}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/DS1302}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/RunningAverage}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TomatoWatering/libraries/RunningMedian}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.1035175041" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>

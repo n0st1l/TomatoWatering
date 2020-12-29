@@ -57,6 +57,46 @@
 			<locationURI>ArduinoPinPath/mega</locationURI>
 		</link>
 		<link>
+			<name>libraries/AButton</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/AButton</locationURI>
+		</link>
+		<link>
+			<name>libraries/ADate</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/ADate</locationURI>
+		</link>
+		<link>
+			<name>libraries/ALowPassFilter</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/ALowPassFilter</locationURI>
+		</link>
+		<link>
+			<name>libraries/AMonth</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/AMonth</locationURI>
+		</link>
+		<link>
+			<name>libraries/ATime</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/ATime</locationURI>
+		</link>
+		<link>
+			<name>libraries/ATimer</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/ATimer</locationURI>
+		</link>
+		<link>
+			<name>libraries/DHT22</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/DHT22</locationURI>
+		</link>
+		<link>
+			<name>libraries/DS1302</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/DS1302</locationURI>
+		</link>
+		<link>
 			<name>libraries/DS1307RTC</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/DS1307RTC/1.4.1</locationURI>
@@ -75,6 +115,16 @@
 			<name>libraries/LiquidCrystal</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/LiquidCrystal/1.0.7</locationURI>
+		</link>
+		<link>
+			<name>libraries/RunningAverage</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/RunningAverage</locationURI>
+		</link>
+		<link>
+			<name>libraries/RunningMedian</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/libraries/RunningMedian</locationURI>
 		</link>
 		<link>
 			<name>libraries/SPI</name>
