@@ -26,6 +26,7 @@ OperatingState::OperatingState() {
 	this->actualTemperature = 20.0f;
 	this->totalWaterQuantity = 0.0f;
 	this->dailyWaterQuantity = 0.0f;
+	this->ledBoardState = eDigitalOutputStateDisabled;
 }
 
 OperatingState::~OperatingState() {
@@ -72,4 +73,8 @@ void OperatingState::setDailyWaterQuantity(float p_dailyWaterQuantity) {
 
 void OperatingState::addToDailyWaterQuantity(float p_waterQuantity) {
 	this->dailyWaterQuantity = this->dailyWaterQuantity + p_waterQuantity;
+}
+
+void OperatingState::setLedBoardState(DigitalOutputState_t p_ledBoardState) {
+	this->ledBoardState = p_ledBoardState;
 }

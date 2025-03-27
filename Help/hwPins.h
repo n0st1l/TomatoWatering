@@ -43,6 +43,9 @@
 #define RELAY7	38
 #define RELAY8	39
 
+//LED Pins
+#define LED_BOARD LED_BUILTIN
+
 //Serial Pins
 #define SERIAL_RX0	0
 #define SERIAL_TX0	1

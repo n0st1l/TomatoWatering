@@ -43,6 +43,7 @@ private:
 	void onOneMinuteTimerTimeout();
 
 	void checkIfShouldResetDailyWaterQuantity();
+	void toggleLedBoard();
 
 
 };

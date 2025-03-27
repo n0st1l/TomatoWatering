@@ -85,6 +85,7 @@ void OperatingControl::onTwoSecondsTimerTimeout() {
 	{
 		operatingState->setActualTime(hardwareControl->getTime());
 		operatingState->setActualDate(hardwareControl->getDate());
+		this->toggleLedBoard();
 
 		if(this->mainScreen != NULL)
 		{
@@ -118,6 +119,24 @@ void OperatingControl::checkIfShouldResetDailyWaterQuantity() {
 				(this->operatingState->getActualTime()->getMinutes() == 0))
 		{
 			this->operatingState->setDailyWaterQuantity(0);
+		}
+	}
+}
+
+void OperatingControl::toggleLedBoard() {
+	LOG_DAEMON_DEBUG(eOperatingControl, "toggleLedBoard()");
+
+	if(this->operatingState != NULL)
+	{
+		if((this->operatingState->getLedBoardState() == eDigitalOutputStateDisabled))
+		{
+			this->hardwareControl->setDigitalOutput(eDigitalOutputTypeLed_1, eDigitalOutputStateEnabled);
+			this->operatingState->setLedBoardState(eDigitalOutputStateEnabled);
+		}
+		else
+		{
+			this->hardwareControl->setDigitalOutput(eDigitalOutputTypeLed_1, eDigitalOutputStateDisabled);
+			this->operatingState->setLedBoardState(eDigitalOutputStateDisabled);
 		}
 	}
 }

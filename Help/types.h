@@ -17,7 +17,7 @@ typedef enum DigitalOutputType
 	eDigitalOutputTypeValve_3   = 3,
 	eDigitalOutputTypeValve_4   = 4,
     eDigitalOutputTypePump		= 5,
-	eDigitalOutputTypeReserve_1 = 6,
+	eDigitalOutputTypeLed_1		= 6,
 	eDigitalOutputTypeReserve_2 = 7,
 	eDigitalOutputTypeReserve_3 = 8
 } DigitalOutputType_t;

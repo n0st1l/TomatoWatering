@@ -8,6 +8,7 @@
 #ifndef MODEL_OPERATINGSTATE_H_
 #define MODEL_OPERATINGSTATE_H_
 
+#include "../Help/HelperClass.h"
 #include <../libraries/ATime/ATime.h>
 #include <../libraries/ADate/ADate.h>
 
@@ -37,6 +38,9 @@ public:
 	void setDailyWaterQuantity(float p_dailyWaterQuantity);
 	void addToDailyWaterQuantity(float p_waterQuantity);
 
+	inline DigitalOutputState_t getLedBoardState() { return ledBoardState; }
+	void setLedBoardState(DigitalOutputState_t p_ledBoardState);
+
 
 private:
 	OperatingState();
@@ -48,6 +52,7 @@ private:
 	float actualTemperature;	// [°C]
 	float totalWaterQuantity;	// [l]
 	float dailyWaterQuantity;	// [l]
+	DigitalOutputState_t ledBoardState;
 
 
 };

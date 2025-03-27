@@ -118,7 +118,9 @@ void HardwareControl::setDigitalOutput(
 	case eDigitalOutputTypePump:
 		digitalWrite(RELAY5, digitalOutputState);
 		break;
-	case eDigitalOutputTypeReserve_1:
+	case eDigitalOutputTypeLed_1:
+		digitalWrite(LED_BOARD, digitalOutputState);
+		break;
 	case eDigitalOutputTypeReserve_2:
 	case eDigitalOutputTypeReserve_3:
 	case eDigitalOutputTypeUndefined:
