@@ -59,32 +59,32 @@ void createPots()
 	/* Create first pot
 	 * 53.333 [ml/s] */
 	tempPot.setPotIndex(0);
-	tempPot.setPotName("HOCHBEET");
-	tempPot.setCorrectionFactor(53.333 / PUMP_OUTPUT);
+	tempPot.setPotName("VENTIL 1");
+	tempPot.setCorrectionFactor(50.0 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
 
 	/* Create second pot
 	 * 51.282 [ml/s] */
 	tempPot.setPotIndex(1);
-	tempPot.setPotName("TOMATEN");
-	tempPot.setCorrectionFactor(51.282 / PUMP_OUTPUT);
+	tempPot.setPotName("VENTIL 2");
+	tempPot.setCorrectionFactor(50.0 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
 
 	/* Create third pot
 	 * 55.556 [ml/s] */
 	tempPot.setPotIndex(2);
-	tempPot.setPotName("TERRASSE SÜD");
-	tempPot.setCorrectionFactor(55.556 / PUMP_OUTPUT);
+	tempPot.setPotName("VENTIL 3");
+	tempPot.setCorrectionFactor(50.0 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
 
 	/* Create fourth pot
 	 * 45.977 [ml/s] */
 	tempPot.setPotIndex(3);
-	tempPot.setPotName("TERRASSE NORD");
-	tempPot.setCorrectionFactor(45.977 / PUMP_OUTPUT);
+	tempPot.setPotName("VENTIL 4");
+	tempPot.setCorrectionFactor(50.0 / PUMP_OUTPUT);
 
 	wateringMode->addPot(&tempPot);
 }
@@ -101,8 +101,8 @@ void createWateringSettings()
 	tempSettings.setMinWaterQuantity(500);
 	tempSettings.setMaxWaterQuantity(2500); // TODO Change this in summer
 
-	//Watering first pot every five hour from 5:15 to 20:15
-	for(int i = 5 ; i <= 20 ; i += 5)
+	//Watering first pot every five hour from 7:15 to 20:15
+	for(int i = 7 ; i <= 20 ; i ++)
 	{
 		tempTime.setTime(i, 15, 0);
 		tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());
@@ -115,7 +115,7 @@ void createWateringSettings()
 	tempSettings.setMinWaterQuantity(200);
 	tempSettings.setMaxWaterQuantity(600); // TODO Change this in summer
 
-	//Watering second pot every hour from 7 to 20
+	//Watering second pot every hour from 7:00 to 20:00
 	for(int i = 7 ; i <= 20 ; i++)
 	{
 		tempTime.setTime(i, 0, 0);
@@ -143,8 +143,8 @@ void createWateringSettings()
 	tempSettings.setMinWaterQuantity(100);
 	tempSettings.setMaxWaterQuantity(400); // TODO Change this in summer
 
-	//Watering fourth pot every five hour from 5:45 to 20:45
-	for(int i = 5 ; i <= 20 ; i += 5)
+	//Watering fourth pot every five hour from 7:45 to 20:45
+	for(int i = 7 ; i <= 20 ; i ++)
 	{
 		tempTime.setTime(i, 45, 0);
 		tempSettings.setWateringSettingsIndex(wateringMode->getFreeWateringSettingsIndex());

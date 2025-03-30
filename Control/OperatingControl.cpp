@@ -85,7 +85,7 @@ void OperatingControl::onTwoSecondsTimerTimeout() {
 	{
 		operatingState->setActualTime(hardwareControl->getTime());
 		operatingState->setActualDate(hardwareControl->getDate());
-		this->toggleLedBoard();
+		//this->toggleLedBoard();
 
 		if(this->mainScreen != NULL)
 		{

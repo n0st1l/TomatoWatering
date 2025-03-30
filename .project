@@ -37,16 +37,6 @@
 			<locationURI>WORKSPACE_LOC/libraries</locationURI>
 		</link>
 		<link>
-			<name>arduino/core</name>
-			<type>2</type>
-			<location>C:/arduino/arduinoPlugin/packages/arduino/hardware/avr/1.6.17/cores/arduino</location>
-		</link>
-		<link>
-			<name>arduino/variant</name>
-			<type>2</type>
-			<location>C:/arduino/arduinoPlugin/packages/arduino/hardware/avr/1.6.17/variants/mega</location>
-		</link>
-		<link>
 			<name>core/core</name>
 			<type>2</type>
 			<locationURI>ArduinoPlatformPath/1.6.17/cores/arduino</locationURI>
