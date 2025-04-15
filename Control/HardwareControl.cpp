@@ -20,7 +20,7 @@ HardwareControl* HardwareControl::Instance()
 
 HardwareControl::HardwareControl() {
 	this->realTimeClock = new DS1302(DS1302_RST, DS1302_IO, DS1302_SCK);
-	//this->setupRealTimeClock();
+	//this->setupRealTimeClock(); //#TODO Enable here the setup of the RTC
 
 	this->dht22 = new DHT(DHT22_DATA, DHT22);
 	this->dht22->begin();
@@ -137,8 +137,8 @@ void HardwareControl::setupRealTimeClock() {
 	realTimeClock->halt(false);
 
 	/* Make a new time object to set the date and time */
-	ATime t (16, 54, 0);
-	ADate d (2025, 03, 30);
+	ATime t (15, 29, 0);
+	ADate d (2025, 04, 13);
 
 	/* Set the time and date on the chip */
 	realTimeClock->time(t);
